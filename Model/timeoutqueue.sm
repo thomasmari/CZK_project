@@ -1,0 +1,16 @@
+gsmp
+
+const int qCapacity = 10;
+
+const double timeout = 10;
+const double lambda = 0.2;
+
+module main
+event prod = dirac(timeout);
+
+qSize : [0..qCapacity] init 0;
+
+[produce] (qSize < qCapacity)--prod -> (qSize' = qSize+1);
+[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
+
+endmodule

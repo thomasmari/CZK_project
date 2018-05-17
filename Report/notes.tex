@@ -1,0 +1,228 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% LaTeX Example: Project Report
+%
+% Source: http://www.howtotex.com
+%
+% Feel free to distribute this example, but please keep the referral
+% to howtotex.com
+% Date: March 2011 
+% 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% How to use writeLaTeX: 
+%
+% You edit the source code here on the left, and the preview on the
+% right shows you the result within a few seconds.
+%
+% Bookmark this page and share the URL with your co-authors. They can
+% edit at the same time!
+%
+% You can upload figures, bibliographies, custom classes and
+% styles using the files menu.
+%
+% If you're new to LaTeX, the wikibook is a great place to start:
+% http://en.wikibooks.org/wiki/LaTeX
+%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Edit the title below to update the display in My Documents
+%\title{Project Report}
+%
+%%% Preamble
+\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+\usepackage[T1]{fontenc}
+%\usepackage{fourier}
+
+\usepackage[english]{babel}															% English language/hyphenation
+\usepackage[protrusion=true,expansion=true]{microtype}	
+\usepackage{amsmath,amsfonts,amsthm} % Math packages
+\usepackage[pdftex]{graphicx}	
+\usepackage{url}
+
+
+%%% Custom sectioning
+\usepackage{sectsty}
+\allsectionsfont{\centering \normalfont\scshape}
+\usepackage{tikz}
+\usetikzlibrary{chains,shapes.multipart}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+
+%%% Custom headers/footers (fancyhdr package)
+\usepackage{fancyhdr}
+\pagestyle{fancyplain}
+\fancyhead{}											% No page header
+\fancyfoot[L]{}											% Empty 
+\fancyfoot[C]{}											% Empty
+\fancyfoot[R]{\thepage}									% Pagenumbering
+\renewcommand{\headrulewidth}{0pt}			% Remove header underlines
+\renewcommand{\footrulewidth}{0pt}				% Remove footer underlines
+\setlength{\headheight}{13.6pt}
+
+
+%%% Equation and float numbering
+\numberwithin{equation}{section}		% Equationnumbering: section.eq#
+\numberwithin{figure}{section}			% Figurenumbering: section.fig#
+\numberwithin{table}{section}				% Tablenumbering: section.tab#
+
+
+%%% Maketitle metadata
+\newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
+
+\title{
+		%\vspace{-1in} 	
+		\usefont{OT1}{bch}{b}{n}
+		\normalfont \normalsize \textsc{School of random department names} \\ [25pt]
+		\horrule{0.5pt} \\[0.4cm]
+		\huge This is the title of the template report \\
+		\horrule{2pt} \\[0.5cm]
+}
+\author{
+		\normalfont 								\normalsize
+        Firstname Lastname\\[-3pt]		\normalsize
+        \today
+}
+\date{}
+
+
+%%% Begin document
+\begin{document}
+\maketitle
+\begin{abstract}
+	The subject of this internship is first modeling some system  in the PrismGSMP. That is a continuous system with rates instead of probabilistic transition. Transitiom are syncronized with event which follows some probabilistic laws like exponential law or dirac. One good property about the exponenial law is the events are markovian. That is the probability of the event of happening doenst depends on the time already spend.
+	
+\end{abstract}
+\section{Queue : A toy example}
+We considere a M/M/1/n queue (see Kendall notation). 
+put some figure here 
+
+first model:
+
+\begin{tikzpicture}[start chain=going right,>=latex,node distance=0pt]
+% the rectangular shape with vertical lines
+\node[rectangle split, rectangle split parts=6,
+draw, rectangle split horizontal,text height=1cm,text depth=0.5cm,on chain,inner ysep=0pt] (wa) {};
+\fill[white] ([xshift=-\pgflinewidth,yshift=-\pgflinewidth]wa.north west) rectangle ([xshift=-15pt,yshift=\pgflinewidth]wa.south);
+
+% the circle
+\node[draw,circle,on chain,minimum size=1.5cm] (se) {$\mu$};
+
+% the arrows and labels
+\draw[->] (se.east) -- +(20pt,0);
+\draw[<-] (wa.west) -- +(-20pt,0) node[left] {$\lambda$};
+\node[align=center,below] at (wa.south) {Producing \\ Area};
+\node[align=center,below] at (se.south) {Consume};
+\end{tikzpicture}
+
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.1cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[initial,state] (s0)                    {$0$};
+  \node[state]         (s1) [right of=s0] {$1$};
+  \node[state]         (s2) [right of=s1] {$2$};
+  \node[state]         (s3) [right of=s2] {$3$};
+  \node[state]         (s4) [right of=s3]       {$4$};
+  \node[state]         (sw) [right of=s4,fill=white,text=black]       {...};
+  \node[state]         (sn) [right of=sw]       {$n$};
+
+
+
+  \path (s0) edge [bend left]             node {Dirac(t)} (s1)
+        (s1) edge [bend left] node {$\lambda$} (s0)
+            edge  [bend left]            node {Dirac(t)} (s2)
+        (s2) edge [bend left]             node {$\lambda$} (s1)
+            edge [bend left]  node {Dirac(t)} (s3)
+        (s3) edge [bend left]              node {$\lambda$} (s2)
+            edge [bend left]  node {Dirac(t)} (s4)
+        (s4) edge [bend left]             node {$\lambda$} (s3)
+            edge [bend left]  node {Dirac(t)} (sw)
+        (sw) edge [bend left]             node {$\lambda$} (s4)
+            edge [bend left]  node {Dirac(t)} (sn)
+        (sn) edge [bend left]             node {$\lambda$} (sw);
+\end{tikzpicture}
+
+
+second model(using phase type fitting):
+
+\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.5cm,
+                    semithick]
+  \tikzstyle{every state}=[fill=red,draw=none,text=white]
+
+  \node[state] (s0)                    {$i$};
+  \node[state] (s02) [right of=s0,fill=blue,scale=0.5]                   {};
+  \node[state] (s03) [right of=s02,fill=blue,scale=0.5]                    {};
+  \node[state] (s04) [right of=s03,fill=blue,scale=0.5]                   {};
+  \node[state] (s05) [right of=s04,fill=blue,scale=0.5]                    {};
+  \node[state] (s1) [right of=s05]                   {$i+1$};
+
+
+
+
+  \path (s0) edge [bend left]             node {$\lambda_2$} (s02)
+        (s02) edge [bend left] node {$\lambda$} (s0)
+            edge  [bend left]            node {$\lambda_2$} (s03)
+        (s03) edge [bend left]             node {$\lambda$} (s0)
+            edge [bend left]  node {$\lambda_2$} (s04)
+        (s04) edge [bend left]              node {$\lambda$} (s0)
+            edge [bend left]  node {$\lambda_2$} (s05)
+        (s05) edge [bend left]             node {$\lambda$} (s0)
+            edge [bend left]  node {$\lambda_2$} (s1);
+
+\end{tikzpicture}
+
+
+
+\begin{align} 
+	\begin{split}
+	(x+y)^3 	&= (x+y)^2(x+y)\\
+					&=(x^2+2xy+y^2)(x+y)\\
+					&=(x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3)\\
+					&=x^3+3x^2y+3xy^2+y^3
+	\end{split}					
+\end{align}
+Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies 
+
+\subsection{Heading on level 2 (subsection)}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+\begin{align}
+	A = 
+	\begin{bmatrix}
+	A_{11} & A_{21} \\
+  	A_{21} & A_{22}
+	\end{bmatrix}
+\end{align}
+Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+
+\subsubsection{Heading on level 3 (subsubsection)}
+Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+
+\paragraph{Heading on level 4 (paragraph)}
+Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
+
+
+\section{Lists}
+
+\subsection{Example for list (3*itemize)}
+\begin{itemize}
+	\item First item in a list 
+		\begin{itemize}
+		\item First item in a list 
+			\begin{itemize}
+			\item First item in a list 
+			\item Second item in a list 
+			\end{itemize}
+		\item Second item in a list 
+		\end{itemize}
+	\item Second item in a list 
+\end{itemize}
+
+\subsection{Example for list (enumerate)}
+\begin{enumerate}
+	\item First item in a list 
+	\item Second item in a list 
+	\item Third item in a list
+\end{enumerate}
+%%% End document
+\end{document}\\
+
