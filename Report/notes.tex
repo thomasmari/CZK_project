@@ -30,6 +30,14 @@
 \documentclass[paper=a4, fontsize=11pt]{scrartcl}
 \usepackage[T1]{fontenc}
 \usepackage{fourier}
+\usepackage{hyperref}
+
+\hypersetup{
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links 
+    urlcolor=cyan           % color of external links
+}
+
 
 \usepackage[english]{babel}															% English language/hyphenation
 \usepackage[protrusion=true,expansion=true]{microtype}	
@@ -122,7 +130,7 @@
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
 	\section{Queue : A toy example}
-	We considere a M/M/1/n queue (see Kendall notation). 
+	We consider a D/M/1/n queue. 
 	
 	\subsection{first model}
 	
@@ -176,7 +184,7 @@
 		edge [bend left]  node {Dirac(t)} (sn)
 		(sn) edge [bend left]             node {$\lambda$} (sw);
 		\end{tikzpicture}
-		\caption{Queue with n capacity, the current size is written on the states}
+		\caption{D/M/1/n queue with capacity $n$. The Dirac-distributed arrival event does not reset when the exponential service event occurs.}
 		\label{fig:Queue1}
 	\end{figure}
 	
@@ -184,7 +192,7 @@
 		\centering
 		\lstinputlisting{../Model/timeoutqueue.sm}
 
-		\caption{Prism code for figure \ref{fig:Queue1}}
+		\caption{PRISM GSMP model of a D/M/1/n queue as shown in \ref{fig:Queue1}.}
 		\label{fig:queuecode1}
 	\end{figure}
 	
@@ -246,7 +254,7 @@
 		edge   node {$\mu$} (sw1)    
 		(sw1) edge  node {$\lambda$} (s1);
 		\end{tikzpicture}
-		\caption{Queue with phase type fitting of parameter k}
+		\caption{Queue with phase type fitting of parameter k.}
 		\label{fig:queueptf1}
 	\end{figure}
 	
@@ -304,11 +312,9 @@
 		edge   node {$\mu$} (sw1)    
 		(sw1) edge  node {$\lambda$} (s12);
 		\end{tikzpicture}
-		\caption{Queue with phase type fitting of parameter k}
+		\caption{Queue with phase type fitting of parameter k.}
 		\label{fig:queueptf2}
 	\end{figure}
-	
-	
 	
 	\begin{figure}
 		\centering
@@ -343,8 +349,15 @@
 		endmodule
 		
 		\end{lstlisting}
-		\caption{Caption}
+		\caption{PRISM CTMC model of the D/M/1/n queue as shown in \ref{fig:Queue1} with phase-type fitting to approximate the deterministic arrivals. The phase-type module \emph{trigger} is used as suggested on the \href{http://www.prismmodelchecker.org/manual/FrequentlyAskedQuestions/PRISMModelling}{PRISM website}.  }
 		\label{fig:queuecode2}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=12cm]{faq-erlang.jpg}
+		\caption{The effect of $k$, the number of time points within the sequence of exponential transitions, on the shape of the resulting phase-type distribution. Increasing $k$ makes the phase-type distribution more deterministic. This picture was taken from the \href{http://www.prismmodelchecker.org/manual/FrequentlyAskedQuestions/PRISMModelling}{PRISM website}.}
+		\label{fig:time1}
 	\end{figure}
 	
 	
@@ -363,21 +376,21 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=18cm]{sspqueue.png}
-		\caption{The blue line is the result without phase type fitting}
+		\caption{The blue line is the result without phase type fitting.}
 		\label{fig:res1}
 	\end{figure}
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=16cm]{time.png}
-		\caption{time of computation versus k}
+		\caption{Computation time for different values of $k$. The growing lines represent computations of models with phase-type distributions. For about $k>200$, GSMP implementation starts outperforming all phase-typed computations, despite the GSMP implementation being relatively poorly optimized.}
 		\label{fig:time1}
 	\end{figure}	
 	
 	\begin{figure}
 		\centering
 		\includegraphics[width=16cm]{size.png}
-		\caption{size of model versus k}
+		\caption{Size of model for different values of $k$.}
 		\label{fig:time1}
 	\end{figure}
 	
