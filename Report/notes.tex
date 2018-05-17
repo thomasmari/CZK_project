@@ -78,7 +78,7 @@
 }
 \author{
 	\normalfont 								\normalsize
-	Firstname Lastname\\[-3pt]		\normalsize
+	Thomas Mari, M\'{a}rio Uhr\'{i}k\\[-3pt]		\normalsize
 	\today
 }
 \date{}
@@ -86,33 +86,29 @@
 \usepackage{listings}
 \usepackage{color}
 
-\definecolor{dkgreen}{rgb}{0,0.6,0}
-\definecolor{gray}{rgb}{0.5,0.5,0.5}
-\definecolor{mauve}{rgb}{0.58,0,0.82}
 
-\definecolor{prismgreen}{rgb}{0, 0.6, 0}
 
 %% BEGIN PRISM CODE LISTING 
-\lstdefinelanguage{Prism}{ % syntax highlight via font
-	basicstyle=\color{red}\tiny\ttfamily, % small true type font (like
-	courier)
-	morekeywords={bool,C,ceil,const,ctmc,double,dtmc,endinit,endmodule,endrewards,endsystem,F,false,floor,formula,G,global,I,init,int,label,max,mdp,min,module,nondeterministic,P,Pmin,Pmax,prob,probabilistic,R,rate,rewards,Rmin,Rmax,S,stochastic,system,true,U,X},
-	keywordstyle={\bfseries\color{black}},
-	numberstyle=\tiny\color{black},
-	comment=[l] {//}, morecomment=[s]{/*}{*/}, % single and multi-line
-	commentstyle= \color{prismgreen}, % dark green
-	tabsize=4, % tab treatment (going to be fixed in Prism)
-	captionpos=b, % put captions at the bottom
-	escapechar=@ % write LaTeX comments escaped by @ symbol
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=1mm,
+	belowskip=1mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\fontsize{8.8}{8.5}\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+	morekeywords={event, gsmp, dirac, exponential, uniform, weibull, erlang,
+		module, init, rewards, endrewards, label, true, endmodule}
 }
-
-%define command \prism with one argument for inline printing of \prismcode
-\newcommand{\prism}[1]{\lstinline[language=Prism,basicstyle=\small
-	\ttfamily]|#1|}
-
-%% END PRISM CODE LISTING 
-
-     % Set your language (you can change the language for each code-block optionally)
 
 %%% Begin document
 \begin{document}
@@ -186,7 +182,7 @@
 	
 	\begin{figure}
 		\centering
-		\lstinputlisting[language=Prism]{../Model/timeoutqueue.sm}
+		\lstinputlisting{../Model/timeoutqueue.sm}
 
 		\caption{Prism code for figure \ref{fig:Queue1}}
 		\label{fig:queuecode1}

@@ -119,10 +119,14 @@ def time_10():
 	plt.ylabel('s', fontsize=14, color='black')
 	plt.title('Steady State Probability time computation versus phase type fitting parameter k')
 	k = [2,5,10,50,100,200]
-	time = [0.004,0.007,0.021,1.092,9.951,109.147]
+	time_noopt = [0.004,0.007,0.021,1.092,9.951,109.147]
+	time_opt = [0.002,0.003,0.006,0.011,0.022,0.045]
+
 	reftime = [0.062,0.062,0.062,0.062,0.062,0.062]
 	plt.plot(k, reftime, label = 'ref (s)')
-	plt.plot(k, time, label = 'time with phase type fitting (s)')
+	plt.plot(k, time_noopt, label = 'gsmp')
+	plt.plot(k, time_opt, label = 'ctmc')
+
 	plt.legend()
 	plt.show()
 
