@@ -1,6 +1,6 @@
 ctmc
 
-const int k = 50;
+const int k = 200;
 const int qCapacity = 10;
 
 const double timeout = 10;

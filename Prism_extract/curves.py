@@ -119,13 +119,15 @@ def time_10():
 	plt.ylabel('s', fontsize=14, color='black')
 	plt.title('Steady State Probability time computation versus phase type fitting parameter k')
 	k = [2,5,10,50,100,200]
-	time_noopt = [0.004,0.007,0.021,1.092,9.951,109.147]
-	time_opt = [0.002,0.003,0.006,0.011,0.022,0.045]
+	time_Jacobi_Explicit = [0.004,0.007,0.021,1.092,9.951,109.147]
+	time_Gauss_Hybrid = [0.002,0.003,0.006,0.011,0.022,0.045]
+	time_Power_Hybrid = [0.004,0.005,0.007,0.113,1.018,9.689]
 
 	reftime = [0.062,0.062,0.062,0.062,0.062,0.062]
-	plt.plot(k, reftime, label = 'ref (s)')
-	plt.plot(k, time_noopt, label = 'gsmp')
-	plt.plot(k, time_opt, label = 'ctmc')
+	plt.plot(k, reftime, label = 'gsmp event model')
+	plt.plot(k, time_Jacobi_Explicit, label = 'gsmp Jacobi Explicit')
+	plt.plot(k, time_Gauss_Hybrid, label = 'ctmc Gauss Hybrid')
+	plt.plot(k, time_Power_Hybrid, label = 'ctmc Power Hybrid')
 
 	plt.legend()
 	plt.show()
