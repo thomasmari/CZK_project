@@ -29,7 +29,7 @@
 %%% Preamble
 \documentclass[paper=a4, fontsize=11pt]{scrartcl}
 \usepackage[T1]{fontenc}
-%\usepackage{fourier}
+\usepackage{fourier}
 
 \usepackage[english]{babel}															% English language/hyphenation
 \usepackage[protrusion=true,expansion=true]{microtype}	
@@ -69,160 +69,368 @@
 \newcommand{\horrule}[1]{\rule{\linewidth}{#1}} 	% Horizontal rule
 
 \title{
-		%\vspace{-1in} 	
-		\usefont{OT1}{bch}{b}{n}
-		\normalfont \normalsize \textsc{School of random department names} \\ [25pt]
-		\horrule{0.5pt} \\[0.4cm]
-		\huge This is the title of the template report \\
-		\horrule{2pt} \\[0.5cm]
+	%\vspace{-1in} 	
+	\usefont{OT1}{bch}{b}{n}
+	\normalfont \normalsize \textsc{School of random department names} \\ [25pt]
+	\horrule{0.5pt} \\[0.4cm]
+	\huge This is the title of the template report \\
+	\horrule{2pt} \\[0.5cm]
 }
 \author{
-		\normalfont 								\normalsize
-        Firstname Lastname\\[-3pt]		\normalsize
-        \today
+	\normalfont 								\normalsize
+	Firstname Lastname\\[-3pt]		\normalsize
+	\today
 }
 \date{}
 
+\usepackage{listings}
+\usepackage{color}
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily\color{red}},
+	numbers=none,
+	numberstyle=\tiny\color{blue},
+	keywordstyle=\color{black},
+	commentstyle=\color{dkgreen},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+	morekeywords={\;,init,gsmp,dtmc, const, int, double, module, formula, endmodule,->,=} 
+}
 %%% Begin document
 \begin{document}
-\maketitle
-\begin{abstract}
-	The subject of this internship is first modeling some system  in the PrismGSMP. That is a continuous system with rates instead of probabilistic transition. Transitiom are syncronized with event which follows some probabilistic laws like exponential law or dirac. One good property about the exponenial law is the events are markovian. That is the probability of the event of happening doenst depends on the time already spend.
+	\maketitle
+	\begin{abstract}
+		The subject of this internship is first modeling some system  in the PrismGSMP. That is a continuous system with rates instead of probabilistic transition. Transitiom are syncronized with event which follows some probabilistic laws like exponential law or dirac. One good property about the exponenial law is the events are markovian. That is the probability of the event of happening doenst depends on the time already spend.
+		
+	\end{abstract}
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%SECTION1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	
-\end{abstract}
-\section{Queue : A toy example}
-We considere a M/M/1/n queue (see Kendall notation). 
-put some figure here 
-
-first model:
-
-\begin{tikzpicture}[start chain=going right,>=latex,node distance=0pt]
-% the rectangular shape with vertical lines
-\node[rectangle split, rectangle split parts=6,
-draw, rectangle split horizontal,text height=1cm,text depth=0.5cm,on chain,inner ysep=0pt] (wa) {};
-\fill[white] ([xshift=-\pgflinewidth,yshift=-\pgflinewidth]wa.north west) rectangle ([xshift=-15pt,yshift=\pgflinewidth]wa.south);
-
-% the circle
-\node[draw,circle,on chain,minimum size=1.5cm] (se) {$\mu$};
-
-% the arrows and labels
-\draw[->] (se.east) -- +(20pt,0);
-\draw[<-] (wa.west) -- +(-20pt,0) node[left] {$\lambda$};
-\node[align=center,below] at (wa.south) {Producing \\ Area};
-\node[align=center,below] at (se.south) {Consume};
-\end{tikzpicture}
-
-
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=2.1cm,
-                    semithick]
-  \tikzstyle{every state}=[fill=red,draw=none,text=white]
-
-  \node[initial,state] (s0)                    {$0$};
-  \node[state]         (s1) [right of=s0] {$1$};
-  \node[state]         (s2) [right of=s1] {$2$};
-  \node[state]         (s3) [right of=s2] {$3$};
-  \node[state]         (s4) [right of=s3]       {$4$};
-  \node[state]         (sw) [right of=s4,fill=white,text=black]       {...};
-  \node[state]         (sn) [right of=sw]       {$n$};
-
-
-
-  \path (s0) edge [bend left]             node {Dirac(t)} (s1)
-        (s1) edge [bend left] node {$\lambda$} (s0)
-            edge  [bend left]            node {Dirac(t)} (s2)
-        (s2) edge [bend left]             node {$\lambda$} (s1)
-            edge [bend left]  node {Dirac(t)} (s3)
-        (s3) edge [bend left]              node {$\lambda$} (s2)
-            edge [bend left]  node {Dirac(t)} (s4)
-        (s4) edge [bend left]             node {$\lambda$} (s3)
-            edge [bend left]  node {Dirac(t)} (sw)
-        (sw) edge [bend left]             node {$\lambda$} (s4)
-            edge [bend left]  node {Dirac(t)} (sn)
-        (sn) edge [bend left]             node {$\lambda$} (sw);
-\end{tikzpicture}
-
-
-second model(using phase type fitting):
-
-\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.5cm,
-                    semithick]
-  \tikzstyle{every state}=[fill=red,draw=none,text=white]
-
-  \node[state] (s0)                    {$i$};
-  \node[state] (s02) [right of=s0,fill=blue,scale=0.5]                   {};
-  \node[state] (s03) [right of=s02,fill=blue,scale=0.5]                    {};
-  \node[state] (s04) [right of=s03,fill=blue,scale=0.5]                   {};
-  \node[state] (s05) [right of=s04,fill=blue,scale=0.5]                    {};
-  \node[state] (s1) [right of=s05]                   {$i+1$};
-
-
-
-
-  \path (s0) edge [bend left]             node {$\lambda_2$} (s02)
-        (s02) edge [bend left] node {$\lambda$} (s0)
-            edge  [bend left]            node {$\lambda_2$} (s03)
-        (s03) edge [bend left]             node {$\lambda$} (s0)
-            edge [bend left]  node {$\lambda_2$} (s04)
-        (s04) edge [bend left]              node {$\lambda$} (s0)
-            edge [bend left]  node {$\lambda_2$} (s05)
-        (s05) edge [bend left]             node {$\lambda$} (s0)
-            edge [bend left]  node {$\lambda_2$} (s1);
-
-\end{tikzpicture}
-
-
-
-\begin{align} 
+	\section{Queue : A toy example}
+	We considere a M/M/1/n queue (see Kendall notation). 
+	
+	\subsection{first model}
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[start chain=going right,>=latex,node distance=0pt]
+		% the rectangular shape with vertical lines
+		\node[rectangle split, rectangle split parts=6,
+		draw, rectangle split horizontal,text height=1cm,text depth=0.5cm,on chain,inner ysep=0pt] (wa) {};
+		\fill[white] ([xshift=-\pgflinewidth,yshift=-\pgflinewidth]wa.north west) rectangle ([xshift=-15pt,yshift=\pgflinewidth]wa.south);
+		
+		% the circle
+		\node[draw,circle,on chain,minimum size=1.5cm] (se) {$\mu$};
+		
+		% the arrows and labels
+		\draw[->] (se.east) -- +(20pt,0);
+		\draw[<-] (wa.west) -- +(-20pt,0) node[left] {$\lambda$};
+		\node[align=center,below] at (wa.south) {Producing \\ Area};
+		\node[align=center,below] at (se.south) {Consume};
+		\end{tikzpicture}
+		\caption{a queue}
+		\label{fig:queue0}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+		semithick]
+		\tikzstyle{every state}=[fill=red,draw=none,text=white]
+		
+		\node[initial,state] (s0)                    {$0$};
+		\node[state]         (s1) [right of=s0] {$1$};
+		\node[state]         (s2) [right of=s1] {$2$};
+		\node[state]         (s3) [right of=s2] {$3$};
+		\node[state]         (s4) [right of=s3]       {$4$};
+		\node[state]         (sw) [right of=s4,fill=white,text=black]       {...};
+		\node[state]         (sn) [right of=sw]       {$n$};
+		
+		
+		
+		\path (s0) edge [bend left]             node {Dirac(t)} (s1)
+		(s1) edge [bend left] node {$\lambda$} (s0)
+		edge  [bend left]            node {Dirac(t)} (s2)
+		(s2) edge [bend left]             node {$\lambda$} (s1)
+		edge [bend left]  node {Dirac(t)} (s3)
+		(s3) edge [bend left]              node {$\lambda$} (s2)
+		edge [bend left]  node {Dirac(t)} (s4)
+		(s4) edge [bend left]             node {$\lambda$} (s3)
+		edge [bend left]  node {Dirac(t)} (sw)
+		(sw) edge [bend left]             node {$\lambda$} (s4)
+		edge [bend left]  node {Dirac(t)} (sn)
+		(sn) edge [bend left]             node {$\lambda$} (sw);
+		\end{tikzpicture}
+		\caption{Queue with n capacity, the current size is written on the states}
+		\label{fig:Queue1}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\begin{lstlisting}
+		gsmp
+		
+		const int qCapacity = 10;
+		
+		const double timeout = 10;
+		const double lambda = 0.2;
+		
+		module main
+		event prod = dirac(timeout);
+		
+		qSize : [0..qCapacity] init 0;
+		
+		[produce] (qSize < qCapacity)--prod -> (qSize' = qSize+1);
+		[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
+		
+		endmodule
+		\end{lstlisting}
+		\caption{Prism code for figure \ref{fig:Queue1}}
+		\label{fig:queuecode1}
+	\end{figure}
+	
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%SECTION2%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+	
+	\subsection{second model(using phase type fitting)}
+	The timeout part is replaced by $k$ $\mu$ transition following the exponential law of parameter $\mu$. Here on the figure, k=5, which mean that you need 5 consecutive $\mu$ transition to $produce$. 
+	
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,
+		semithick]
+		\tikzstyle{every state}=[fill=red,draw=none,text=white]
+		
+		\node[state] (s0)                    {$i$};
+		\node[state] (s02) [right of=s0,fill=blue,scale=0.5]                   {};
+		\node[state] (s03) [right of=s02,fill=blue,scale=0.5]                    {};
+		\node[state] (s04) [right of=s03,fill=blue,scale=0.5]                   {};
+		\node[state] (s05) [right of=s04,fill=blue,scale=0.5]                    {};
+		\node[state] (s1) [below of=s0]                   {$i+1$};
+		
+		\node[state] (s12) [right of=s1,fill=blue,scale=0.5]                   {};
+		\node[state] (s13) [right of=s12,fill=blue,scale=0.5]                    {};
+		\node[state] (s14) [right of=s13,fill=blue,scale=0.5]                   {};
+		\node[state] (s15) [right of=s14,fill=blue,scale=0.5]                    {};
+		\node[state] (s2) [below of=s1]     {$i+2$};
+		
+		\node[state] (sw0) [above of=s0,fill=white,text=black]        {...}            {};
+		\node[state] (sw1) [right of=s2,fill=white,text=black]       {...}             {};
+		
+		
+		
+		
+		\path (s0) edge   node {$\lambda$} (sw0)
+		edge   node {$\mu$} (s02)
+		
+		(s02)   edge   node {$\lambda$} (sw0)
+		edge   node {$\mu$} (s03)
+		(s03)   edge  node {$\lambda$} (sw0)
+		edge   node {$\mu$} (s04)
+		(s04) edge  node {$\lambda$} (sw0)
+		edge   node {$\mu$} (s05)
+		(s05) edge  node {$\lambda$} (sw0)
+		edge   node {$\mu$} (s1)
+		(s1)    edge  node {$\lambda$} (s0)
+		edge   node {$\mu$} (s12)
+		(s12)   edge  node {$\lambda$} (s0)
+		edge   node {$\mu$} (s13)
+		(s13) edge  node {$\lambda$} (s0)
+		edge   node {$\mu$} (s14)
+		(s14) edge  node {$\lambda$} (s0)
+		edge   node {$\mu$} (s15)
+		(s15) edge  node {$\lambda$} (s0)
+		edge   node {$\mu$} (s2)
+		(s2) edge  node {$\lambda$} (s1)
+		edge   node {$\mu$} (sw1)    
+		(sw1) edge  node {$\lambda$} (s1);
+		\end{tikzpicture}
+		\caption{Queue with phase type fitting of parameter k}
+		\label{fig:queueptf1}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,
+		semithick]
+		\tikzstyle{every state}=[fill=red,draw=none,text=white]
+		
+		\node[state] (s0)                    {$i$};
+		\node[state] (s02) [right of=s0,fill=blue,scale=0.5]                   {};
+		\node[state] (s03) [right of=s02,fill=blue,scale=0.5]                    {};
+		\node[state] (s04) [right of=s03,fill=blue,scale=0.5]                   {};
+		\node[state] (s05) [right of=s04,fill=blue,scale=0.5]                    {};
+		\node[state] (s1) [below of=s0]                   {$i+1$};
+		
+		\node[state] (s12) [right of=s1,fill=blue,scale=0.5]                   {};
+		\node[state] (s13) [right of=s12,fill=blue,scale=0.5]                    {};
+		\node[state] (s14) [right of=s13,fill=blue,scale=0.5]                   {};
+		\node[state] (s15) [right of=s14,fill=blue,scale=0.5]                    {};
+		\node[state] (s2) [below of=s1]     {$i+2$};
+		
+		\node[state] (sw0) [above of=s0,fill=white,text=black]        {...}            {};
+		\node[state] (sw02) [right of=sw0,fill=white,text=black]        {...}            {};
+		\node[state] (sw03) [right of=sw02,fill=white,text=black]        {...}            {};
+		\node[state] (sw04) [right of=sw03,fill=white,text=black]        {...}            {};
+		\node[state] (sw05) [right of=sw04,fill=white,text=black]        {...}            {};
+		\node[state] (sw1) [right of=s2,fill=white,text=black]       {...}             {};
+		
+		
+		
+		
+		\path (s0) edge   node {$\lambda$} (sw0)
+		edge   node {$\mu$} (s02)
+		
+		(s02)   edge   node {$\lambda$} (sw02)
+		edge   node {$\mu$} (s03)
+		(s03)   edge  node {$\lambda$} (sw03)
+		edge   node {$\mu$} (s04)
+		(s04) edge  node {$\lambda$} (sw04)
+		edge   node {$\mu$} (s05)
+		(s05) edge  node {$\lambda$} (sw05)
+		edge   node {$\mu$} (s1)
+		(s1)    edge  node {$\lambda$} (s0)
+		edge   node {$\mu$} (s12)
+		(s12)   edge  node {$\lambda$} (s02)
+		edge   node {$\mu$} (s13)
+		(s13) edge  node {$\lambda$} (s03)
+		edge   node {$\mu$} (s14)
+		(s14) edge  node {$\lambda$} (s04)
+		edge   node {$\mu$} (s15)
+		(s15) edge  node {$\lambda$} (s05)
+		edge   node {$\mu$} (s2)
+		(s2) edge  node {$\lambda$} (s1)
+		edge   node {$\mu$} (sw1)    
+		(sw1) edge  node {$\lambda$} (s12);
+		\end{tikzpicture}
+		\caption{Queue with phase type fitting of parameter k}
+		\label{fig:queueptf2}
+	\end{figure}
+	
+	
+	
+	\begin{figure}
+		\centering
+		\begin{lstlisting}
+		gsmp
+		
+		const int k = 10;
+		const int qCapacity = 10;
+		
+		const double timeout = 10;
+		const double lambda = 0.2;
+		
+		
+		
+		module main
+		
+		qSize : [0..qCapacity] init 0;
+		
+		[produce] (qSize < qCapacity) -> (qSize' = qSize+1);
+		[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
+		
+		endmodule
+		
+		module trigger
+		
+		i : [1..k+1];
+		
+		[] i < k -> k/timeout : (i'=i+1);
+		[produce] i = k -> k/timeout : (i'=1);
+		//[consume] true -> (i'=1);
+		
+		endmodule
+		
+		\end{lstlisting}
+		\caption{Caption}
+		\label{fig:queuecode2}
+	\end{figure}
+	
+	
+	
+	
+	\subsection{finding $\mu$}
+	
+	According to Prism documentation on phase type fittimg, we should take $\mu = t/k$. The mean of diract(t) is t, and the mean of exponential($\mu$) is $1/\mu$. Hence $\mu = t/k$.
+	
+	
+	
+	\subsection{Results}
+	
+	For a queue capacity of 10, we compare the steady state probabilities according to k the parameter of phase type fitting.
+	
+	\begin{figure}
+		\centering
+		\includegraphics[width=18cm]{sspqueue.png}
+		\caption{The blue line is the result without phase type fitting}
+		\label{fig:res1}
+	\end{figure}
+	
+	
+	
+	
+	\begin{align} 
 	\begin{split}
 	(x+y)^3 	&= (x+y)^2(x+y)\\
-					&=(x^2+2xy+y^2)(x+y)\\
-					&=(x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3)\\
-					&=x^3+3x^2y+3xy^2+y^3
+	&=(x^2+2xy+y^2)(x+y)\\
+	&=(x^3+2x^2y+xy^2) + (x^2y+2xy^2+y^3)\\
+	&=x^3+3x^2y+3xy^2+y^3
 	\end{split}					
-\end{align}
-Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies 
-
-\subsection{Heading on level 2 (subsection)}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
-\begin{align}
+	\end{align}
+	Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies 
+	
+	\subsection{Heading on level 2 (subsection)}
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. 
+	\begin{align}
 	A = 
 	\begin{bmatrix}
 	A_{11} & A_{21} \\
-  	A_{21} & A_{22}
+	A_{21} & A_{22}
 	\end{bmatrix}
-\end{align}
-Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
-
-\subsubsection{Heading on level 3 (subsubsection)}
-Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
-
-\paragraph{Heading on level 4 (paragraph)}
-Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
-
-
-\section{Lists}
-
-\subsection{Example for list (3*itemize)}
-\begin{itemize}
-	\item First item in a list 
-		\begin{itemize}
+	\end{align}
+	Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+	
+	\subsubsection{Heading on level 3 (subsubsection)}
+	Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim.
+	
+	\paragraph{Heading on level 4 (paragraph)}
+	Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. 
+	
+	
+	\section{Lists}
+	
+	\subsection{Example for list (3*itemize)}
+	\begin{itemize}
 		\item First item in a list 
-			\begin{itemize}
+		\begin{itemize}
 			\item First item in a list 
-			\item Second item in a list 
+			\begin{itemize}
+				\item First item in a list 
+				\item Second item in a list 
 			\end{itemize}
-		\item Second item in a list 
+			\item Second item in a list 
 		\end{itemize}
-	\item Second item in a list 
-\end{itemize}
-
-\subsection{Example for list (enumerate)}
-\begin{enumerate}
-	\item First item in a list 
-	\item Second item in a list 
-	\item Third item in a list
-\end{enumerate}
-%%% End document
+		\item Second item in a list 
+	\end{itemize}
+	
+	\subsection{Example for list (enumerate)}
+	\begin{enumerate}
+		\item First item in a list 
+		\item Second item in a list 
+		\item Third item in a list
+	\end{enumerate}
+	%%% End document
 \end{document}\\
 

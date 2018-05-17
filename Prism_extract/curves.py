@@ -12,8 +12,8 @@ alpha = 0.5
 def curve_10():
 	plt.yscale('linear')
 	plt.xscale('linear')
-	plt.xlabel('time (min)', fontsize=14, color='black')
-	plt.ylabel('Probality', fontsize=14, color='black')
+	plt.xlabel('Size of the Queue', fontsize=14, color='black')
+	plt.ylabel('P', fontsize=14, color='black')
 	plt.title('Steady State Probability for a queue with phase type fitting parameter k')
 	x = range(0,11,1)
 	y_10 = [0.5000000826669286
@@ -103,9 +103,27 @@ def curve_10():
 	plt.plot(x, y_10_10, label = 'k=10')
 	plt.plot(x, y_10_50, label = 'k=50')
 	plt.plot(x, y_10_100, label = 'k=100')
-	plt.plot(x, y_10_200, label = 'k=2000')
+	plt.plot(x, y_10_200, label = 'k=200')
 
 
+	plt.legend()
+	plt.show()
+	
+	
+	
+	
+def time_10():
+	plt.yscale('log')
+	plt.xscale('linear')
+	plt.xlabel('k', fontsize=14, color='black')
+	plt.ylabel('s', fontsize=14, color='black')
+	plt.title('Steady State Probability time computation versus phase type fitting parameter k')
+	k = [0,2,5,10,50,100,200]
+	time = [0.062,0.004,0.007,0.021,1.092,9.951,109.147]
+	states = [11,22,55,110,550,1100,2200]
+	transition = [22,41,104,209,1049,2099,4199] 
+
+	plt.plot(k, time, label = 'time (s)')
 	plt.legend()
 	plt.show()
 
