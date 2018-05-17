@@ -90,21 +90,30 @@
 \definecolor{gray}{rgb}{0.5,0.5,0.5}
 \definecolor{mauve}{rgb}{0.58,0,0.82}
 
-\lstset{frame=tb,
-	aboveskip=3mm,
-	belowskip=3mm,
-	showstringspaces=false,
-	columns=flexible,
-	basicstyle={\small\ttfamily\color{red}},
-	numbers=none,
-	numberstyle=\tiny\color{blue},
-	keywordstyle=\color{black},
-	commentstyle=\color{dkgreen},
-	breaklines=true,
-	breakatwhitespace=true,
-	tabsize=3,
-	morekeywords={\;,init,gsmp,dtmc, const, int, double, module, formula, endmodule,->,=} 
+\definecolor{prismgreen}{rgb}{0, 0.6, 0}
+
+%% BEGIN PRISM CODE LISTING 
+\lstdefinelanguage{Prism}{ % syntax highlight via font
+	basicstyle=\color{red}\tiny\ttfamily, % small true type font (like
+	courier)
+	morekeywords={bool,C,ceil,const,ctmc,double,dtmc,endinit,endmodule,endrewards,endsystem,F,false,floor,formula,G,global,I,init,int,label,max,mdp,min,module,nondeterministic,P,Pmin,Pmax,prob,probabilistic,R,rate,rewards,Rmin,Rmax,S,stochastic,system,true,U,X},
+	keywordstyle={\bfseries\color{black}},
+	numberstyle=\tiny\color{black},
+	comment=[l] {//}, morecomment=[s]{/*}{*/}, % single and multi-line
+	commentstyle= \color{prismgreen}, % dark green
+	tabsize=4, % tab treatment (going to be fixed in Prism)
+	captionpos=b, % put captions at the bottom
+	escapechar=@ % write LaTeX comments escaped by @ symbol
 }
+
+%define command \prism with one argument for inline printing of \prismcode
+\newcommand{\prism}[1]{\lstinline[language=Prism,basicstyle=\small
+	\ttfamily]|#1|}
+
+%% END PRISM CODE LISTING 
+
+     % Set your language (you can change the language for each code-block optionally)
+
 %%% Begin document
 \begin{document}
 	\maketitle
@@ -177,24 +186,8 @@
 	
 	\begin{figure}
 		\centering
-		\begin{lstlisting}
-		gsmp
-		
-		const int qCapacity = 10;
-		
-		const double timeout = 10;
-		const double lambda = 0.2;
-		
-		module main
-		event prod = dirac(timeout);
-		
-		qSize : [0..qCapacity] init 0;
-		
-		[produce] (qSize < qCapacity)--prod -> (qSize' = qSize+1);
-		[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
-		
-		endmodule
-		\end{lstlisting}
+		\lstinputlisting[language=Prism]{../Model/timeoutqueue.sm}
+
 		\caption{Prism code for figure \ref{fig:Queue1}}
 		\label{fig:queuecode1}
 	\end{figure}
@@ -385,7 +378,12 @@
 		\label{fig:time1}
 	\end{figure}	
 	
-
+	\begin{figure}
+		\centering
+		\includegraphics[width=16cm]{size.png}
+		\caption{size of model versus k}
+		\label{fig:time1}
+	\end{figure}
 	
 
 

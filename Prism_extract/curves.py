@@ -121,15 +121,24 @@ def time_10():
 	k = [2,5,10,50,100,200]
 	time = [0.004,0.007,0.021,1.092,9.951,109.147]
 	reftime = [0.062,0.062,0.062,0.062,0.062,0.062]
-	states = [11,22,55,110,550,1100,2200]
-	transition = [22,41,104,209,1049,2099,4199] 
 	plt.plot(k, reftime, label = 'ref (s)')
 	plt.plot(k, time, label = 'time with phase type fitting (s)')
 	plt.legend()
 	plt.show()
 
-def curve_4_150_0():
-	()
+def size_10():
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('k', fontsize=14, color='black')
+	plt.ylabel('size', fontsize=14, color='black')
+	plt.title('size of model versus phase type fitting parameter k')
+	k = [0,2,5,10,50,100,200]
+	states = [11,22,55,110,550,1100,2200]
+	transition = [22,41,104,209,1049,2099,4199] 
+	plt.plot(k, states, label = 'states')
+	plt.plot(k, transition, label = 'transistions')
+	plt.legend()
+	plt.show()
 
 def curve_6_150_0():
 	()
