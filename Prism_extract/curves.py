@@ -125,7 +125,7 @@ def time_10():
 
 	reftime = [0.062,0.062,0.062,0.062,0.062,0.062]
 	plt.plot(k, reftime, label = 'gsmp event model')
-	plt.plot(k, time_Jacobi_Explicit, label = 'gsmp Jacobi Explicit')
+	plt.plot(k, time_Jacobi_Explicit, label = 'gsmp Power Explicit')
 	plt.plot(k, time_Gauss_Hybrid, label = 'ctmc Gauss Hybrid')
 	plt.plot(k, time_Power_Hybrid, label = 'ctmc Power Hybrid')
 
@@ -149,6 +149,27 @@ def size_10():
 def curve_6_150_0():
 	()
 
+
+def variance():
+	#give the graph of the k according to t for an erlong variance equal to 10^-5
+	plt.yscale('log')
+	plt.xscale('log')
+	plt.xlabel('timeout', fontsize=14, color='black')
+	plt.ylabel('k', fontsize=14, color='black')
+	plt.title('perfect k versus t')
+	epsilon = 10**(-5)
+	t0 = range(1,100,1)
+	t = []
+	k=[]
+	for e in t0:
+		e_float = float(e)
+		r=e_float/100
+		print r
+		t.append(r)
+		k.append((r**2)/epsilon)
+	plt.plot(t, k, label = 'k vs. t')
+	plt.legend()
+	plt.show()
 
 def main():
 	()

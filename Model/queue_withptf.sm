@@ -1,10 +1,10 @@
-ctmc
+gsmp
 
-const int k = 200;
+const int k = 50;
 const int qCapacity = 10;
 
-const double timeout = 10;
-const double lambda = 0.2;
+const double timeout = 0.02;
+const double lambda = 1/timeout;
 
 
 
