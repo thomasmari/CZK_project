@@ -23,6 +23,5 @@ i : [1..k+1];
 
 [] i < k -> k/timeout : (i'=i+1);
 [produce] i = k -> k/timeout : (i'=1);
-//[consume] true -> (i'=1);
 
 endmodule
