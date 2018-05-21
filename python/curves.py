@@ -2,6 +2,8 @@ import matplotlib.pyplot as plt
 from array import array
 import sys
 import numpy as np
+import norm
+import diff
 
 def read_file(filename):
 	file = open(filename, "r")
