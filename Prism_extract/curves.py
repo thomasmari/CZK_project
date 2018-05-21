@@ -1,12 +1,18 @@
 import matplotlib.pyplot as plt
 from array import array
+import sys
+import numpy as np
 
-Nb_var = 50
-N = 1024
-logN = 10
-Hx1=1
-alpha = 0.5
 
+
+
+def read_file(filename):
+	file = open(filename, "r")
+	a = []
+	for line in file:
+		print line
+		a.append(float(line))
+	return a
 
 
 def curve_10():
