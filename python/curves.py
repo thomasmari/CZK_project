@@ -13,10 +13,9 @@ def read_file(filename):
 
 
 #GLOBAL VARIABLE
-Path = '../Log'
+path = '../Log/'
 
 #CURVES
-
 def curve_10_random():
 	Subpath = '/random/'
 	#t=0.1
@@ -44,6 +43,27 @@ def curve_10_random():
 	#plt.plot(x, y_10_200, label = 'k=200')
 
 
+	plt.legend()
+	plt.show()
+	
+def curve01():	
+	#t=0.1
+	#lambda=1/t
+	#n=10
+
+	
+	subpath = 't=0.1/'
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('Size of the Queue', fontsize=14, color='black')
+	plt.ylabel('P', fontsize=14, color='black')
+	plt.title('Steady State Probability for a queue with phase type fitting parameter k')
+	x = range(0,11,1)
+	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 400, 1000, 2000]
+	#hybrid
+	for k in k_array:
+		y_k = read_file(path+subpath+'hybrid/sumph_10_'+str(k))
+		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.5)
 	plt.legend()
 	plt.show()
 	

@@ -39,6 +39,7 @@ def diff_file(f1,f2):
 def main(f1,f2):
 	return diff_file(f1,f2)
 
+
 file1,file2 = sys.argv[0],sys.argv[1]
 
 main(file1,file2)
