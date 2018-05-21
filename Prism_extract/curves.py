@@ -3,9 +3,6 @@ from array import array
 import sys
 import numpy as np
 
-
-
-
 def read_file(filename):
 	file = open(filename, "r")
 	a = []
