@@ -2,16 +2,7 @@ import matplotlib.pyplot as plt
 from array import array
 import sys
 import numpy as np
-import norm
-import diff
-
-def read_file(filename):
-	file = open(filename, "r")
-	a = []
-	for line in file:
-		print line
-		a.append(float(line))
-	return a
+from norm import *
 
 
 #GLOBAL VARIABLE
@@ -66,6 +57,29 @@ def curve01():
 	for k in k_array:
 		y_k = read_file(path+subpath+'hybrid/sumph_10_'+str(k))
 		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.5)
+	plt.legend()
+	plt.show()
+	
+def diff_hybrid01():	
+	#t=0.1
+	#lambda=1/t
+	#n=10
+
+	
+	subpath = 't=0.1/'
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('Size of the Queue', fontsize=14, color='black')
+	plt.ylabel('diff', fontsize=14, color='black')
+	plt.title('diff of Steady State Probability for a queue with phase type fitting parameter k')
+	x = range(0,11,1)
+	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 400, 1000, 2000]
+	#hybrid
+	for k in k_array:
+		y_k = read_file(path+subpath+'hybrid/sumph_10_'+str(k))
+		y_0 = read_file(path+subpath+'ev_10')
+		y = absolute(diff_array(y_0,y_k))
+		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
 	plt.legend()
 	plt.show()
 	
