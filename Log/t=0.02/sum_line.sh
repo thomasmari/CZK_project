@@ -1,0 +1,13 @@
+awk '{s+=$1}NR%5==0{print s;s=0}' ph_10_5 > phsum_10_5
+awk '{s+=$1}NR%25==0{print s;s=0}' ph_10_25 > phsum_10_25
+awk '{s+=$1}NR%50==0{print s;s=0}' ph_10_50 > phsum_10_50
+awk '{s+=$1}NR%75==0{print s;s=0}' ph_10_75 > phsum_10_75
+awk '{s+=$1}NR%100==0{print s;s=0}' ph_10_100 > phsum_10_100
+awk '{s+=$1}NR%125==0{print s;s=0}' ph_10_125 > phsum_10_125
+awk '{s+=$1}NR%150==0{print s;s=0}' ph_10_150 > phsum_10_150
+awk '{s+=$1}NR%175==0{print s;s=0}' ph_10_175 > phsum_10_175
+awk '{s+=$1}NR%200==0{print s;s=0}' ph_10_200 > phsum_10_200
+awk '{s+=$1}NR%225==0{print s;s=0}' ph_10_225 > phsum_10_225
+awk '{s+=$1}NR%250==0{print s;s=0}' ph_10_250 > phsum_10_250
+awk '{s+=$1}NR%275==0{print s;s=0}' ph_10_275 > phsum_10_275
+awk '{s+=$1}NR%300==0{print s;s=0}' ph_10_300 > phsum_10_300
