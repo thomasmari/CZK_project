@@ -9,7 +9,7 @@ PRISM_PATH_FROM_SCRIPT="../../../../prismGSMP/prism-gsmp/prism/bin"
 MODEL_PATH_FROM_PRISM="../../../../CZK_project/Model"
 LOG_PATH_FROM_PRISM="../../../../CZK_project/Log"
 
-reNum='^[0-9]+$'
+reNum='^[-+]?[0-9]+\.?[0-9]*$'
 if ! [[ $1 =~ $reNum ]]; then
   echo "Please specify number \"timeout\" as the first parameter!"
   exit 1
@@ -17,7 +17,7 @@ fi
 
 if ! [[ $2 =~ $reNum ]]; then
   echo "Please specify number \"k\" as the second parameter!"
-  exit 1
+  exit 2
 fi
 
 cd '../Log'
@@ -55,7 +55,7 @@ cd $PRISM_PATH_FROM_SCRIPT
 #compute hybrid phase type
 for i in 1e-1 1e-2 1e-3 1e-4 1e-5 1e-6 1e-7 1e-8 1e-9
 do
-  ./prism -hybrid -epsilon $i -maxiters 10000000 -power -absolute -const k=$k "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_epsilon/hybrid/ph_10_$2_$i"
+  ./prism -hybrid -epsilon $i -maxiters 10000000 -power -absolute -const k=$2 "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_epsilon/hybrid/ph_10_$2_$i"
 done
 cd -
 
