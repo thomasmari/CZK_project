@@ -1,0 +1,9 @@
+t=0.1
+lambda=1/t
+n=10
+
+naming: ev/ph_n_k
+
+steady state distributions using the ctmc with phase type on hybrid engine with Power method
+relative termination criteria
+for termination epsilon 1.0E-5 for phase type, and termination epsilon 1.0E-8 for event.
