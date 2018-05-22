@@ -6,7 +6,7 @@ PRISM_PATH_FROM_SCRIPT="../../../../prismGSMP/prism-gsmp/prism/bin"
 MODEL_PATH_FROM_PRISM="../../../../CZK_project/Model"
 LOG_PATH_FROM_PRISM="../../../../CZK_project/Log"
 
-reNum='^[0-9]+$'
+reNum='^[-+]?[0-9]+\.?[0-9]*$'
 if ! [[ $1 =~ $reNum ]]; then
   echo "Please specify number \"timeout\" as the first parameter!"
   exit 1
