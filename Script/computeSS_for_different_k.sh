@@ -8,7 +8,7 @@ LOG_PATH_FROM_PRISM="../../../../CZK_project/Log"
 
 reNum='^[0-9]+$'
 if ! [[ $1 =~ $reNum ]]; then
-  echo "Please specify timeout as the first parameter!"
+  echo "Please specify number \"timeout\" as the first parameter!"
   exit 1
 fi
 
@@ -23,11 +23,11 @@ cd $PRISM_PATH_FROM_SCRIPT
 #compute explicit phase type
 for k in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300
 do
-  ./prism -explicit -epsilon 1e-5 -maxiters 10000000 -const k=$k "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1/explicit/ph_10_$k"
+  ./prism -explicit -epsilon 1e-5 -maxiters 10000000 -power -absolute -const k=$k "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1/explicit/ph_10_$k"
 done
 
 #compute explicit event
-./prism -explicit -epsilon 1e-8 -maxiters 10000000 "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1/explicit/ev_10_k"
+./prism -explicit -epsilon 1e-8 -maxiters 10000000 -power -absolute "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1/explicit/ev_10_k"
 cd -
 
 #write a readme file for explicit computations
