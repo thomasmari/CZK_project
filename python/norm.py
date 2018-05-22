@@ -23,7 +23,7 @@ def norm2(a):
 	return math.sqrt(s)
 	
 def infinite_norm(a):
-	return max(a)
+	return max(abs(a))
 
 def absolute(a):
 	ret = []
