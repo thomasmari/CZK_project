@@ -1,8 +1,0 @@
-t=0.001
-lambda=1/t
-n=10
-
-naming: ev/ph_n_k
-
-steady state distributions using the GSMP (ctmc with phase type) explicit engine
-for termination epsilon 1.0E-5 for phase type, and termination epsilon 1.0E-8 for event.
