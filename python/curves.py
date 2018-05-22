@@ -59,13 +59,8 @@ def curve01():
 		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.5)
 	plt.legend()
 	plt.show()
-	
-def diff_hybrid_01():	
-	#t=0.1
-	#lambda=1/t
-	#n=10
 
-	
+
 	subpath = 't=0.1/'
 	plt.yscale('linear')
 	plt.xscale('linear')
@@ -82,6 +77,10 @@ def diff_hybrid_01():
 		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
 	plt.legend()
 	plt.show()
+
+
+########################################################################
+#############################DISTANCE PER POINT#########################
 
 def diff_explicit_01():	
 	#t=0.1
@@ -151,7 +150,33 @@ def diff_explicit_001():
 		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
 	plt.legend()
 	plt.show()	
+
+########################################################################
+#############################DISTANCE (NORM)############################
+
+def norm2_explicit_01():	
+	#t=0.1
+	#lambda=1/t
+	#n=10
+
 	
+	subpath = 't=0.1/'
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('PTF parameter k', fontsize=14, color='black')
+	plt.ylabel('Euclidean distance per distribution', fontsize=14, color='black')
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=explicit')
+	k_list = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300]
+	#hybrid
+	result_array = np.array([])	
+	for k in k_list:
+		y_k = read_file(path+subpath+'explicit/sumph_10_'+str(k))
+		y_0 = read_file(path+subpath+'ev_10')
+		result = norm2(diff_array(y_0,y_k))
+		result_array = np.append(result_array, [result], axis=0)
+	plt.plot(k_list, result_array, label = "label",linewidth=0.5)
+	plt.legend()
+	plt.show()
 	
 def time_10():
 	plt.yscale('log')
