@@ -60,7 +60,7 @@ def curve01():
 	plt.legend()
 	plt.show()
 	
-def diff_hybrid01():	
+def diff_hybrid_01():	
 	#t=0.1
 	#lambda=1/t
 	#n=10
@@ -70,8 +70,8 @@ def diff_hybrid01():
 	plt.yscale('linear')
 	plt.xscale('linear')
 	plt.xlabel('Size of the Queue', fontsize=14, color='black')
-	plt.ylabel('diff', fontsize=14, color='black')
-	plt.title('diff of Steady State Probability for a queue with phase type fitting parameter k')
+	plt.ylabel('Euclidean distance per size', fontsize=14, color='black')
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=hybrid')
 	x = range(0,11,1)
 	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 400, 1000, 2000]
 	#hybrid
@@ -82,8 +82,75 @@ def diff_hybrid01():
 		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
 	plt.legend()
 	plt.show()
+
+def diff_explicit_01():	
+	#t=0.1
+	#lambda=1/t
+	#n=10
+
 	
+	subpath = 't=0.1/'
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('Size of the Queue', fontsize=14, color='black')
+	plt.ylabel('Euclidean distance per size', fontsize=14, color='black')
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=explicit')
+	x = range(0,11,1)
+	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300]
+	#hybrid
+	for k in k_array:
+		y_k = read_file(path+subpath+'explicit/sumph_10_'+str(k))
+		y_0 = read_file(path+subpath+'ev_10')
+		y = absolute(diff_array(y_0,y_k))
+		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
+	plt.legend()
+	plt.show()
 	
+def diff_hybrid_001():	
+	#t=0.1
+	#lambda=1/t
+	#n=10
+
+	
+	subpath = 't=0.1/'
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('Size of the Queue', fontsize=14, color='black')
+	plt.ylabel('Euclidean distance per size', fontsize=14, color='black')
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=hybrid')
+	x = range(0,11,1)
+	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 400, 1000, 2000]
+	#hybrid
+	for k in k_array:
+		y_k = read_file(path+subpath+'hybrid/sumph_10_'+str(k))
+		y_0 = read_file(path+subpath+'ev_10')
+		y = absolute(diff_array(y_0,y_k))
+		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
+	plt.legend()
+	plt.show()
+
+def diff_explicit_001():	
+	#t=0.001
+	#lambda=1/t
+	#n=10
+
+	
+	subpath = 't=0.1/'
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('Size of the Queue', fontsize=14, color='black')
+	plt.ylabel('Euclidean distance per size', fontsize=14, color='black')
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.001,lambda=1/timeout,engine=explicit')
+	x = range(0,11,1)
+	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300]
+	#hybrid
+	for k in k_array:
+		y_k = read_file(path+subpath+'explicit/sumph_10_'+str(k))
+		y_0 = read_file(path+subpath+'ev_10')
+		y = absolute(diff_array(y_0,y_k))
+		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
+	plt.legend()
+	plt.show()	
 	
 	
 def time_10():
@@ -120,8 +187,6 @@ def size_10():
 	plt.legend()
 	plt.show()
 
-def curve_6_150_0():
-	()
 
 
 def variance():
