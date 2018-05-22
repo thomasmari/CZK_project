@@ -12,6 +12,9 @@ do
 	file=$path$subpath'ph_10_'${var}
 	echo $file
 	gawk -v k=${var} '{s+=$1}NR%k==0{print s;s=0}' "${file}" > $path$subpath'sumph_10_'$var 
+	head -n -1 $path$subpath'sumph_10_'$var > temp.txt ; mv temp.txt $path$subpath'sumph_10_'$var
+	tail -n1 $file > temp.txt
+	cat temp.txt >>  $path$subpath'sumph_10_'$var 
 done
 
 ####################################EXPLICIT
@@ -21,6 +24,9 @@ do
 	file=$path$subpath'ph_10_'${var}
 	echo $file
 	gawk -v k=${var} '{s+=$1}NR%k==0{print s;s=0}' "${file}" > $path$subpath'sumph_10_'$var 
+	head -n -1 $path$subpath'sumph_10_'$var > temp.txt ; mv temp.txt $path$subpath'sumph_10_'$var
+	tail -n1 $file > temp.txt
+	cat temp.txt >>  $path$subpath'sumph_10_'$var 
 done
 
 
@@ -36,6 +42,9 @@ do
 	file=$path$subpath'ph_10_'${var}
 	echo $file
 	gawk -v k=${var} '{s+=$1}NR%k==0{print s;s=0}' "${file}" > $path$subpath'sumph_10_'$var 
+	head -n -1 $path$subpath'sumph_10_'$var > temp.txt ; mv temp.txt $path$subpath'sumph_10_'$var
+	tail -n1 $file > temp.txt
+	cat temp.txt >>  $path$subpath'sumph_10_'$var 
 done
 
 ####################################EXPLICIT
@@ -45,6 +54,9 @@ do
 	file=$path$subpath'ph_10_'${var}
 	echo $file
 	gawk -v k=${var} '{s+=$1}NR%k==0{print s;s=0}' "${file}" > $path$subpath'sumph_10_'$var 
+	head -n -1 $path$subpath'sumph_10_'$var > temp.txt ; mv temp.txt $path$subpath'sumph_10_'$var
+	tail -n1 $file > temp.txt
+	cat temp.txt >>  $path$subpath'sumph_10_'$var 
 done
 
 ########################################################################
@@ -58,6 +70,9 @@ do
 	file=$path$subpath'ph_10_'${var}
 	echo $file
 	gawk -v k=${var} '{s+=$1}NR%k==0{print s;s=0}' "${file}" > $path$subpath'sumph_10_'$var 
+	head -n -1 $path$subpath'sumph_10_'$var > temp.txt ; mv temp.txt $path$subpath'sumph_10_'$var
+	tail -n1 $file > temp.txt
+	cat temp.txt >>  $path$subpath'sumph_10_'$var 
 done
 
 ####################################EXPLICIT
@@ -67,5 +82,10 @@ do
 	file=$path$subpath'ph_10_'${var}
 	echo $file
 	gawk -v k=${var} '{s+=$1}NR%k==0{print s;s=0}' "${file}" > $path$subpath'sumph_10_'$var 
+	head -n -1 $path$subpath'sumph_10_'$var > temp.txt ; mv temp.txt $path$subpath'sumph_10_'$var
+	tail -n1 $file > temp.txt
+	cat temp.txt >>  $path$subpath'sumph_10_'$var 
 done
+
+rm -f temp.txt
 
