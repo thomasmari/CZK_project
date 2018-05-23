@@ -178,44 +178,37 @@ def norm2_explicit_01():
 	plt.legend()
 	plt.show()
 	
-def time_10():
-	plt.yscale('log')
-	plt.xscale('linear')
-	plt.xlabel('k', fontsize=14, color='black')
-	plt.ylabel('s', fontsize=14, color='black')
-	plt.title('Steady State Probability time computation versus phase type fitting parameter k')
-	k = [2,5,10,50,100,200]
-	time_Jacobi_Explicit = [0.004,0.007,0.021,1.092,9.951,109.147]
-	time_Gauss_Hybrid = [0.002,0.003,0.006,0.011,0.022,0.045]
-	time_Power_Hybrid = [0.004,0.005,0.007,0.113,1.018,9.689]
 
-	reftime = [0.062,0.062,0.062,0.062,0.062,0.062]
-	plt.plot(k, reftime, label = 'gsmp event model')
-	plt.plot(k, time_Jacobi_Explicit, label = 'gsmp Power Explicit')
-	plt.plot(k, time_Gauss_Hybrid, label = 'ctmc Gauss Hybrid')
-	plt.plot(k, time_Power_Hybrid, label = 'ctmc Power Hybrid')
-
-	plt.legend()
-	plt.show()
-
-def performance_10():
+def performance_10(s):
 	#t=0.1 engine must have the same termination epsilon	
 	#data
-	Subpath = '/random/'
-	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300]
-	y_event = read_file(Path+Subpath+'queue_10.res')
-	y_explicit = read_file(Path+Subpath+'queue_10.res')
-	y_hybrid = read_file(Path+Subpath+'queue_10.res')
+	subpath = 't='+s+'/explicit/'
+#	y_event = read_file(path+subpath+'phtime_10_1E-5')
+	y_explicit = read_file(path+subpath+'phtime_10_1E-5')
+	k_explicit = read_file(path+subpath+'k_array')
+	
+	subpath = 't='+s+'/hybrid/'
+	y_hybrid = read_file(path+subpath+'phtime_10_1E-5')
+	k_hybrid = read_file(path+subpath+'k_array')
+	
+	if (len(k_hybrid)>len(k_explicit)):
+		k_array = k_hybrid
+		max_length = len(k_hybrid)
+	else:
+		k_array = k_explicit
+		max_length = len(k_explicit)
+		
 	
 	#ploting
 	plt.yscale('linear')
 	plt.xscale('linear')
 	plt.xlabel('K Phase Type Fitting Parameter', fontsize=14, color='black')
-	plt.ylabel('Time of Computation', fontsize=14, color='black')
-	plt.title('Steady State Probability for a queue with phase type fitting parameter k')
-	plt.plot(k, y_event, label = 'event',linewidth=1.0)
-	plt.plot(k, y_explicit, label = 'explicit',linewidth=1.0)
-	plt.plot(k, y_hybrid, label = 'hybrid',linewidth=1.0)
+	plt.ylabel('Time of Computation (s)', fontsize=14, color='black')
+	plt.title('Time of computation of the Steady States Probabilities versus k the PTF parameter')
+	
+#	plt.plot(k_array, y_event*max_length, label = 'event',linewidth=1.0)
+	plt.plot(k_explicit, y_explicit, label = 'explicit',linewidth=1.0)
+	plt.plot(k_hybrid, y_hybrid, label = 'hybrid',linewidth=1.0)
 	plt.legend()
 	plt.show()
 
