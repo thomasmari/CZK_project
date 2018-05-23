@@ -2,8 +2,13 @@ gsmp
 
 const int qCapacity = 10;
 
+<<<<<<< HEAD
 const double timeout = 0.693147181;
 const double lambda = 1;
+=======
+const double timeout;
+const double lambda;
+>>>>>>> 13bcf5bbae28f9f6e720103ba1562cd6474de3d6
 
 module main
 event prod = dirac(timeout);

@@ -161,7 +161,7 @@ def norm2_explicit_01():
 
 	
 	subpath = 't=0.1/'
-	plt.yscale('linear')
+	plt.yscale('log')
 	plt.xscale('linear')
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('Euclidean distance per distribution', fontsize=14, color='black')
@@ -171,7 +171,7 @@ def norm2_explicit_01():
 	result_array = np.array([])	
 	for k in k_list:
 		y_k = read_file(path+subpath+'explicit/sumph_10_'+str(k))
-		y_0 = read_file(path+subpath+'ev_10')
+		y_0 = read_file(path+subpath+'explicit/ev_10_k')
 		result = norm2(diff_array(y_0,y_k))
 		result_array = np.append(result_array, [result], axis=0)
 	plt.plot(k_list, result_array, label = "label",linewidth=0.5)
@@ -198,20 +198,26 @@ def time_10():
 	plt.legend()
 	plt.show()
 
-def size_10():
+def performance_10():
+	#t=0.1 engine must have the same termination epsilon	
+	#data
+	Subpath = '/random/'
+	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300]
+	y_event = read_file(Path+Subpath+'queue_10.res')
+	y_explicit = read_file(Path+Subpath+'queue_10.res')
+	y_hybrid = read_file(Path+Subpath+'queue_10.res')
+	
+	#ploting
 	plt.yscale('linear')
 	plt.xscale('linear')
-	plt.xlabel('k', fontsize=14, color='black')
-	plt.ylabel('size', fontsize=14, color='black')
-	plt.title('size of model versus phase type fitting parameter k')
-	k = [0,2,5,10,50,100,200]
-	states = [11,22,55,110,550,1100,2200]
-	transition = [22,41,104,209,1049,2099,4199] 
-	plt.plot(k, states, label = 'states')
-	plt.plot(k, transition, label = 'transistions')
+	plt.xlabel('K Phase Type Fitting Parameter', fontsize=14, color='black')
+	plt.ylabel('Time of Computation', fontsize=14, color='black')
+	plt.title('Steady State Probability for a queue with phase type fitting parameter k')
+	plt.plot(k, y_event, label = 'event',linewidth=1.0)
+	plt.plot(k, y_explicit, label = 'explicit',linewidth=1.0)
+	plt.plot(k, y_hybrid, label = 'hybrid',linewidth=1.0)
 	plt.legend()
 	plt.show()
-
 
 
 def variance():

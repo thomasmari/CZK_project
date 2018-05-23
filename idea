@@ -1,3 +1,4 @@
 plot event model steady state prop versus espsilon and see the difference
 try to take t as the median of lambda exponential law
 verify that that gawk doesn't convert to float instead of double lf
+add > alllog at the end of the command to get the performance with grep

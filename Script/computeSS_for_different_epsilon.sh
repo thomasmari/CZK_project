@@ -4,10 +4,13 @@
 #There are two parameters. 
 #First parameter is t, the timeout inbetween arrivals.
 #Second parameter is k, the number of intermediate points simulating the deterministic distribution.
+#Lambda is derived as 1/t
 
 PRISM_PATH_FROM_SCRIPT="../../../../prismGSMP/prism-gsmp/prism/bin"
 MODEL_PATH_FROM_PRISM="../../../../CZK_project/Model"
 LOG_PATH_FROM_PRISM="../../../../CZK_project/Log"
+
+lambda=$(bc <<< "scale=10;1/$1")
 
 reNum='^[-+]?[0-9]+\.?[0-9]*$'
 if ! [[ $1 =~ $reNum ]]; then
@@ -31,7 +34,7 @@ cd $PRISM_PATH_FROM_SCRIPT
 #compute explicit phase type
 for i in 1e-1 1e-2 1e-3 1e-4 1e-5 1e-6 1e-7 1e-8 1e-9
 do
-  ./prism -explicit -epsilon $i -maxiters 10000000 -power -absolute -const k=$2 "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_epsilon/explicit/ph_10_$2_$i"
+  ./prism -explicit -epsilon $i -maxiters 10000000 -power -absolute -const k=$2,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_epsilon/explicit/ph_10_$2_$i"
 done
 
 #compute explicit event

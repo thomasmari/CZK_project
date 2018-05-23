@@ -3,8 +3,9 @@ gsmp
 const int k;
 const int qCapacity = 10;
 
-const double timeout = 0.693147181;
-const double lambda = 1;
+
+const double timeout;
+const double lambda;
 
 
 
