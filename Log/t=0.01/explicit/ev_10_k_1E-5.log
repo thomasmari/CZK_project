@@ -1,0 +1,12 @@
+PRISM
+=====
+
+Version: 4.4.GSMP
+Date: Wed May 23 15:07:55 CEST 2018
+Hostname: thomas
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -explicit -epsilon 1e-5 -maxiters 10000000 -power -absolute -const 'timeout=0.01,lambda=100.0000000000' ../../../../CZK_project/Model/timeoutqueue.sm -ss -exportss ../../../../CZK_project/Log/t=0.01/explicit/ev_10_k_1E-5
+
+Parsing model file "../../../../CZK_project/Model/timeoutqueue.sm"...
+
+Error: Could not evaluate constant ("timeout", line 9, column 20).
