@@ -99,7 +99,7 @@ def diff_explicit_01():
 	#hybrid
 	for k in k_array:
 		y_k = read_file(path+subpath+'explicit/sumph_10_'+str(k))
-		y_0 = read_file(path+subpath+'ev_10')
+		y_0 = read_file(path+subpath+'explicit/ev_10_k')
 		y = absolute(diff_array(y_0,y_k))
 		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
 	plt.legend()

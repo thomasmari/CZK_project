@@ -1,0 +1,14 @@
+dtmc
+
+const int qCapacity = 10;
+
+
+module main
+
+qSize : [0..qCapacity] init 0;
+
+[step] (qSize < qCapacity & qSize != 0) -> 0.5 : (qSize' = qSize+1) + 0.5 : (qSize' = qSize-1);
+[step] (qSize = 0) -> (qSize' = qSize+1);
+[step] (qSize = qCapacity) -> (qSize' = qSize-1);
+
+endmodule
