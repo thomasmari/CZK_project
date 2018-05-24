@@ -1,0 +1,59 @@
+PRISM
+=====
+
+Version: 4.4.GSMP
+Date: Thu May 24 10:14:31 CEST 2018
+Hostname: majo-Lenovo-Y520-15IKBN
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -explicit -epsilon 1e-5 -maxiters 100000000 -power -absolute -const 'k=2,timeout=2,lambda=.3465735905' ../../../../CZK_project/Model/queue_withptf_gsmp.sm -ss -exportss ../../../../CZK_project/Output/t=2_median/explicit/ph_10_2_1E-5
+
+Parsing model file "../../../../CZK_project/Model/queue_withptf_gsmp.sm"...
+
+Type:        GSMP
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=2,timeout=2,lambda=0.3465735905
+
+Computing reachable states... 21 states
+Reachable states exploration and model construction done in 0.008 secs.
+Sorting reachable states list...
+
+Time for model construction: 0.016 seconds.
+
+Type:        GSMP
+States:      21 (1 initial)
+Transitions: 39
+The model was recognized to be an ACTMC, so ACTMC method will be used!
+
+Computing probability of reaching BSCC 1
+
+Starting probabilistic reachability...
+Calculating predecessor relation for discrete-time Markov chain...  done (0.0 seconds)
+Starting Prob0...
+Prob0 took 0.001 seconds.
+Starting Prob1...
+Prob1 took 0.001 seconds.
+target=21, yes=21, no=0, maybe=0
+Starting value iteration (with Power method)...
+Value iteration (with Power method) took 1 iterations, 0 multiplications and 0.001 seconds.
+Probabilistic reachability took 0.003 seconds.
+
+Probability of reaching BSCC 1: 1.0
+
+Computing steady-state probabilities for BSCC 1
+Starting value iteration...
+Value iteration took 193 iterations and 0.005 seconds.
+
+Reducing ACTMC to equivalent DTMC took 0.009 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.012 seconds.
+
+Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=2_median/explicit/ph_10_2_1E-5"...
+
+Time for steady-state probability computation: 0.03 seconds.
+
