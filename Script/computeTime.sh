@@ -4,7 +4,7 @@
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : phtime_n_epsilon, the folder give the engine and the timeout
 # Are fixed constant : epsilon=1E-5
-path="../Log/t=$1/"
+path="../Output/t=$1/"
 
 
 reNum='^[-+]?[0-9]+\.?[0-9]*$'
