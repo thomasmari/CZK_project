@@ -1,0 +1,56 @@
+PRISM
+=====
+
+Version: 4.4.GSMP
+Date: Thu May 24 11:19:34 CEST 2018
+Hostname: thomas
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -epsilon 1E-5 -maxiters 100000000 -power -absolute -const 'k=300,timeout=0.01,lambda=69.3147181000' ../../../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../../../CZK_project/Output/t=0.01_median/hybrid/ph_10_300_1E-5
+
+Parsing model file "../../../../CZK_project/Model/queue_withptf_ctmc.sm"...
+
+Type:        CTMC
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=300,timeout=0.01,lambda=69.3147181
+
+Computing reachable states...
+
+Reachability (BFS): 3001 iterations in 0.04 seconds (average 0.000015, setup 0.00)
+
+Time for model construction: 0.066 seconds.
+
+Type:        CTMC
+States:      3001 (1 initial)
+Transitions: 5701
+
+Rate matrix: 155 nodes (3 terminal), 5701 minterms, vars: 13r/13c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:3001
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=222] [4.3 Kb]
+Building hybrid MTBDD matrix... [levels=13, nodes=263] [12.3 KB]
+Adding explicit sparse matrices... [levels=13, num=1, compact] [37.0 KB]
+Allocating iteration vectors... [2 x 23.4 KB]
+TOTAL: [96.2 KB]
+
+Starting iterations...
+
+Power method: 7000 iterations in 0.18 seconds (average 0.000026, setup 0.00)
+
+Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.01_median/hybrid/ph_10_300_1E-5"...
+
+Time for steady-state probability computation: 0.265 seconds.
+
