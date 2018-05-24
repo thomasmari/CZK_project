@@ -5,7 +5,7 @@
 
 PRISM_PATH_FROM_SCRIPT="../../../../prismGSMP/prism-gsmp/prism/bin"
 MODEL_PATH_FROM_PRISM="../../../../CZK_project/Model"
-LOG_PATH_FROM_PRISM="../../../../CZK_project/Log"
+OUTPUT_PATH_FROM_PRISM="../../../../CZK_project/Output"
 
 lambda=$(bc <<< "scale=10;0.693147181/$1")
 
@@ -15,7 +15,7 @@ if ! [[ $1 =~ $reNum ]]; then
   exit 1
 fi
 
-cd '../Log'
+cd '../Output'
 
 mkdir "t=$1_median"
 cd "t=$1_median"
@@ -26,12 +26,12 @@ cd $PRISM_PATH_FROM_SCRIPT
 #compute explicit phase type
 for k in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300
 do
-  ./prism -explicit -epsilon 1e-5 -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_median/explicit/ph_10_${k}_1E-5" > "$LOG_PATH_FROM_PRISM/t=$1_median/explicit/ph_10_${k}_1E-5.log"
+  ./prism -explicit -epsilon 1e-5 -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_median/explicit/ph_10_${k}_1E-5" > "$OUTPUT_PATH_FROM_PRISM/t=$1_median/explicit/ph_10_${k}_1E-5.log"
 done
 
 #compute explicit event
-./prism -explicit -epsilon 1e-8 -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-8" > "$LOG_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-8"
-./prism -explicit -epsilon 1e-5 -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-5" > "$LOG_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-5"
+./prism -explicit -epsilon 1e-8 -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-8" > "$OUTPUT_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-8.log"
+./prism -explicit -epsilon 1e-5 -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-5" > "$OUTPUT_PATH_FROM_PRISM/t=$1_median/explicit/ev_10_k_1E-5.log"
 cd -
 
 #write a readme file for explicit computations
@@ -52,7 +52,7 @@ cd $PRISM_PATH_FROM_SCRIPT
 #compute hybrid phase type
 for k in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000
 do
-  ./prism -hybrid -epsilon 1e-5 -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1_median/hybrid/ph_10_${k}_1E-5" > "$LOG_PATH_FROM_PRISM/t=$1_median/hybrid/ph_10_${k}_1E-5.log"
+  ./prism -hybrid -epsilon 1e-5 -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_median/hybrid/ph_10_${k}_1E-5" > "$OUTPUT_PATH_FROM_PRISM/t=$1_median/hybrid/ph_10_${k}_1E-5.log"
 done
 cd -
 

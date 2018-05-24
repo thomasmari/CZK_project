@@ -4,7 +4,7 @@
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : sumph_n_k_epsilon, the folder give the engine and the timeout
 # Are fixed constant : epsilon=1E-5
-path="../Log/"
+path="../Output/"
 one=1
 esp="1E-5"
 
