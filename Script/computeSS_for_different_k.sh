@@ -30,7 +30,7 @@ do
 done
 
 #compute explicit event
-./prism -explicit -epsilon 1e-8 -maxiters 10000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_1E-8" 
+./prism -explicit -epsilon 1e-8 -maxiters 10000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_1E-8" > "$LOG_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_1E-8.log" 
 ./prism -explicit -epsilon 1e-5 -maxiters 10000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$LOG_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_1E-5" > "$LOG_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_1E-5.log"
 cd -
 

@@ -7,6 +7,7 @@ from norm import *
 
 #GLOBAL VARIABLE
 path = '../Log/'
+eps = "1E-5"
 
 #CURVES
 def curve_10_random():
@@ -154,27 +155,38 @@ def diff_explicit_001():
 ########################################################################
 #############################DISTANCE (NORM)############################
 
-def norm2_explicit_01():	
-	#t=0.1
+def norm2_explicit(s):	
+	#s=timeout
 	#lambda=1/t
 	#n=10
-
 	
-	subpath = 't=0.1/'
+
+	#explicit
+	subpath = 't='+s+'/explicit/'
+	y_event = read_file(path+subpath+'ev_10_k_1E-8')
+	k_explicit = read_file(path+subpath+'k_array')
+	result_explicit = np.array([])	
+	for k in k_hybrid:
+		y_k = read_file(path+subpath+'sumph_10_'+str(k)+'_'+eps)
+		result = norm2(diff_array(y_event,y_k))
+		result_explicit = np.append(result_array, [result], axis=0)
+
+	#hybrid
+	subpath = 't='+s+'/hybrid/'
+	k_explicit = read_file(path+subpath+'k_array')
+	result_hybrid = np.array([])	
+	for k in k_hybrid:
+		y_k = read_file(path+subpath+'sumph_10_'+str(k)+'_'+eps)
+		result = norm2(diff_array(y_event,y_k))
+		result_hybrid = np.append(result_array, [result], axis=0)
+			
+	#ploting
 	plt.yscale('log')
 	plt.xscale('linear')
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('Euclidean distance per distribution', fontsize=14, color='black')
 	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=explicit')
-	k_list = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300]
-	#hybrid
-	result_array = np.array([])	
-	for k in k_list:
-		y_k = read_file(path+subpath+'explicit/sumph_10_'+str(k))
-		y_0 = read_file(path+subpath+'explicit/ev_10_k')
-		result = norm2(diff_array(y_0,y_k))
-		result_array = np.append(result_array, [result], axis=0)
-	plt.plot(k_list, result_array, label = "label",linewidth=0.5)
+	plt.plot(k_list, result_array, label = "hybrid",linewidth=0.5)
 	plt.legend()
 	plt.show()
 	
@@ -183,12 +195,12 @@ def performance_10(s):
 	#t=0.1 engine must have the same termination epsilon	
 	#data
 	subpath = 't='+s+'/explicit/'
-#	y_event = read_file(path+subpath+'phtime_10_1E-5')
-	y_explicit = read_file(path+subpath+'phtime_10_1E-5')
+#	y_event = read_file(path+subpath+'phtime_10_'+eps)
+	y_explicit = read_file(path+subpath+'phtime_10_'+eps)
 	k_explicit = read_file(path+subpath+'k_array')
 	
 	subpath = 't='+s+'/hybrid/'
-	y_hybrid = read_file(path+subpath+'phtime_10_1E-5')
+	y_hybrid = read_file(path+subpath+'phtime_10_'+eps)
 	k_hybrid = read_file(path+subpath+'k_array')
 	
 	if (len(k_hybrid)>len(k_explicit)):
