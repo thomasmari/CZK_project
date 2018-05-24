@@ -6,7 +6,7 @@ from norm import *
 
 
 #GLOBAL VARIABLE
-path = '../Log/'
+path = '../Output/'
 eps = "1E-5"
 
 #CURVES
