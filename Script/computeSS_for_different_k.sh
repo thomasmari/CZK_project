@@ -8,8 +8,8 @@ MODEL_PATH_FROM_PRISM="../../../../CZK_project/Model"
 OUTPUT_PATH_FROM_PRISM="../../../../CZK_project/Output"
 
 lambda=$(bc <<< "scale=10;1/$1")
-esp="1E-5"
-esp_precise="1E-8"
+esp="1e-5"
+esp_precise="1e-8"
 
 reNum='^[-+]?[0-9]+\.?[0-9]*$'
 if ! [[ $1 =~ $reNum ]]; then
@@ -33,9 +33,9 @@ do
 done
 
 #compute explicit event
-echo event $k $esp_precise
+echo event k $esp_precise
 ./prism -explicit -epsilon ${esp_precise} -maxiters 10000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_${esp_precise}" > "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_${esp_precise}.log" 
-echo event $k $esp
+echo event k $esp
 ./prism -explicit -epsilon ${esp} -maxiters 10000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_${esp}" > "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ev_10_k_${esp}.log"
 cd -
 
