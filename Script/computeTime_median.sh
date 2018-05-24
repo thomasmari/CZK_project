@@ -5,7 +5,7 @@
 # naming : phtime_n_epsilon, the folder give the engine and the timeout
 # Are fixed constant : epsilon=1E-5
 path="../Output/t=$1_median/"
-
+eps="1E-5"
 
 reNum='^[-+]?[0-9]+\.?[0-9]*$'
 if ! [[ $1 =~ $reNum ]]; then
@@ -53,4 +53,12 @@ grep -Eo '[0-9]+' tempfilek2 > $targetk
 
 rm -f tempfilek1
 rm -f tempfilek2
+rm -f tempfiletime
+
+####################################EVENT
+targettime=$path$subpath'evtime_10_'${eps}
+touch tempfiletime
+source=$path$subpath'ev_10_k_'${eps}'.log'
+grep "Time for steady-state probability computation" $source >> tempfiletime
+grep -Eo '[0-9]+.[0-9]+' tempfiletime > $targettime
 rm -f tempfiletime

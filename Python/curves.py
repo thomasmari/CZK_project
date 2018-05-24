@@ -8,6 +8,7 @@ from norm import *
 #GLOBAL VARIABLE
 path = '../Output/'
 eps = "1E-5"
+esp_precise = "1E-8"
 
 #CURVES
 def curve_10_random():
@@ -155,43 +156,53 @@ def diff_explicit_001():
 ########################################################################
 #############################DISTANCE (NORM)############################
 
-def norm2_plot(s,median):	
-	#s=timeout
-	#lambda=1/t
-	#n=10
+def distance_plot(t,kind_of_t,norm):	
+	#PARAMETERS : 
+	#1 	t(float) is the timeout in sec
+	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
+	#3 	norm(string) is how the norm that must be use for defining the distance {"norm_2","norm_infinite"}
+
+	#CONSTANT
+	n="10"
 	
-
-	#explicit
-	if (median=="median"):
-		subpath = 't='+s+'_median/explicit/'
+	#DATA
+	if (kind_of_t=="median"):												#set the kind_of_t for naming
+		subpath = 't='+str(t)+'_median/'
 	else:
-		subpath = 't='+s+'/explicit/'
-		
-	y_event = read_file(path+subpath+'ev_10_k_1E-8')
-	k_explicit = read_file(path+subpath+'k_array')
-	result_explicit = np.array([])	
+		subpath = 't='+str(t)+'/'
+	#EVENT
+	engine = "explicit/"												#set the engine for naming
+	y_event = read_file(path+subpath+engine+'ev_'+n+'_k_'+esp_precise) 	#this is the reference distribution
+	#EXPLICIT
+	k_explicit = read_file(path+subpath+engine+'k_array')						#load the bottom line for explicit
+	result_explicit = np.array([])											
 	for k in k_explicit[0:len(k_explicit)-4]:
-		print (path+subpath+'sumph_10_'+str(int(k))+'_'+eps)
-		y_k = read_file(path+subpath+'sumph_10_'+str(int(k))+'_'+eps)
-		result = norm2(diff_array(y_event,y_k))
+		y_k = read_file(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+		if (norm == "norm_2"):
+			result = norm_2(diff_array(y_event,y_k))
+		else:
+			result = norm_infinite(diff_array(y_event,y_k))
 		result_explicit = np.append(result_explicit, [result], axis=0)
-
-	#hybrid
-	if (median=="median"):
-		subpath = 't='+s+'_median/hybrid/'
+	#HYBRID
+	engine = "hybrid/"													#set the naming for naming
+	if (kind_of_t=="median"):												#set the_kind_of_t for naming
+		subpath = 't='+str(t)+'_median/'
 	else:
-		subpath = 't='+s+'/hybrid/'
+		subpath = 't='+str(t)+'/'
 		
-	k_hybrid = read_file(path+subpath+'k_array')
+	k_hybrid = read_file(path+subpath+engine+'k_array')						#load the bottom line for explicit
 	result_hybrid = np.array([])	
 	for k in k_hybrid:
-		y_k = read_file(path+subpath+'sumph_10_'+str(int(k))+'_'+eps)
-		result = norm2(diff_array(y_event,y_k))
+		y_k = read_file(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+		if (norm == "norm_2"):
+			result = norm_2(diff_array(y_event,y_k))
+		else:
+			result = norm_infinite(diff_array(y_event,y_k))
 		result_hybrid = np.append(result_hybrid, [result], axis=0)
 			
-	#ploting
+	#PLOTING
 	plt.yscale('log')
-	plt.xscale('linear')
+	plt.xscale('log')
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('Euclidean distance per distribution', fontsize=14, color='black')
 	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=explicit')
@@ -201,25 +212,36 @@ def norm2_plot(s,median):
 	plt.show()
 	
 
-def performance_10(s,median):
-	#t=0.1 engine must have the same termination epsilon	
-	#data
-	if (median=="median"):
-		subpath = 't='+s+'_median/explicit/'
-	else:
-		subpath = 't='+s+'/explicit/'
+def performance(t,kind_of_t):
+	#PARAMETERS : 
+	#1 	t(float) is the timeout in sec
+	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
+
+	#CONSTANT
+	n="10"
 	
-#	y_event = read_file(path+subpath+'phtime_10_'+eps)
+
+	#EXPLICIT	
+	engine = "explicit/"
+	if (kind_of_t=="median"):
+		subpath = 't='+str(t)+'_median/'+engine
+	else:
+		subpath = 't='+str(t)+'/'+engine
+	
+	y_event = read_file(path+subpath+'evtime_10_'+eps)
 	y_explicit = read_file(path+subpath+'phtime_10_'+eps)
 	k_explicit = read_file(path+subpath+'k_array')
 	
-	if (median=="median"):
-		subpath = 't='+s+'_median/hybrid/'
+	#HYBRID
+	engine = "hybrid/"
+	if (kind_of_t=="median"):
+		subpath = 't='+str(t)+'_median/'+engine
 	else:
-		subpath = 't='+s+'/hybrid/'
+		subpath = 't='+str(t)+'/'+engine
 	y_hybrid = read_file(path+subpath+'phtime_10_'+eps)
 	k_hybrid = read_file(path+subpath+'k_array')
 	
+	#DATA
 	if (len(k_hybrid)>len(k_explicit)):
 		k_array = k_hybrid
 		max_length = len(k_hybrid)
@@ -228,14 +250,14 @@ def performance_10(s,median):
 		max_length = len(k_explicit)
 		
 	
-	#ploting
-	plt.yscale('linear')
-	plt.xscale('linear')
+	#PLOTING
+	plt.yscale('log')
+	plt.xscale('log')
 	plt.xlabel('K Phase Type Fitting Parameter', fontsize=14, color='black')
 	plt.ylabel('Time of Computation (s)', fontsize=14, color='black')
 	plt.title('Time of computation of the Steady States Probabilities versus k the PTF parameter')
 	
-#	plt.plot(k_array, y_event*max_length, label = 'event',linewidth=1.0)
+	plt.plot(k_array, y_event*len(k_array), label = 'event',linewidth=1.0)
 	plt.plot(k_explicit[0:len(k_explicit)-4], y_explicit, label = 'explicit',linewidth=1.0)
 	plt.plot(k_hybrid, y_hybrid, label = 'hybrid',linewidth=1.0)
 	plt.legend()

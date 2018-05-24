@@ -23,7 +23,7 @@ do
 	then
 			cat $source > $target
 	else
-			gawk -v k=${var} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.16f\n", s;s=0}' "${source}" > $target
+			gawk -v k=${var} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' "${source}" > $target
 			tail -n1 $source >> $target
 	fi
 done
@@ -39,7 +39,7 @@ do
 	then
 			cat $source > $target
 	else
-			gawk -v k=${var} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.16f\n", s;s=0}' "${source}" > $target
+			gawk -v k=${var} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' "${source}" > $target
 			tail -n1 $source >> $target
 	fi
 done
