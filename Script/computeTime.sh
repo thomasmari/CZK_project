@@ -21,7 +21,7 @@ targetk=$path$subpath'k_array'
 touch tempfiletime
 touch tempfilek1
 touch tempfilek2
-for var in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000
+for var in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000 3000 4000 5000
 do	
 	source=$path$subpath'ph_10_'$var'_1E-5.log'
 	grep "Time for steady-state probability computation" $source >> tempfiletime
@@ -41,7 +41,7 @@ targetk=$path$subpath'k_array'
 touch tempfiletime
 touch tempfilek1
 touch tempfilek2
-for var in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000
+for var in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000 3000 4000 5000
 do	
 	source=$path$subpath'ph_10_'$var'_1E-5.log'
 	grep "Time for steady-state probability computation" $source >> tempfiletime
