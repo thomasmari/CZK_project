@@ -26,7 +26,7 @@ cd "explicit"
 
 cd $PRISM_PATH_FROM_SCRIPT
 #compute explicit phase type
-for k in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300
+for k in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000
 do
 	echo explicit $k $esp
   ./prism -explicit -epsilon ${esp} -maxiters 10000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ph_10_${k}_${esp}" > "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ph_10_${k}_${esp}.log"

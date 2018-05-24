@@ -14,7 +14,7 @@ esp="1E-5"
 
 ####################################HYBRID
 subpath="t=$1/hybrid/"
-for var in 1 2 5 25 50 75 100 125 150 175 200 225 250 275 300 1000 2000
+for var in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000
 do	
 	source=$path$subpath'ph_10_'$var'_'$esp
 	target=$path$subpath'sumph_10_'$var'_'$esp
@@ -30,7 +30,7 @@ done
 
 ####################################EXPLICIT
 subpath="t=$1/explicit/"
-for var in 1 2 5 25 50 75 100 125 150 175 200 225 250 275 300
+for var in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 20000
 do	
 	source=$path$subpath'ph_10_'$var'_'$esp
 	target=$path$subpath'sumph_10_'$var'_'$esp
