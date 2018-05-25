@@ -7,7 +7,7 @@ def read_file(filename):
 	file = open(filename, "r")
 	a = []
 	for line in file:
-	   a.append(float(line))
+		a.append(float(line))
 	return a
 
 def diff_array(a1,a2):

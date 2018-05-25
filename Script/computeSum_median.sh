@@ -6,7 +6,7 @@
 # Are fixed constant : epsilon=1E-5
 path="../Output/"
 one=1
-esp="1E-5"
+eps="1E-5"
 
 ########################################################################
 ############################t###########################################
@@ -16,8 +16,8 @@ esp="1E-5"
 subpath="t=$1_median/hybrid/"
 for var in $(seq 5 5 95; seq 100 100 5000);
 do	
-	source=$path$subpath'ph_10_'$var'_'$esp
-	target=$path$subpath'sumph_10_'$var'_'$esp
+	source=$path$subpath'ph_10_'$var'_'$eps
+	target=$path$subpath'sumph_10_'$var'_'$eps
 	echo $source
 	if [ "$var" = "$one" ]
 	then
@@ -32,8 +32,8 @@ done
 subpath="t=$1_median/explicit/"
 for var in $(seq 5 5 95; seq 100 100 5000);
 do	
-	source=$path$subpath'ph_10_'$var'_'$esp
-	target=$path$subpath'sumph_10_'$var'_'$esp
+	source=$path$subpath'ph_10_'$var'_'$eps
+	target=$path$subpath'sumph_10_'$var'_'$eps
 	echo $source
 	if [ "$var" = "$one" ]
 	then
