@@ -1,0 +1,14 @@
+dtmc
+
+const int qCapacity = 100000;
+
+
+module main
+
+qSize : [0..qCapacity] init 0;
+
+[step] true -> 0.5 : (qSize' = mod((qSize+1),qCapacity)) + 0.5 : (qSize' = mod(qSize-1,qCapacity));
+
+
+
+endmodule

@@ -1,0 +1,15 @@
+gsmp
+
+const int qCapacity = 5000;
+const int lambda = 1;
+
+
+module main
+
+qSize : [0..qCapacity] init 0;
+
+[step] true -> lambda : (qSize' = mod((qSize+1),qCapacity)) + lambda : (qSize' = mod(qSize-1,qCapacity));
+
+
+
+endmodule

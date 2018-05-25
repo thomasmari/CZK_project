@@ -26,7 +26,7 @@ cd "explicit"
 
 cd $PRISM_PATH_FROM_SCRIPT
 #compute explicit phase type
-for k in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000 3000 4000 5000
+for k in $(seq 5 5 95; seq 100 100 5000); #seq First Step Last
 do
 	echo explicit $k $esp
   ./prism -explicit -epsilon ${esp} -maxiters 10000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ph_10_${k}_${esp}" > "$OUTPUT_PATH_FROM_PRISM/t=$1/explicit/ph_10_${k}_${esp}.log"
@@ -55,7 +55,7 @@ cd "hybrid"
 
 cd $PRISM_PATH_FROM_SCRIPT
 #compute hybrid phase type
-for k in 1 2 5 10 25 50 75 100 125 150 175 200 225 250 275 300 500 1000 2000 3000 4000 5000
+for k in $(seq 5 5 95; seq 100 100 5000);
 do
 	echo hybrid $k $esp
   ./prism -hybrid -epsilon 1e-5 -maxiters 10000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1/hybrid/ph_10_${k}_${esp}" > "$OUTPUT_PATH_FROM_PRISM/t=$1/hybrid/ph_10_${k}_${esp}.log"
