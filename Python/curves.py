@@ -155,30 +155,39 @@ def diff_explicit_001():
 ########################################################################
 #############################DISTANCE (NORM)############################
 
-def norm2_explicit(s):	
+def norm2_plot(s,median):	
 	#s=timeout
 	#lambda=1/t
 	#n=10
 	
 
 	#explicit
-	subpath = 't='+s+'/explicit/'
+	if (median=="median"):
+		subpath = 't='+s+'_median/explicit/'
+	else:
+		subpath = 't='+s+'/explicit/'
+		
 	y_event = read_file(path+subpath+'ev_10_k_1E-8')
 	k_explicit = read_file(path+subpath+'k_array')
 	result_explicit = np.array([])	
-	for k in k_hybrid:
-		y_k = read_file(path+subpath+'sumph_10_'+str(k)+'_'+eps)
+	for k in k_explicit[0:len(k_explicit)-4]:
+		print (path+subpath+'sumph_10_'+str(int(k))+'_'+eps)
+		y_k = read_file(path+subpath+'sumph_10_'+str(int(k))+'_'+eps)
 		result = norm2(diff_array(y_event,y_k))
-		result_explicit = np.append(result_array, [result], axis=0)
+		result_explicit = np.append(result_explicit, [result], axis=0)
 
 	#hybrid
-	subpath = 't='+s+'/hybrid/'
-	k_explicit = read_file(path+subpath+'k_array')
+	if (median=="median"):
+		subpath = 't='+s+'_median/hybrid/'
+	else:
+		subpath = 't='+s+'/hybrid/'
+		
+	k_hybrid = read_file(path+subpath+'k_array')
 	result_hybrid = np.array([])	
 	for k in k_hybrid:
-		y_k = read_file(path+subpath+'sumph_10_'+str(k)+'_'+eps)
+		y_k = read_file(path+subpath+'sumph_10_'+str(int(k))+'_'+eps)
 		result = norm2(diff_array(y_event,y_k))
-		result_hybrid = np.append(result_array, [result], axis=0)
+		result_hybrid = np.append(result_hybrid, [result], axis=0)
 			
 	#ploting
 	plt.yscale('log')
@@ -186,20 +195,28 @@ def norm2_explicit(s):
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('Euclidean distance per distribution', fontsize=14, color='black')
 	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=explicit')
-	plt.plot(k_list, result_array, label = "hybrid",linewidth=0.5)
+	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
+	plt.plot(k_explicit[0:len(k_explicit)-4], result_explicit, label = "explicit",linewidth=0.5)
 	plt.legend()
 	plt.show()
 	
 
-def performance_10(s):
+def performance_10(s,median):
 	#t=0.1 engine must have the same termination epsilon	
 	#data
-	subpath = 't='+s+'/explicit/'
+	if (median=="median"):
+		subpath = 't='+s+'_median/explicit/'
+	else:
+		subpath = 't='+s+'/explicit/'
+	
 #	y_event = read_file(path+subpath+'phtime_10_'+eps)
 	y_explicit = read_file(path+subpath+'phtime_10_'+eps)
 	k_explicit = read_file(path+subpath+'k_array')
 	
-	subpath = 't='+s+'/hybrid/'
+	if (median=="median"):
+		subpath = 't='+s+'_median/hybrid/'
+	else:
+		subpath = 't='+s+'/hybrid/'
 	y_hybrid = read_file(path+subpath+'phtime_10_'+eps)
 	k_hybrid = read_file(path+subpath+'k_array')
 	
@@ -219,7 +236,7 @@ def performance_10(s):
 	plt.title('Time of computation of the Steady States Probabilities versus k the PTF parameter')
 	
 #	plt.plot(k_array, y_event*max_length, label = 'event',linewidth=1.0)
-	plt.plot(k_explicit, y_explicit, label = 'explicit',linewidth=1.0)
+	plt.plot(k_explicit[0:len(k_explicit)-4], y_explicit, label = 'explicit',linewidth=1.0)
 	plt.plot(k_hybrid, y_hybrid, label = 'hybrid',linewidth=1.0)
 	plt.legend()
 	plt.show()
