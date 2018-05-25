@@ -319,35 +319,34 @@
 	\begin{figure}
 		\centering
 		\begin{lstlisting}
-		gsmp
-		
-		const int k = 10;
-		const int qCapacity = 10;
-		
-		const double timeout = 10;
-		const double lambda = 0.2;
-		
-		
-		
-		module main
-		
-		qSize : [0..qCapacity] init 0;
-		
-		[produce] (qSize < qCapacity) -> (qSize' = qSize+1);
-		[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
-		
-		endmodule
-		
-		module trigger
-		
-		i : [1..k+1];
-		
-		[] i < k -> k/timeout : (i'=i+1);
-		[produce] i = k -> k/timeout : (i'=1);
-		//[consume] true -> (i'=1);
-		
-		endmodule
-		
+gsmp
+
+const int k;
+const int qCapacity = 10;
+
+
+const double timeout;
+const double lambda;
+
+
+
+module main
+
+qSize : [0..qCapacity] init 0;
+
+[produce] (qSize < qCapacity) -> (qSize' = qSize+1);
+[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
+
+endmodule
+
+module trigger
+
+i : [1..k+1];
+
+[] i < k & qSize<qCapacity -> k/timeout : (i'=i+1);
+[produce] i = k -> k/timeout : (i'=1);
+
+endmodule
 		\end{lstlisting}
 		\caption{PRISM CTMC model of the D/M/1/n queue as shown in \ref{fig:Queue1} with phase-type fitting to approximate the deterministic arrivals. The phase-type module \emph{trigger} is used as suggested on the \href{http://www.prismmodelchecker.org/manual/FrequentlyAskedQuestions/PRISMModelling}{PRISM website}.  }
 		\label{fig:queuecode2}
@@ -382,7 +381,7 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=16cm]{picture/time.png}
+		\includegraphics[width=16cm]{picture/time_of_computation.png}
 		\caption{Computation time for different values of $k$. The growing lines represent computations of models with phase-type distributions. For about $k>200$, GSMP implementation starts outperforming all phase-typed computations, despite the GSMP implementation being relatively poorly optimized.}
 		\label{fig:time1}
 	\end{figure}	
@@ -390,7 +389,7 @@
 	\begin{figure}
 		\centering
 		\includegraphics[width=16cm]{picture/size.png}
-		\caption{Size of model for different values of $k$.}
+		\caption{Size of model for different values of $k$. $\#\{$state$\} = nk+1$}
 		\label{fig:time1}
 	\end{figure}
 
@@ -421,7 +420,7 @@
 	
 	\begin{figure}
 		\centering
-		\includegraphics[width=18cm]{picture/dist02_explicit_01.png}
+		\includegraphics[width=18cm]{picture/eucl_distance.png}
 		\caption{Euclidean Distance of distribution of the SSP computation between the event model and the PTF model using explicit engine versus the PTF parameter k,	$t=0.1$,$\lambda=1/t$,$\epsilon=10^{-5}$}
 		\label{fig:dist02_explicit_001}
 	\end{figure}

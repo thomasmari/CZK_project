@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.26)  22 MAY 2018 13:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2017.11.26)  25 MAY 2018 09:40
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1127,7 +1127,7 @@ Package microtype Info: Loading generic settings for font family
 File: picture/faq-erlang.jpg Graphic file (type jpg)
 
 <use picture/faq-erlang.jpg>
-Package pdftex.def Info: picture/faq-erlang.jpg used on input line 358.
+Package pdftex.def Info: picture/faq-erlang.jpg used on input line 357.
 (pdftex.def)             Requested size: 341.43306pt x 150.73734pt.
  [1
 
@@ -1135,58 +1135,60 @@ Package pdftex.def Info: picture/faq-erlang.jpg used on input line 358.
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4 <./picture/faq-
 erlang.jpg>]
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 366.
+(Font)              scaled to size 11.03998pt on input line 365.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 366.
+(Font)              scaled to size 8.27998pt on input line 365.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 366.
+(Font)              scaled to size 6.43999pt on input line 365.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 366.
+(Font)              scaled to size 11.03998pt on input line 365.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 366.
+(Font)              scaled to size 8.27998pt on input line 365.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 366.
+(Font)              scaled to size 6.43999pt on input line 365.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 366.
+(hyperref)                removing `math shift' on input line 365.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\mu' on input line 366.
+(hyperref)                removing `\mu' on input line 365.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 366.
+(hyperref)                removing `math shift' on input line 365.
 
 <picture/sspqueue.png, id=115, 1340.6085pt x 738.5994pt>
 File: picture/sspqueue.png Graphic file (type png)
 
 <use picture/sspqueue.png>
-Package pdftex.def Info: picture/sspqueue.png used on input line 378.
+Package pdftex.def Info: picture/sspqueue.png used on input line 377.
 (pdftex.def)             Requested size: 512.1496pt x 282.1696pt.
 
-Overfull \hbox (93.89404pt too wide) in paragraph at lines 378--379
+Overfull \hbox (93.89404pt too wide) in paragraph at lines 377--378
  [][] 
  []
 
-<picture/time.png, id=117, 1861.95625pt x 1025.8325pt>
-File: picture/time.png Graphic file (type png)
- <use picture/time.png>
-Package pdftex.def Info: picture/time.png used on input line 385.
-(pdftex.def)             Requested size: 455.24408pt x 250.8068pt.
+<picture/time_of_computation.png, id=117, 1340.6085pt x 738.5994pt>
+File: picture/time_of_computation.png Graphic file (type png)
 
-Overfull \hbox (36.98853pt too wide) in paragraph at lines 385--386
+<use picture/time_of_computation.png>
+Package pdftex.def Info: picture/time_of_computation.png used on input line 384
+.
+(pdftex.def)             Requested size: 455.24408pt x 250.8049pt.
+
+Overfull \hbox (36.98853pt too wide) in paragraph at lines 384--385
  [][] 
  []
 
 <picture/size.png, id=118, 1340.6085pt x 738.5994pt>
 File: picture/size.png Graphic file (type png)
  <use picture/size.png>
-Package pdftex.def Info: picture/size.png used on input line 392.
+Package pdftex.def Info: picture/size.png used on input line 391.
 (pdftex.def)             Requested size: 455.24408pt x 250.8049pt.
 
-Overfull \hbox (36.98853pt too wide) in paragraph at lines 392--393
+Overfull \hbox (36.98853pt too wide) in paragraph at lines 391--392
  [][] 
  []
 
@@ -1194,64 +1196,62 @@ Overfull \hbox (36.98853pt too wide) in paragraph at lines 392--393
 File: picture/diff_explicit_01.png Graphic file (type png)
 
 <use picture/diff_explicit_01.png>
-Package pdftex.def Info: picture/diff_explicit_01.png used on input line 402.
+Package pdftex.def Info: picture/diff_explicit_01.png used on input line 401.
 (pdftex.def)             Requested size: 512.1496pt x 282.1696pt.
 
-Overfull \hbox (93.89404pt too wide) in paragraph at lines 402--403
+Overfull \hbox (93.89404pt too wide) in paragraph at lines 401--402
  [][] 
  []
 
 File: picture/diff_explicit_01.png Graphic file (type png)
 <use picture/diff_explicit_01.png>
-Package pdftex.def Info: picture/diff_explicit_01.png used on input line 409.
+Package pdftex.def Info: picture/diff_explicit_01.png used on input line 408.
 (pdftex.def)             Requested size: 512.1496pt x 282.1696pt.
 
-Overfull \hbox (93.89404pt too wide) in paragraph at lines 409--410
+Overfull \hbox (93.89404pt too wide) in paragraph at lines 408--409
  [][] 
  []
 
 File: picture/diff_explicit_01.png Graphic file (type png)
 <use picture/diff_explicit_01.png>
-Package pdftex.def Info: picture/diff_explicit_01.png used on input line 416.
+Package pdftex.def Info: picture/diff_explicit_01.png used on input line 415.
 (pdftex.def)             Requested size: 512.1496pt x 282.1696pt.
 
-Overfull \hbox (93.89404pt too wide) in paragraph at lines 416--417
+Overfull \hbox (93.89404pt too wide) in paragraph at lines 415--416
  [][] 
  []
 
-<picture/dist02_explicit_01.png, id=120, 1340.6085pt x 738.5994pt>
-File: picture/dist02_explicit_01.png Graphic file (type png)
+<picture/eucl_distance.png, id=120, 1340.6085pt x 738.5994pt>
+File: picture/eucl_distance.png Graphic file (type png)
 
-<use picture/dist02_explicit_01.png>
-Package pdftex.def Info: picture/dist02_explicit_01.png used on input line 424.
-
+<use picture/eucl_distance.png>
+Package pdftex.def Info: picture/eucl_distance.png used on input line 423.
 (pdftex.def)             Requested size: 512.1496pt x 282.1696pt.
 
-Overfull \hbox (93.89404pt too wide) in paragraph at lines 424--425
+Overfull \hbox (93.89404pt too wide) in paragraph at lines 423--424
  [][] 
  []
 
-[5 <./picture/sspqueue.png>] [6 <./picture/time.png>]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 431.
- [7 <./picture/size.png>]
-[8 <./picture/diff_explicit_01.png>] [9] [10] [11 <./picture/dist02_explicit_01
-.png>]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 431.
+[5 <./picture/sspqueue.png>] [6 <./picture/time_of_computation.png>]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 430.
+ [7 <./picture/size.png>] [8 <./picture/diff_explicit_01.png>] [9] [10] [11 <./
+picture/eucl_distance.png>]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 430.
  (./notes.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 431.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 431.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 430.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 430.
 Package rerunfilecheck Info: File `notes.out' has not changed.
 (rerunfilecheck)             Checksum: FD0B3B7F7A2A42473ABF32A88BFE224C;387.
 
 
 LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 431.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 430.
  ) 
 Here is how much of TeX's memory you used:
- 23477 strings out of 494883
- 441369 string characters out of 6178692
- 678802 words of memory out of 5000000
+ 23478 strings out of 494883
+ 441423 string characters out of 6178692
+ 675683 words of memory out of 5000000
  26141 multiletter control sequences out of 15000+600000
  120386 words of font info for 198 fonts, out of 8000000 for 9000
  36 hyphenation exceptions out of 8191
@@ -1262,7 +1262,7 @@ st/fonts/type1/public/fourier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/f
 onts/type1/public/fourier/fourier-ms.pfb></usr/share/texlive/texmf-dist/fonts/t
 ype1/adobe/utopia/putr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/u
 topia/putri8a.pfb>
-Output written on notes.pdf (11 pages, 472830 bytes).
+Output written on notes.pdf (11 pages, 462253 bytes).
 PDF statistics:
  241 PDF objects out of 1000 (max. 8388607)
  167 compressed objects within 2 object streams
