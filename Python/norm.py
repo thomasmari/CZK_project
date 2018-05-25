@@ -16,14 +16,14 @@ def diff_array(a1,a2):
 		diff.append(a1[i]-a2[i])
 	return diff
 
-def norm2(a):
+def norm_2(a):
 	s=0
 	for e in a:
 		s += e*e
 	return math.sqrt(s)
 	
-def infinite_norm(a):
-	return max(abs(a))
+def norm_infinite(a):
+	return max(map(abs,a))
 
 def absolute(a):
 	ret = []
