@@ -11,72 +11,32 @@ eps = "1E-5"
 eps_precise = "1E-8"
 
 #CURVES
-def curve_10_random():
-	Subpath = '/random/'
-	#t=0.1
-	plt.yscale('linear')
-	plt.xscale('linear')
-	plt.xlabel('Size of the Queue', fontsize=14, color='black')
-	plt.ylabel('P', fontsize=14, color='black')
-	plt.title('Steady State Probability for a queue with phase type fitting parameter k')
-	x = range(0,11,1)
-	
-	y_10 = read_file(Path+Subpath+'queue_10.res')
-	y_10_2 = read_file('../Log/random/queueptf_10_2.res')
-	y_10_5 = read_file('../Log/random/queueptf_10_2.res')
-	y_10_10 = read_file('../Log/random/queueptf_10_2.res')
-	y_10_50 = read_file('../Log/random/queueptf_10_2.res')
-	y_10_100 = read_file('../Log/random/queueptf_10_2.res')
-	y_10_200 = read_file('../Log/random/queueptf_10_2.res')
-	
-	plt.plot(x, y_10, label = 'k=0',linewidth=7.0)
-	#plt.plot(x, y_10_2, label = 'k=2')
-	#plt.plot(x, y_10_5, label = 'k=5')
-	#plt.plot(x, y_10_10, label = 'k=10')
-	#plt.plot(x, y_10_50, label = 'k=50')
-	#plt.plot(x, y_10_100, label = 'k=100')
-	#plt.plot(x, y_10_200, label = 'k=200')
 
-
-	plt.legend()
-	plt.show()
 	
-def curve01():	
-	#t=0.1
-	#lambda=1/t
+def curve(t,kind_of_t,engine):	
+	#CONSTANT
 	#n=10
-
-	
-	subpath = 't=0.1/'
+	#PARAMETERS : 
+	#1 	t(float) is the timeout in sec
+	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
+	#3 	engine(string) is the engine used in computation {"explicit","hybrid"}
+	if (kind_of_t=="median"):											#set the kind_of_t for naming
+		subpath = 't='+str(t)+'_median/'
+	else:
+		subpath = 't='+str(t)+'/'
 	plt.yscale('linear')
 	plt.xscale('linear')
 	plt.xlabel('Size of the Queue', fontsize=14, color='black')
-	plt.ylabel('P', fontsize=14, color='black')
-	plt.title('Steady State Probability for a queue with phase type fitting parameter k')
-	x = range(0,11,1)
-	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 400, 1000, 2000]
-	#hybrid
-	for k in k_array:
-		y_k = read_file(path+subpath+'hybrid/sumph_10_'+str(k))
-		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.5)
-	plt.legend()
-	plt.show()
+	plt.ylabel('SSP', fontsize=14, color='black')
+	plt.title('SSP\ntimeout='+str(t)+',lambda='+kind_of_t+',engine='+engine+',epsilon='+eps)
 
-
-	subpath = 't=0.1/'
-	plt.yscale('linear')
-	plt.xscale('linear')
-	plt.xlabel('Size of the Queue', fontsize=14, color='black')
-	plt.ylabel('Euclidean distance per size', fontsize=14, color='black')
-	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=hybrid')
+	y_0 = read_file(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
 	x = range(0,11,1)
-	k_array = [1, 2, 5, 25, 50, 75, 100, 125, 150, 175, 200, 225, 250, 275, 300, 400, 1000, 2000]
-	#hybrid
+	plt.plot(x, y_0, label = 'event model',linewidth=0.7)
+	k_array = [50,1000,2000,3000,4000,5000]
 	for k in k_array:
-		y_k = read_file(path+subpath+'hybrid/sumph_10_'+str(k))
-		y_0 = read_file(path+subpath+'ev_10')
-		y = absolute(diff_array(y_0,y_k))
-		plt.plot(x, y, label = "k="+str(k),linewidth=0.5)
+		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
+		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.7)
 	plt.legend()
 	plt.show()
 
@@ -94,26 +54,26 @@ def distance_per_state(t,kind_of_t,norm,engine):
 	#4 	engine(string) is the engine used in computation {"explicit","hybrid"}
 	
 	#DATA
-	if (kind_of_t=="median"):												#set the kind_of_t for naming
+	if (kind_of_t=="median"):											#set the kind_of_t for naming
 		subpath = 't='+str(t)+'_median/'
 	else:
 		subpath = 't='+str(t)+'/'
 
 	states = range(0,11,1)
-	k_explicit = read_file(path+subpath+engine+'k_array')						#load the bottom line for explicit
+	k_array = read_file(path+subpath+engine+'/k_array')					#load the bottom line for explicit
 	
 	
-	for k in k_array:
-		y_k = read_file(path+subpath+'explicit/sumph_10_'+str(k))
-		y_0 = read_file(path+subpath+'ev_10')
+	for k in k_array[0::5]:
+		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
+		y_0 = read_file(path+subpath+'explicit'+'/ev_10_k_'+eps)
 		y = absolute(diff_array(y_0,y_k))
 		plt.plot(states, y, label = "k="+str(k),linewidth=0.5)
 	
 	plt.yscale('linear')
 	plt.xscale('linear')
-	plt.xlabel('Size of the Queue', fontsize=14, color='black')
-	plt.ylabel('Euclidean distance per size', fontsize=14, color='black')
-	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.001,lambda=1/timeout,engine=explicit')
+	plt.xlabel('state of the queue', fontsize=14, color='black')
+	plt.ylabel('Euclidean distance for each state', fontsize=14, color='black')
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine)
 	plt.legend()
 	plt.show()	
 

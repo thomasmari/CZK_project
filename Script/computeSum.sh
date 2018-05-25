@@ -1,3 +1,4 @@
+#!/bin/bash
 #####README
 # There is only one parameters, that is t. The logs (for t) must be already computed 
 # Return a file of the sum of probabilities per state of the queue

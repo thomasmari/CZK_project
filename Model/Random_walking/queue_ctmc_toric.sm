@@ -1,6 +1,6 @@
-gsmp
+ctmc
 
-const int qCapacity = 5000;
+const int qCapacity = 10;
 const int lambda = 1;
 
 
