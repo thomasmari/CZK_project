@@ -29,17 +29,17 @@ def curve(t,kind_of_t,engine):
 	plt.ylabel('SSP', fontsize=14, color='black')
 	plt.title('SSP\ntimeout='+str(t)+',lambda='+kind_of_t+',engine='+engine+',epsilon='+eps)
 
-	y_0 = read_file(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
+	y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
 	x = range(0,11,1)
 	plt.plot(x, y_0, label = 'event model',linewidth=0.7)
 	k_array = [50,1000,2000,3000,4000,5000]
 	for k in k_array:
-		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
+		y_k = read_float(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
 		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.7)
 	plt.legend()
 	plt.show()
 
-def curve_epsilon(t,engine):	
+def curve_epsilon(t,k,engine):	
 	#CONSTANT
 	#n=10
 	#k
@@ -49,25 +49,33 @@ def curve_epsilon(t,engine):
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
 	#3 	engine(string) is the engine used in computation {"event","explicit","hybrid"}
 	if (engine=="event"):											#set the kind_of_t for naming
-		subpath = 't='+str(t)+'_median/'
+		subpath = 't='+str(t)+'_epsilon/explicit/'
+		data = 'ev'
 	elif (engine == "explicit"):
-		subpath = 't='+str(t)+'/'
+		subpath = 't='+str(t)+'_epsilon/explicit/'
+		data = 'ph'
 	else:
-		subpath = 't='+str(t)+'/'
+		subpath = 't='+str(t)+'_epsilon/hybrid/'
+		data = 'ph'
 		
-	plt.yscale('linear')
+	plt.yscale('log')
 	plt.xscale('linear')
 	plt.xlabel('Size of the Queue', fontsize=14, color='black')
 	plt.ylabel('SSP', fontsize=14, color='black')
-	plt.title('SSP\ntimeout='+str(t)+',lambda='+kind_of_t+',engine='+engine+',epsilon='+eps)
+	plt.title('SSP\ntimeout='+str(t)+',lambda='+'1/t, +engine='+engine+', k=50')
 
-	y_0 = read_file(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
+	#y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
 	x = range(0,11,1)
-	plt.plot(x, y_0, label = 'event model',linewidth=0.7)
-	eps_array = read_file(path+subpath+engine (rè+'/eps_array')
-	for k in k_array:
-		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
-		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.7)
+	#plt.plot(x, y_0, label = 'event model',linewidth=0.7)
+	eps_array = read_file(path+subpath+data+'_eps_array')
+	print eps_array
+	for e in eps_array[0::1]:
+		if (data == 'ev'):
+			y_e = read_float(path+subpath+'ev_10_k_'+str(e))
+		else:
+			y_e = read_float(path+subpath+'sumph_10_'+str(k)+'_'+e)
+		plt.plot(x, y_e, label = "eps="+str(e),linewidth=0.7)
+
 	plt.legend()
 	plt.show()
 
@@ -91,12 +99,12 @@ def distance_per_state(t,kind_of_t,norm,engine):
 		subpath = 't='+str(t)+'/'
 
 	states = range(0,11,1)
-	k_array = read_file(path+subpath+engine+'/k_array')					#load the bottom line for explicit
+	k_array = read_float(path+subpath+engine+'/k_array')					#load the bottom line for explicit
 	
 	
 	for k in k_array[0::5]:
-		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
-		y_0 = read_file(path+subpath+'explicit'+'/ev_10_k_'+eps)
+		y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
+		y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps)
 		y = absolute(diff_array(y_0,y_k))
 		plt.plot(states, y, label = "k="+str(k),linewidth=0.5)
 	
@@ -127,12 +135,12 @@ def distance_plot(t,kind_of_t,norm):
 		subpath = 't='+str(t)+'/'
 	#EVENT
 	engine = "explicit/"												#set the engine for naming
-	y_event = read_file(path+subpath+engine+'ev_'+n+'_k_'+eps_precise) 	#this is the reference distribution
+	y_event = read_float(path+subpath+engine+'ev_'+n+'_k_'+eps_precise) 	#this is the reference distribution
 	#EXPLICIT
-	k_explicit = read_file(path+subpath+engine+'k_array')						#load the bottom line for explicit
+	k_explicit = read_float(path+subpath+engine+'k_array')						#load the bottom line for explicit
 	result_explicit = np.array([])											
 	for k in k_explicit:
-		y_k = read_file(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+		y_k = read_float(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
 		if (norm == "norm_2"):
 			result = norm_2(diff_array(y_event,y_k))
 		else:
@@ -145,10 +153,10 @@ def distance_plot(t,kind_of_t,norm):
 	else:
 		subpath = 't='+str(t)+'/'
 		
-	k_hybrid = read_file(path+subpath+engine+'k_array')						#load the bottom line for explicit
+	k_hybrid = read_float(path+subpath+engine+'k_array')						#load the bottom line for explicit
 	result_hybrid = np.array([])	
 	for k in k_hybrid:
-		y_k = read_file(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+		y_k = read_float(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
 		if (norm == "norm_2"):
 			result = norm_2(diff_array(y_event,y_k))
 		else:
@@ -183,9 +191,9 @@ def performance(t,kind_of_t):
 	else:
 		subpath = 't='+str(t)+'/'+engine
 	
-	y_event = read_file(path+subpath+'evtime_10_'+eps)
-	y_explicit = read_file(path+subpath+'phtime_10_'+eps)
-	k_explicit = read_file(path+subpath+'k_array')
+	y_event = read_float(path+subpath+'evtime_10_'+eps)
+	y_explicit = read_float(path+subpath+'phtime_10_'+eps)
+	k_explicit = read_float(path+subpath+'k_array')
 	
 	#HYBRID
 	engine = "hybrid/"
@@ -193,8 +201,8 @@ def performance(t,kind_of_t):
 		subpath = 't='+str(t)+'_median/'+engine
 	else:
 		subpath = 't='+str(t)+'/'+engine
-	y_hybrid = read_file(path+subpath+'phtime_10_'+eps)
-	k_hybrid = read_file(path+subpath+'k_array')
+	y_hybrid = read_float(path+subpath+'phtime_10_'+eps)
+	k_hybrid = read_float(path+subpath+'k_array')
 	
 	#DATA
 	if (len(k_hybrid)>len(k_explicit)):

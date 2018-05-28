@@ -1,23 +1,21 @@
 #####README
 # There is only one parameters, that is t. The logs (for t) must be already computed 
 # $1 = t(int) the timeout
-# $2 = engine/data in {"event","hybrid","explicit"}
+# $2 = engine/data in {event,hybrid,explicit}
 # Return a file of computation time for hybrid and explicit engine in both of their folders
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : phtime_n_epsilon, the folder give the engine and the timeout
 reNum='^[-+]?[0-9]+\.?[0-9]*$'
-if ! [[ $1 =~ $reNum ]]; then
+if ! [[ $1 =~ $reNum ]] ; then
   echo "Please specify number \"timeout\" as the first parameter!"
   exit 1
 fi
-if ! [[ $1 =~ $reNum ]]; then
-  echo "Please specify number \"timeout\" as the first parameter!"
-  exit 1
-fi
+
 
 path="../Output/t=$1_epsilon/"
+engine="$2"
 
-if [[ $2 =~ 'hybrid' ]]; then
+if [ "$2" == "hybrid" ]; then
 	subpath="hybrid/"
 else
 	subpath="explicit/"
@@ -31,8 +29,8 @@ fi
 
 
 
-target_time=$path$subpath$data'time_10'
-target_eps=$path$subpath'eps_array'
+target_time=$path$subpath$data'_time_10'
+target_eps=$path$subpath$data'_eps_array'
 
 touch temp
 touch temp_command
@@ -40,7 +38,7 @@ touch temp_eps
 touch temp_time
 
 echo extracting log ...
-for file in $(ls $path$subpath'ph'*.log);
+for file in $(ls $path$subpath$data*.log);
 do	
 	echo $file
 	cat $file >> temp

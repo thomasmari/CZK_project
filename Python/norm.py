@@ -7,6 +7,13 @@ def read_file(filename):
 	file = open(filename, "r")
 	a = []
 	for line in file:
+		a.append(str(line).rstrip())
+	return a
+
+def read_float(filename):
+	file = open(filename, "r")
+	a = []
+	for line in file:
 		a.append(float(line))
 	return a
 
