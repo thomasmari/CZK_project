@@ -10,9 +10,8 @@ path = '../Output/'
 eps = "1E-5"
 eps_precise = "1E-8"
 
-#CURVES
-
-	
+########################################################################
+###################################CURVES###############################
 def curve(t,kind_of_t,engine):	
 	#CONSTANT
 	#n=10
@@ -34,6 +33,38 @@ def curve(t,kind_of_t,engine):
 	x = range(0,11,1)
 	plt.plot(x, y_0, label = 'event model',linewidth=0.7)
 	k_array = [50,1000,2000,3000,4000,5000]
+	for k in k_array:
+		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
+		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.7)
+	plt.legend()
+	plt.show()
+
+def curve_epsilon(t,engine):	
+	#CONSTANT
+	#n=10
+	#k
+	#lambda
+	#PARAMETERS : 
+	#1 	t(float) is the timeout in sec
+	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
+	#3 	engine(string) is the engine used in computation {"event","explicit","hybrid"}
+	if (engine=="event"):											#set the kind_of_t for naming
+		subpath = 't='+str(t)+'_median/'
+	elif (engine == "explicit"):
+		subpath = 't='+str(t)+'/'
+	else:
+		subpath = 't='+str(t)+'/'
+		
+	plt.yscale('linear')
+	plt.xscale('linear')
+	plt.xlabel('Size of the Queue', fontsize=14, color='black')
+	plt.ylabel('SSP', fontsize=14, color='black')
+	plt.title('SSP\ntimeout='+str(t)+',lambda='+kind_of_t+',engine='+engine+',epsilon='+eps)
+
+	y_0 = read_file(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
+	x = range(0,11,1)
+	plt.plot(x, y_0, label = 'event model',linewidth=0.7)
+	eps_array = [50,1000,2000,3000,4000,5000]
 	for k in k_array:
 		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
 		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.7)

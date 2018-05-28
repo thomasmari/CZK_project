@@ -32,15 +32,19 @@ cd "explicit"
 
 cd $PRISM_PATH_FROM_SCRIPT
 #compute explicit phase type
-for i in 1e-1 1e-2 1e-3 1e-4 1e-5 1e-6 1e-7 1e-8 1e-9
+for i in 1E-1 1E-2 1E-3 1E-4 1E-5 1E-6 1E-7 1E-8 1E-9
 do
 	echo explicit $2 $i
   ./prism -explicit -epsilon $i -maxiters 10000000 -power -absolute -const k=$2,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/explicit/ph_10_$2_$i" > "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/explicit/ph_10_$2_$i.log"
 done
 
 #compute explicit event
-echo event $2 1e-9
-./prism -explicit -epsilon 1e-9 -maxiters 10000000 -power -absolute "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/explicit/ev_10_k_1e-9" > "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/explicit/ev_10_k_1e-9.log"
+for i in 1E-1 1E-2 1E-3 1E-4 1E-5 1E-6 1E-7 1E-8 1E-9
+do
+	echo event $2 $i
+	./prism -explicit -epsilon $i -maxiters 10000000 -power -absolute -const k=$2,timeout=$1,lambda=$lambda  "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/explicit/ev_10_k_"${i} > "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/explicit/ev_10_k_"${i}".log"
+done
+
 cd -
 
 #write a readme file for explicit computations
@@ -58,10 +62,10 @@ cd "hybrid"
 
 cd $PRISM_PATH_FROM_SCRIPT
 #compute hybrid phase type
-for i in 1e-1 1e-2 1e-3 1e-4 1e-5 1e-6 1e-7 1e-8 1e-9
+for i in 1E-1 1E-2 1E-3 1E-4 1E-5 1E-6 1E-7 1E-8 1E-9
 do
 	echo hybrid $2 $i
-  ./prism -hybrid -epsilon $i -maxiters 10000000 -power -absolute -const k=$2 "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/hybrid/ph_10_$2_$i" > "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/hybrid/ph_10_$2_$i"
+  ./prism -hybrid -epsilon ${i} -maxiters 10000000 -power -absolute -const k=$2,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/hybrid/ph_10_$2_"${i} > "$OUTPUT_PATH_FROM_PRISM/t=$1_epsilon/hybrid/ph_10_$2_"${i}".log"
 done
 cd -
 
