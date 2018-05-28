@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Mon May 28 10:59:49 CEST 2018
+Date: Mon May 28 13:37:46 CEST 2018
 Hostname: thomas
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -explicit -epsilon 1E-5 -maxiters 10000000 -power -absolute -const 'k=50,timeout=1,lambda=1.0000000000' ../../../../CZK_project/Model/timeoutqueue.sm -ss -exportss ../../../../CZK_project/Output/t=1_epsilon/explicit/ev_10_k_1E-5
@@ -50,7 +50,7 @@ Computing steady-state probabilities for BSCC 1
 Starting value iteration...
 Value iteration took 62 iterations and 0.0 seconds.
 
-Reducing ACTMC to equivalent DTMC took 0.09 seconds.
+Reducing ACTMC to equivalent DTMC took 0.091 seconds.
 Computing steady-state probabilities for the equivalent DTMC took 0.003 seconds.
 
 Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=1_epsilon/explicit/ev_10_k_1E-5"...

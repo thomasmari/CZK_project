@@ -64,7 +64,7 @@ def curve_epsilon(t,engine):
 	y_0 = read_file(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
 	x = range(0,11,1)
 	plt.plot(x, y_0, label = 'event model',linewidth=0.7)
-	eps_array = [50,1000,2000,3000,4000,5000]
+	eps_array = read_file(path+subpath+engine (rè+'/eps_array')
 	for k in k_array:
 		y_k = read_file(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
 		plt.plot(x, y_k, label = "k="+str(k),linewidth=0.7)
