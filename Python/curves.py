@@ -7,8 +7,8 @@ from norm import *
 
 #GLOBAL VARIABLE
 path = '../Output/'
-eps = "1E-5"
-eps_precise = "1E-8"
+eps = "1E-6"
+eps_precise = "1E-10"
 
 ########################################################################
 ###################################CURVES###############################
@@ -138,15 +138,15 @@ def distance_plot(t,kind_of_t,norm):
 	engine = "explicit/"												#set the engine for naming
 	y_event = read_float(path+subpath+engine+'ev_'+n+'_k_'+eps_precise) 	#this is the reference distribution
 	#EXPLICIT
-	k_explicit = read_float(path+subpath+engine+'k_array')						#load the bottom line for explicit
-	result_explicit = np.array([])											
-	for k in k_explicit:
-		y_k = read_float(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
-		if (norm == "norm_2"):
-			result = norm_2(diff_array(y_event,y_k))
-		else:
-			result = norm_infinite(diff_array(y_event,y_k))
-		result_explicit = np.append(result_explicit, [result], axis=0)
+#	k_explicit = read_float(path+subpath+engine+'ph_k_array')						#load the bottom line for explicit
+#	result_explicit = np.array([])											
+#	for k in k_explicit:
+#		y_k = read_float(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+#		if (norm == "norm_2"):
+#			result = norm_2(diff_array(y_event,y_k))
+#		else:
+#			result = norm_infinite(diff_array(y_event,y_k))
+#		result_explicit = np.append(result_explicit, [result], axis=0)
 	#HYBRID
 	engine = "hybrid/"													#set the naming for naming
 	if (kind_of_t=="median"):												#set the_kind_of_t for naming
@@ -154,7 +154,7 @@ def distance_plot(t,kind_of_t,norm):
 	else:
 		subpath = 't='+str(t)+'/'
 		
-	k_hybrid = read_float(path+subpath+engine+'k_array')						#load the bottom line for explicit
+	k_hybrid = read_float(path+subpath+engine+'ph_k_array')						#load the bottom line for explicit
 	result_hybrid = np.array([])	
 	for k in k_hybrid:
 		y_k = read_float(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+eps)
@@ -169,9 +169,9 @@ def distance_plot(t,kind_of_t,norm):
 	plt.xscale('log')
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('Euclidean distance per distribution', fontsize=14, color='black')
-	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout,engine=explicit')
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout')
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
-	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
+#	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
 	plt.legend()
 	plt.show()
 	
