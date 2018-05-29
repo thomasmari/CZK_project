@@ -1,0 +1,60 @@
+PRISM
+=====
+
+Version: 4.4.GSMP
+Date: Tue May 29 09:54:08 CEST 2018
+Hostname: thomas
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -epsilon 1E-6 -maxiters 100000000 -power -absolute -const 'k=3200,timeout=0.02,lambda=34.6573590500' ../../../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../../../CZK_project/Output/t=0.02_median/hybrid/ph_10_3200_1E-6
+
+Parsing model file "../../../../CZK_project/Model/queue_withptf_ctmc.sm"...
+
+Type:        CTMC
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=3200,timeout=0.02,lambda=34.65735905
+
+Computing reachable states...
+
+Reachability (BFS): 32001 iterations in 0.75 seconds (average 0.000023, setup 0.00)
+
+Time for model construction: 1.391 seconds.
+
+Type:        CTMC
+States:      32001 (1 initial)
+Transitions: 60801
+
+Rate matrix: 173 nodes (3 terminal), 60801 minterms, vars: 16r/16c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:32001
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=251] [4.9 Kb]
+Building hybrid MTBDD matrix... [levels=16, nodes=291] [13.6 KB]
+Adding explicit sparse matrices... [levels=16, num=1, compact] [393.8 KB]
+Allocating iteration vectors... [2 x 250.0 KB]
+TOTAL: [907.5 KB]
+
+Starting iterations...
+Iteration 16202: max diff=0.000003, 5.00 sec so far
+Iteration 32574: max diff=0.000003, 10.01 sec so far
+Iteration 48754: max diff=0.000002, 15.01 sec so far
+Iteration 64931: max diff=0.000001, 20.02 sec so far
+
+Power method: 71178 iterations in 21.98 seconds (average 0.000309, setup 0.00)
+
+Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.02_median/hybrid/ph_10_3200_1E-6"...
+
+Time for steady-state probability computation: 23.039 seconds.
+

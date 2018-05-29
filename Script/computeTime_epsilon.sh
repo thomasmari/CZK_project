@@ -2,6 +2,7 @@
 # There is only one parameters, that is t. The logs (for t) must be already computed 
 # $1 = t(int) the timeout
 # $2 = engine/data in {event,hybrid,explicit}
+# $3 = data_type in {regular,epsilon,median}
 # Return a file of computation time for hybrid and explicit engine in both of their folders
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : phtime_n_epsilon, the folder give the engine and the timeout
@@ -11,16 +12,25 @@ if ! [[ $1 =~ $reNum ]] ; then
   exit 1
 fi
 
-
-path="../Output/t=$1_epsilon/"
 engine="$2"
 
+#Path Setting
+if [ "$3" == "regular" ]; then
+	path="../Output/t=$1/"
+elif [ "$3" == "epsilon" ]; then
+	path="../Output/t=$1_epsilon/"
+else
+	path="../Output/t=$1_median/"
+fi
+
+#engine setting
 if [ "$2" == "hybrid" ]; then
 	subpath="hybrid/"
 else
 	subpath="explicit/"
 fi
 
+#data setting
 if [[ $2 =~ 'event' ]]; then
 	data="ev"
 else
@@ -31,17 +41,19 @@ fi
 
 target_time=$path$subpath$data'_time_10'
 target_eps=$path$subpath$data'_eps_array'
+target_k=$path$subpath$data'_k_array'
 
 touch temp
 touch temp_command
 touch temp_eps
 touch temp_time
+touch temp_k
 
 echo extracting log ...
-for file in $(ls $path$subpath$data*.log);
+for file in $(ls -t -r  $path$subpath$data*.log); #the order of modification matter = reverse order of last modification
 do	
 	echo $file
-	cat $file >> temp
+	cat $file >> temp #concat logs in temp
 done
 echo done
 
@@ -60,10 +72,18 @@ grep -Eo '-epsilon 1E-[0-9]+' temp_command > temp_eps
 grep -Eo '1E-[0-9]+' temp_eps > $target_eps
 echo done
 
+if [ "$2" != "event" ]; then
+	grep -Eo 'k=[0-9]+' temp_command > temp_k
+	grep -Eo '[0-9]+' temp_k > $target_k
+fi
+
+
+
 echo erasing temps
 rm -f temp_command
 rm -f temp
 rm -f temp_time
 rm -f temp_eps
+rm -f temp_k
 echo done
 

@@ -1,0 +1,32 @@
+PRISM
+=====
+
+Version: 4.4.GSMP
+Date: Tue May 29 09:48:51 CEST 2018
+Hostname: thomas
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -explicit -epsilon 1E-6 -maxiters 100000000 -power -absolute -const 'k=4300,timeout=0.02,lambda=34.6573590500' ../../../../CZK_project/Model/queue_withptf_gsmp.sm -ss -exportss ../../../../CZK_project/Output/t=0.02_median/explicit/ph_10_4300_1E-6
+
+Parsing model file "../../../../CZK_project/Model/queue_withptf_gsmp.sm"...
+
+Type:        GSMP
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=4300,timeout=0.02,lambda=34.65735905
+
+Computing reachable states... 43001 states
+Reachable states exploration and model construction done in 0.457 secs.
+Sorting reachable states list...
+
+Time for model construction: 0.592 seconds.
+
+Type:        GSMP
+States:      43001 (1 initial)
+Transitions: 81701
+The model was recognized to be an ACTMC, so ACTMC method will be used!

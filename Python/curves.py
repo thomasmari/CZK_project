@@ -69,12 +69,13 @@ def curve_epsilon(t,k,engine):
 	#plt.plot(x, y_0, label = 'event model',linewidth=0.7)
 	eps_array = read_file(path+subpath+data+'_eps_array')
 	print eps_array
-	for e in eps_array[0::1]:
+	for i,e in enumerate(eps_array[0::1]):
 		if (data == 'ev'):
 			y_e = read_float(path+subpath+'ev_10_k_'+str(e))
 		else:
 			y_e = read_float(path+subpath+'sumph_10_'+str(k)+'_'+e)
-		plt.plot(x, y_e, label = "eps="+str(e),linewidth=0.7)
+		size = 1/float(1+i)
+		plt.plot(x, y_e, label = "eps="+str(e),linewidth=size)
 
 	plt.legend()
 	plt.show()

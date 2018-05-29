@@ -1,0 +1,62 @@
+PRISM
+=====
+
+Version: 4.4.GSMP
+Date: Tue May 29 10:22:07 CEST 2018
+Hostname: thomas
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -epsilon 1E-6 -maxiters 100000000 -power -absolute -const 'k=17000,timeout=0.02,lambda=34.6573590500' ../../../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../../../CZK_project/Output/t=0.02_median/hybrid/ph_10_17000_1E-6
+
+Parsing model file "../../../../CZK_project/Model/queue_withptf_ctmc.sm"...
+
+Type:        CTMC
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=17000,timeout=0.02,lambda=34.65735905
+
+Computing reachable states...
+
+Reachability (BFS): 170001 iterations in 7.42 seconds (average 0.000044, setup 0.00)
+
+Time for model construction: 22.288 seconds.
+
+Type:        CTMC
+States:      170001 (1 initial)
+Transitions: 323001
+
+Rate matrix: 245 nodes (3 terminal), 323001 minterms, vars: 19r/19c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:170001
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=352] [6.9 Kb]
+Building hybrid MTBDD matrix... [levels=19, nodes=418] [19.6 KB]
+Adding explicit sparse matrices... [levels=16, num=7, compact] [896.5 KB]
+Allocating iteration vectors... [2 x 1.3 MB]
+TOTAL: [3.5 MB]
+
+Starting iterations...
+Iteration 2556: max diff=0.000005, 5.00 sec so far
+Iteration 5101: max diff=0.000004, 10.01 sec so far
+Iteration 7626: max diff=0.000003, 15.01 sec so far
+Iteration 10110: max diff=0.000002, 20.02 sec so far
+Iteration 12669: max diff=0.000002, 25.02 sec so far
+Iteration 15116: max diff=0.000001, 30.02 sec so far
+
+Power method: 16495 iterations in 32.72 seconds (average 0.001983, setup 0.01)
+
+Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.02_median/hybrid/ph_10_17000_1E-6"...
+
+Time for steady-state probability computation: 40.851 seconds.
+
