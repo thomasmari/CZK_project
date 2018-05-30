@@ -14,7 +14,7 @@ eps="1E-6"
 
 ####################################HYBRID
 subpath="t=$1_median/hybrid/"
-for var in $(seq 5 5 95; seq 100 100 5000;seq 6000 1000 50000);
+for var in $(seq 5 5 95; seq 100 100 5000);
 do	
 	source=$path$subpath'ph_10_'$var'_'$eps
 	target=$path$subpath'sumph_10_'$var'_'$eps
