@@ -8,7 +8,7 @@ from norm import *
 #GLOBAL VARIABLE
 path = '../Output/'
 eps = "1E-6"
-eps_precise = "1E-10"
+eps_precise = "1E-13"
 
 ########################################################################
 ###################################CURVES###############################
@@ -120,7 +120,7 @@ def distance_per_state(t,kind_of_t,norm,engine):
 ########################################################################
 #############################DISTANCE (NORM)############################
 
-def distance_plot(t,kind_of_t,norm):	
+def distance_plot_k(t,kind_of_t,norm):	
 	#PARAMETERS : 
 	#1 	t(float) is the timeout in sec
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
@@ -171,7 +171,57 @@ def distance_plot(t,kind_of_t,norm):
 	plt.ylabel('Euclidean distance per distribution', fontsize=14, color='black')
 	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout=0.1,lambda=1/timeout')
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
-#	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
+	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
+	plt.legend()
+	plt.show()
+	
+	
+def distance_plot_epsilon(t,k,norm):	
+	#PARAMETERS : 
+	#1 	t(float) is the timeout in sec
+	#2 	k the PTF parameters
+	#3 	norm(string) is how the norm that must be use for defining the distance {"norm_2","norm_infinite"}
+
+	#CONSTANT
+	n="10"
+	
+	#DATA												
+	subpath = 't='+str(t)+'_epsilon/'
+
+	#EVENT
+	engine = "explicit/"												#set the engine for naming
+	y_event = read_float(path+subpath+engine+'ev_'+n+'_k_'+eps_precise) 	#this is the reference distribution
+	#EXPLICIT
+	eps_explicit = read_file(path+subpath+engine+'ph_eps_array')						#load the bottom line for explicit
+	result_explicit = []											
+	for e in eps_explicit:
+		y_e = read_float(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+str(e))
+		if (norm == "norm_2"):
+			result = norm_2(diff_array(y_event,y_e))
+		else:
+			result = norm_infinite(diff_array(y_event,y_e))
+		result_explicit += [result]
+	#HYBRID
+	engine = "hybrid/"													#set the naming for naming
+	eps_hybrid = read_file(path+subpath+engine+'ph_eps_array')						#load the bottom line for explicit
+	result_hybrid = []
+	print len(result_hybrid)	
+	for e in eps_hybrid:
+		y_e = read_float(path+subpath+engine+'sumph_'+n+'_'+str(int(k))+'_'+e)
+		if (norm == "norm_2"):
+			result = norm_2(diff_array(y_event,y_e))
+		else:
+			result = norm_infinite(diff_array(y_event,y_e))
+		result_hybrid += [result]
+		print result_hybrid
+	#PLOTING
+	plt.yscale('log')
+	plt.xscale('log')
+	plt.xlabel('epsilon termination', fontsize=14, color='black')
+	plt.ylabel('distance', fontsize=14, color='black')
+	plt.title('distance ('+str(norm)+') between event model eps = 1E-13 and PTF k=1000 for engine explicit and hybrid')
+	plt.plot(map(float,eps_hybrid), result_hybrid, label = "hybrid",linewidth=0.5)
+	plt.plot(map(float,eps_explicit), result_explicit, label = "explicit",linewidth=0.5)
 	plt.legend()
 	plt.show()
 	

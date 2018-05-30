@@ -16,7 +16,7 @@ path="../Output/"
 
 ####################################HYBRID
 subpath="t=$1_epsilon/hybrid/"
-for var in $(seq 1 1 9);
+for var in $(seq 1 1 13);
 do	
 	source=$path$subpath'ph_10_'$2'_1E-'$var
 	target=$path$subpath'sumph_10_'$2'_1E-'$var
@@ -30,7 +30,7 @@ done
 
 ####################################EXPLICIT
 subpath="t=$1_epsilon/explicit/"
-for var in $(seq 1 1 9);
+for var in $(seq 1 1 13);
 do	
 	source=$path$subpath'ph_10_'$2'_1E-'$var
 	target=$path$subpath'sumph_10_'$2'_1E-'$var
