@@ -1,0 +1,19 @@
+gsmp
+
+const int qCapacity = 10;
+
+const double timeout;
+const double lambda;
+
+module main
+
+event prod_even = dirac(timeout);
+event prod_odd = dirac(timeout);
+
+qSize : [0..qCapacity] init 0;
+
+[produce] (qSize < qCapacity)&(mod(qSize,2)=0)--prod_even -> (qSize' = qSize+1);
+[produce] (qSize < qCapacity)&(mod(qSize,2)=1)--prod_odd -> (qSize' = qSize+1);
+[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
+
+endmodule
