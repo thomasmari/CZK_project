@@ -55,7 +55,7 @@ cd "hybrid"
 
 cd $PRISM_PATH_FROM_SCRIPT
 #compute hybrid phase type
-for k in $(seq 5 5 95; seq 100 100 5000;seq 6000 1000 50000);
+for k in $(seq 5 5 95; seq 100 100 5000);
 do
 	echo hybrid $k $eps
   ./prism -hybrid -epsilon ${eps} -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/t=$1_median/hybrid/ph_10_${k}_${eps}" > "$OUTPUT_PATH_FROM_PRISM/t=$1_median/hybrid/ph_10_${k}_${eps}.log"
