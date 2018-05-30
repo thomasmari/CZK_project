@@ -3,7 +3,6 @@ ctmc
 const int k;
 const int qCapacity = 10;
 
-
 const double timeout;
 const double lambda;
 
@@ -13,7 +12,7 @@ module main
 
 qSize : [0..qCapacity] init 0;
 
-[produce] (qSize <= qCapacity) -> (qSize' = min(qSize+1,qCapacity));
+[produce] (qSize < qCapacity) -> (qSize' = qSize+1);
 [consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
 
 endmodule
@@ -22,7 +21,7 @@ module trigger
 
 i : [1..k+1];
 
-[] i < k -> k/timeout : (i'=i+1);
+[] i < k & qSize<qCapacity -> k/timeout : (i'=i+1);
 [produce] i = k -> k/timeout : (i'=1);
 
 endmodule

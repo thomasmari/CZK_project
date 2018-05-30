@@ -10,7 +10,7 @@ event prod = dirac(timeout);
 
 qSize : [0..qCapacity] init 0;
 
-[produce] (qSize <= qCapacity)--prod -> (qSize' = min(qSize+1,qCapacity));
+[produce] (qSize < qCapacity)--prod -> (qSize' = qSize+1);
 [consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
 
 endmodule
