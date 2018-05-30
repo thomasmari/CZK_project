@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Wed May 30 14:18:32 CEST 2018
+Date: Wed May 30 14:44:03 CEST 2018
 Hostname: thomas
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1E-6 -maxiters 100000000 -power -absolute -const 'k=3900,timeout=0.1,lambda=6.9314718100' ../../../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../../../CZK_project/Output/t=0.1_median/hybrid/ph_10_3900_1E-6
@@ -22,9 +22,9 @@ Model constants: k=3900,timeout=0.1,lambda=6.93147181
 
 Computing reachable states...
 
-Reachability (BFS): 42900 iterations in 1.17 seconds (average 0.000027, setup 0.00)
+Reachability (BFS): 42900 iterations in 1.59 seconds (average 0.000037, setup 0.00)
 
-Time for model construction: 2.296 seconds.
+Time for model construction: 3.098 seconds.
 
 Type:        CTMC
 States:      42900 (1 initial)
@@ -48,9 +48,9 @@ TOTAL: [1.2 MB]
 
 Starting iterations...
 
-Power method: 5271 iterations in 2.26 seconds (average 0.000427, setup 0.00)
+Power method: 5271 iterations in 2.42 seconds (average 0.000458, setup 0.01)
 
 Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.1_median/hybrid/ph_10_3900_1E-6"...
 
-Time for steady-state probability computation: 3.759 seconds.
+Time for steady-state probability computation: 4.425 seconds.
 

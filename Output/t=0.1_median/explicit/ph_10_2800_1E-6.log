@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Wed May 30 14:15:19 CEST 2018
+Date: Wed May 30 14:40:22 CEST 2018
 Hostname: thomas
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -explicit -epsilon 1E-6 -maxiters 100000000 -power -absolute -const 'k=2800,timeout=0.1,lambda=6.9314718100' ../../../../CZK_project/Model/queue_withptf_gsmp.sm -ss -exportss ../../../../CZK_project/Output/t=0.1_median/explicit/ph_10_2800_1E-6
@@ -21,10 +21,10 @@ Building model...
 Model constants: k=2800,timeout=0.1,lambda=6.93147181
 
 Computing reachable states... 30800 states
-Reachable states exploration and model construction done in 0.529 secs.
+Reachable states exploration and model construction done in 0.422 secs.
 Sorting reachable states list...
 
-Time for model construction: 0.63 seconds.
+Time for model construction: 0.504 seconds.
 
 Type:        GSMP
 States:      30800 (1 initial)

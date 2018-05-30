@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Wed May 30 14:08:03 CEST 2018
+Date: Wed May 30 14:33:55 CEST 2018
 Hostname: thomas
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -explicit -epsilon 1E-6 -maxiters 100000000 -power -absolute -const 'k=45,timeout=0.1,lambda=6.9314718100' ../../../../CZK_project/Model/queue_withptf_gsmp.sm -ss -exportss ../../../../CZK_project/Output/t=0.1_median/explicit/ph_10_45_1E-6
@@ -33,12 +33,12 @@ The model was recognized to be an ACTMC, so ACTMC method will be used!
 
 Initial states are all in one BSCC (so no reachability probabilities computed)
 Starting value iteration...
-Value iteration took 2926 iterations and 0.079 seconds.
+Value iteration took 2926 iterations and 0.083 seconds.
 
 Reducing ACTMC to equivalent DTMC took 0.01 seconds.
-Computing steady-state probabilities for the equivalent DTMC took 0.088 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.09 seconds.
 
 Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.1_median/explicit/ph_10_45_1E-6"...
 
-Time for steady-state probability computation: 0.109 seconds.
+Time for steady-state probability computation: 0.111 seconds.
 

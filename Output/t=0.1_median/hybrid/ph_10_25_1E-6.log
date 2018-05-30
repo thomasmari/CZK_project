@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Wed May 30 14:16:00 CEST 2018
+Date: Wed May 30 14:41:03 CEST 2018
 Hostname: thomas
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1E-6 -maxiters 100000000 -power -absolute -const 'k=25,timeout=0.1,lambda=6.9314718100' ../../../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../../../CZK_project/Output/t=0.1_median/hybrid/ph_10_25_1E-6
@@ -52,5 +52,5 @@ Power method: 1540 iterations in 0.00 seconds (average 0.000003, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.1_median/hybrid/ph_10_25_1E-6"...
 
-Time for steady-state probability computation: 0.017 seconds.
+Time for steady-state probability computation: 0.022 seconds.
 
