@@ -69,8 +69,8 @@ echo done
 
 
 echo eps ...
-grep -Eo '-epsilon 1E-[0-9]+' temp_command > temp_eps
-grep -Eo '1E-[0-9]+' temp_eps > $target_eps
+grep -Eo '-epsilon ([0-9]+e-[0-9]+|[0-9]+.[0-9]+(e-[0-9]+)?)' temp_command > temp_eps
+grep -Eo '([0-9]+e-[0-9]+|[0-9]+.[0-9]+(e-[0-9]+)?)' temp_eps > $target_eps
 echo done
 
 if [ "$2" != "event" ]; then
@@ -81,7 +81,7 @@ fi
 
 
 echo erasing temps
-rm -f temp_command
+#rm -f temp_command
 rm -f temp
 rm -f temp_time
 rm -f temp_eps

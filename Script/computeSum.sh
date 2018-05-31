@@ -14,17 +14,16 @@ engine=$2
 one=1
 eps="$3"
 
-for line in $(cat "${path}/${engine}/ph_k_array"); 
+for line in $(cat "${path}${subpath}/${engine}/ph_k_array"); 
 do 
-	source=$path'/'$subpath'/'$engine'/ph_10_$line_'$eps
-	target=$path'/'$subpath'/'$engine'/sumph_10_$line_'$eps
+	source=${path}${subpath}'/'${engine}'/ph_10_'${line}'_'$eps
+	target=${path}${subpath}'/'${engine}'/sumph_10_'${line}'_'$eps
 	echo $source
 	if [ "$line" = "$one" ]
 	then
 			cat $source > $target
 	else
 			gawk -v k=${line} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' "${source}" > $target
-			tail -n1 $source >> $target
 	fi
 done 
 
