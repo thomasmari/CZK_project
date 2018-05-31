@@ -1,46 +1,32 @@
 #!/bin/bash
 #####README
-# There is only one parameters, that is t. The logs (for t) must be already computed 
-# Return a file of the sum of probabilities per state of the queue
+# $1 = path from "../Output/"  example t=?_regular_dynamic 
+# $2 = engine in {explicit,hybrid}
+# $3 = epsilon
+# The logs (for t) must be already computed 
+# computeTime must be already computed
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : sumph_n_k_epsilon, the folder give the engine and the timeout
 # Are fixed constant : epsilon=1E-5
 path="../Output/"
+subpath=$1
+engine=$2
 one=1
-eps="1E-5"
+eps="$3"
 
-########################################################################
-############################t###########################################
-########################################################################
-
-####################################HYBRID
-subpath="t=$1/hybrid/"
-for var in $(seq 5 5 95; seq 100 100 5000);
-do	
-	source=$path$subpath'ph_10_'$var'_'$eps
-	target=$path$subpath'sumph_10_'$var'_'$eps
+for line in $(cat "${path}/${engine}/ph_k_array"); 
+do 
+	source=$path'/'$subpath'/'$engine'/ph_10_$line_'$eps
+	target=$path'/'$subpath'/'$engine'/sumph_10_$line_'$eps
 	echo $source
-	if [ "$var" = "$one" ]
+	if [ "$line" = "$one" ]
 	then
 			cat $source > $target
 	else
-			gawk -v k=${var} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' "${source}" > $target
+			gawk -v k=${line} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' "${source}" > $target
 			tail -n1 $source >> $target
 	fi
-done
+done 
 
-####################################EXPLICIT
-subpath="t=$1/explicit/"
-for var in $(seq 5 5 95; seq 100 100 5000);
-do	
-	source=$path$subpath'ph_10_'$var'_'$eps
-	target=$path$subpath'sumph_10_'$var'_'$eps
-	echo $source
-	if [ "$var" = "$one" ]
-	then
-			cat $source > $target
-	else
-			gawk -v k=${var} -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' "${source}" > $target
-			tail -n1 $source >> $target
-	fi
-done
+
+	
