@@ -7,8 +7,8 @@ from norm import *
 
 #GLOBAL VARIABLE
 path = '../Output/'
-eps = "1E-6"
-eps_precise = "1E-13"
+eps = "1E-5"
+eps_precise = "1E-10"
 
 ########################################################################
 ###################################CURVES###############################
@@ -84,7 +84,7 @@ def curve_epsilon(t,k,engine):
 ########################################################################
 #############################DISTANCE PER POINT#########################
 
-def distance_per_state(t,kind_of_t,norm,engine):	
+def distance_per_state(t,kind_of_t,norm,engine,kind_of_epsilon):	
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
@@ -92,28 +92,29 @@ def distance_per_state(t,kind_of_t,norm,engine):
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
 	#3 	norm(string) is how the norm that must be use for defining the distance {"norm_2","norm_infinite"}
 	#4 	engine(string) is the engine used in computation {"explicit","hybrid"}
+	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
 	
 	#DATA
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
-		subpath = 't='+str(t)+'_median/'
+		subpath = 't='+str(t)+'_median'
 	else:
-		subpath = 't='+str(t)+'/'
-
+		subpath = 't='+str(t)+'_regular'
+	subpath += ('_'+kind_of_epsilon+'/')
+	
 	states = range(0,11,1)
-	k_array = read_float(path+subpath+engine+'/k_array')					#load the bottom line for explicit
+	k_array = read_float(path+subpath+engine+'/ph_k_array')					#load the bottom line for explicit
+	y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps)
 	
-	
-	for k in k_array[0::5]:
+	for k in k_array[0:36:2]:
 		y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
-		y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps)
 		y = absolute(diff_array(y_0,y_k))
 		plt.plot(states, y, label = "k="+str(k),linewidth=0.5)
 	
-	plt.yscale('linear')
+	plt.yscale('log')
 	plt.xscale('linear')
 	plt.xlabel('state of the queue', fontsize=14, color='black')
-	plt.ylabel('Euclidean distance for each state', fontsize=14, color='black')
-	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine)
+	plt.ylabel('distance', fontsize=14, color='black')
+	plt.title('distance('+norm+') of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine+',epsilon='+eps+',dynamic epsilon')
 	plt.legend()
 	plt.show()	
 
@@ -128,8 +129,8 @@ def distance_plot_k(t,kind_of_t,norm):
 
 	#CONSTANT
 	n="10"
-	
-	#DATA
+
+
 	if (kind_of_t=="median"):												#set the kind_of_t for naming
 		subpath = 't='+str(t)+'_median/'
 	else:

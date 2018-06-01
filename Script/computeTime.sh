@@ -81,7 +81,7 @@ fi
 
 
 echo erasing temps
-#rm -f temp_command
+rm -f temp_command
 rm -f temp
 rm -f temp_time
 rm -f temp_eps
