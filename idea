@@ -2,3 +2,8 @@ plot event model steady state prop versus espsilon and see the difference
 try to take t as the median of lambda exponential law
 verify that that gawk doesn't convert to float instead of double lf
 add > alllog at the end of the command to get the performance with grep
+PRISM_JAVASTACKSIZE="-Xss4M"
+PRISM_JAVASTACKSIZE="-Xss40M"
+PRISM_JAVASTACKSIZE="-Xss128M"
+
+./prism -explicit -epsilon ${eps_precise} -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps_precise}" > "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps_precise}.log"

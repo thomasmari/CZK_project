@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Thu May 31 16:28:03 CEST 2018
+Date: Mon Jun 04 14:41:19 CEST 2018
 Hostname: thomas
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -explicit -epsilon 1.66667e-07 -maxiters 100000000 -power -absolute -const 'k=60,timeout=0.1,lambda=6.93147180559945309400' ../../../../CZK_project/Model/queue_withptf_gsmp.sm -ss -exportss ../../../../CZK_project/Output/t=0.1_median_dynamic/explicit/ph_10_60_1E-5
@@ -24,7 +24,7 @@ Computing reachable states... 660 states
 Reachable states exploration and model construction done in 0.055 secs.
 Sorting reachable states list...
 
-Time for model construction: 0.07 seconds.
+Time for model construction: 0.069 seconds.
 
 Type:        GSMP
 States:      660 (1 initial)
@@ -33,12 +33,12 @@ The model was recognized to be an ACTMC, so ACTMC method will be used!
 
 Initial states are all in one BSCC (so no reachability probabilities computed)
 Starting value iteration...
-Value iteration took 4741 iterations and 0.138 seconds.
+Value iteration took 4741 iterations and 0.133 seconds.
 
 Reducing ACTMC to equivalent DTMC took 0.011 seconds.
-Computing steady-state probabilities for the equivalent DTMC took 0.145 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.141 seconds.
 
 Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.1_median_dynamic/explicit/ph_10_60_1E-5"...
 
-Time for steady-state probability computation: 0.168 seconds.
+Time for steady-state probability computation: 0.164 seconds.
 

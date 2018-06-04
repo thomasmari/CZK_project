@@ -44,7 +44,7 @@
 \usepackage{amsmath,amsfonts,amsthm} % Math packages
 \usepackage[pdftex]{graphicx}	
 \usepackage{url}
-
+\usepackage{xcolor}
 
 %%% Custom sectioning
 \usepackage{sectsty}
@@ -438,10 +438,231 @@ endmodule
 		\begin{figure}
 			\centering
 			\includegraphics[width=17cm]{picture/distance_hybrid2.png}
-			\caption{Euclidean Distance of distribution of the SSP computation between the event model and the PTF model using hybrid engine versus the PTF parameter k,	$t=0.02$,$median lambda$,$\epsilon=10^{-6}$}
+			\caption{Euclidean Distance of distribution of the SSP computation between the event model and the PTF model using hybrid engine versus the PTF parameter k,	$t=0.02$,median $\lambda$,$\epsilon=10^{-6}$}
 			\label{fig:dist_hybrid_50k}
 		\end{figure}
+
+\clearpage
+
+\section[What has changed ?]{New Model}
+\subsection{Changes}
+
+	\begin{figure}[!h]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+		semithick]
+		\tikzstyle{every state}=[fill=red,draw=none,text=white]
 		
+		\node[initial,state] (s0)                    {$0$};
+		\node[state]         (s1) [right of=s0] {$1$};
+		\node[state]         (s2) [right of=s1] {$2$};
+		\node[state]         (s3) [right of=s2] {$3$};
+		\node[state]         (s4) [right of=s3]       {$4$};
+		\node[state]         (sw) [right of=s4,fill=white,text=black]       {...};
+		\node[state]         (sn) [right of=sw]       {$n$};
+		
+		
+		
+		\path (s0) edge [bend left]             node {Dirac(t)} (s1)
+		(s1) edge [bend left] node {$\lambda$} (s0)
+		edge  [bend left]            node {Dirac(t)} (s2)
+		(s2) edge [bend left]             node {$\lambda$} (s1)
+		edge [bend left]  node {Dirac(t)} (s3)
+		(s3) edge [bend left]              node {$\lambda$} (s2)
+		edge [bend left]  node {Dirac(t)} (s4)
+		(s4) edge [bend left]             node {$\lambda$} (s3)
+		edge [bend left]  node {Dirac(t)} (sw)
+		(sw) edge [bend left]             node {$\lambda$} (s4)
+		edge [bend left]  node {Dirac(t)} (sn)
+		(sn) edge [bend left]             node {$\lambda$} (sw);
+		\end{tikzpicture}
+		\caption{D/M/1/n queue with capacity $n$.Old Event model.}
+		\label{fig:Queue_old}
+	\end{figure}
+
+	\begin{figure}
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,
+		semithick]
+		\tikzstyle{every state}=[fill=red,draw=none,text=white]
+		
+		\node[state] (s0)                    {$n-1$};
+		\node[state] (s02) [right of=s0,fill=blue,scale=0.5]                   {};
+		\node[state] (s03) [right of=s02,fill=blue,scale=0.5]                    {};
+		\node[state] (s04) [right of=s03,fill=blue,scale=0.5]                   {};
+		\node[state] (s05) [right of=s04,fill=blue,scale=0.5]                    {};
+		\node[state] (s1) [below of=s0]                   {$n$};
+
+		
+		\node[state] (sw0) [above of=s0,fill=white,text=black]        {...}            {};
+		\node[state] (sw02) [right of=sw0,fill=white,text=black]        {...}            {};
+		\node[state] (sw03) [right of=sw02,fill=white,text=black]        {...}            {};
+		\node[state] (sw04) [right of=sw03,fill=white,text=black]        {...}            {};
+		\node[state] (sw05) [right of=sw04,fill=white,text=black]        {...}            {};
+		
+		
+		
+		
+		
+		\path 
+		(s0) 	edge   node {$\lambda$} (sw0)
+				edge   node {$\mu$} (s02)
+		(sw05)  edge   node {$\lambda$} (s0)		
+		(s02)   edge   node {$\lambda$} (sw02)
+				edge   node {$\mu$} (s03)
+		(s03)   edge  node {$\lambda$} (sw03)
+				edge   node {$\mu$} (s04)
+		(s04) 	edge  node {$\lambda$} (sw04)
+				edge   node {$\mu$} (s05)
+		(s05) 	edge  node {$\lambda$} (sw05)
+				edge   node {$\mu$} (s1)
+		(s1)    edge  node {$\lambda$} (s0);
+
+
+		
+		\end{tikzpicture}
+		\caption{Old Phase Type Model, Production isn't enabled in full queue}
+		\label{fig:queue_new}
+	\end{figure}
+
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+		semithick]
+		\tikzstyle{every state}=[fill=red,draw=none,text=white]
+		
+		\node[initial,state] (s0)                    {$0$};
+		\node[state]         (s1) [right of=s0] {$1$};
+		\node[state]         (s2) [right of=s1] {$2$};
+		\node[state]         (s3) [right of=s2] {$3$};
+		\node[state]         (s4) [right of=s3]       {$4$};
+		\node[state]         (sw) [right of=s4,fill=white,text=black]       {...};
+		\node[state]         (sn) [right of=sw]       {$n$};
+		
+		
+		
+		\path 
+		(s0) 	edge [bend left]             node {Dirac(t)} (s1)
+		(s1) 	edge [bend left] node {$\lambda$} (s0)
+				edge  [bend left]            node {Dirac(t)} (s2)
+		(s2)	edge [bend left]             node {$\lambda$} (s1)
+				edge [bend left]  node {Dirac(t)} (s3)
+		(s3) 	edge [bend left]              node {$\lambda$} (s2)
+				edge [bend left]  node {Dirac(t)} (s4)
+		(s4) 	edge [bend left]             node {$\lambda$} (s3)
+				edge [bend left]  node {Dirac(t)} (sw)
+		(sw) 	edge [bend left]             node {$\lambda$} (s4)
+				edge [bend left]  node {Dirac(t)} (sn)
+		(sn) 	edge [bend left]             node {$\lambda$} (sw)
+				edge [loop right]  node {\textcolor{red}{Dirac(t)}} (sn);
+		\end{tikzpicture}
+		\caption{D/M/1/n queue with capacity $n$. New event Model.}
+		\label{fig:event_Queue_new}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=3.0cm,
+		semithick]
+		\tikzstyle{every state}=[fill=red,draw=none,text=white]
+		
+		\node[state] (s0)                    {$n-1$};
+		\node[state] (s02) [right of=s0,fill=blue,scale=0.5]                   {};
+		\node[state] (s03) [right of=s02,fill=blue,scale=0.5]                    {};
+		\node[state] (s04) [right of=s03,fill=blue,scale=0.5]                   {};
+		\node[state] (s05) [right of=s04,fill=blue,scale=0.5]                    {};
+		\node[state] (s1) [below of=s0]                   {$n$};
+		
+		\node[state] (s12) [right of=s1,fill=blue,scale=0.5]                   {};
+		\node[state] (s13) [right of=s12,fill=blue,scale=0.5]                    {};
+		\node[state] (s14) [right of=s13,fill=blue,scale=0.5]                   {};
+		\node[state] (s15) [right of=s14,fill=blue,scale=0.5]                    {};
+		
+		\node[state] (sw0) [above of=s0,fill=white,text=black]        {...}            {};
+		\node[state] (sw02) [right of=sw0,fill=white,text=black]        {...}            {};
+		\node[state] (sw03) [right of=sw02,fill=white,text=black]        {...}            {};
+		\node[state] (sw04) [right of=sw03,fill=white,text=black]        {...}            {};
+		\node[state] (sw05) [right of=sw04,fill=white,text=black]        {...}            {};
+
+		
+		
+		
+		
+		\path 
+		(s0) 	edge   node {$\lambda$} (sw0)
+				edge   node {$\mu$} (s02)
+		(sw05)  edge   node {$\lambda$} (s0)		
+		(s02)   edge   node {$\lambda$} (sw02)
+				edge   node {$\mu$} (s03)
+		(s03)   edge  node {$\lambda$} (sw03)
+				edge   node {$\mu$} (s04)
+		(s04) 	edge  node {$\lambda$} (sw04)
+				edge   node {$\mu$} (s05)
+		(s05) 	edge  node {$\lambda$} (sw05)
+				edge   node {$\mu$} (s1)
+		(s1)    edge  node {$\lambda$} (s0)
+				edge [red] node {$\mu$} (s12)
+		(s12)   edge  node {$\lambda$} (s02)
+				edge [red] node {$\mu$} (s13)
+		(s13) 	edge  node {$\lambda$} (s03)
+				edge [red] node {$\mu$} (s14)
+		(s14) 	edge  node {$\lambda$} (s04)
+				edge [red] node {$\mu$} (s15)
+		(s15) 	edge  node {$\lambda$} (s05)
+				edge [red,bend left] node {$\mu$} (s1);
+		\end{tikzpicture}
+		\caption{New Phase type Model}
+		\label{fig:queue_new}
+	\end{figure}
+	
+\clearpage
+\subsection{Result}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=15cm]{picture/New_model/distance_constant_1E-5.png}
+	\caption{Infinite Distance of distribution of the SSP computation between the event model and the PTF model using hybrid engine versus the PTF parameter k,$t=0.1$,median $\lambda$,$\epsilon=10^{-5}$}
+	\label{fig:dist_const_1E-5}
+\end{figure}
+
+Something is wrong... Maybe $\epsilon$ too big ?
+
+\begin{figure}
+	\centering
+	\includegraphics[width=17cm]{picture/New_model/distance_epsilon.png}
+	\caption{Infinite Distance of distribution of the SSP computation between the event model and the PTF model using hybrid engine versus the PTF parameter k,$t=1$,median $\lambda$,$\epsilon=10^{-5}$}
+	\label{fig:dist_epsilon_1E-13}
+\end{figure}	
+		
+
+\clearpage
+\subsection[epsilon termination]{Condition on epsilon termination}
+$$\epsilon \leq \frac{\epsilon_{wanted}}{k}$$
+$$\forall s \in S, \epsilon \leq Pr(s)$$
+$$\epsilon \leq median(Pr(s))$$
+$$\epsilon \leq 1stQuartile(Pr(s))$$
+$$\epsilon \leq 1stDecile(Pr(s))$$
+$$CDF(t-\delta) \leq \epsilon$$
+$$\epsilon \leq \frac{1}{|S|}$$
+$$\epsilon \leq v = \frac{k}{\lambda^2} = \frac{m^2}{k}$$
+
+
+\clearpage
+\subsection[epsilon termination]{Dynamic Epsilon}
+
+
+\begin{figure}
+	\centering
+	\includegraphics[width=17cm]{picture/New_model/distance_explicit_dynamic.png}
+	\caption{Absolute Difference between SSP of event model and of SSP PTF model using explicit engine versus state of queue,$t=1$,median $\lambda$,$\epsilon=10^{-5}$}
+	\label{fig:dist_dynamic_explicit}
+\end{figure}	
+
+\begin{figure}
+	\centering
+	\includegraphics[width=17cm]{picture/New_model/distance_hybrid_dynamic.png}
+	\caption{Absolute Difference between SSP of event model and of SSP PTF model using hybrid engine versus state of queue,$t=1$,median $\lambda$,$\epsilon=10^{-5}$}
+	\label{fig:dist_dynamic_hybrid}
+\end{figure}
 
 	%%% End document
 \end{document}\\

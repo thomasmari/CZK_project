@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Thu May 31 16:27:56 CEST 2018
+Date: Mon Jun 04 14:41:12 CEST 2018
 Hostname: thomas
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -explicit -epsilon 3.33333e-07 -maxiters 100000000 -power -absolute -const 'k=30,timeout=0.1,lambda=6.93147180559945309400' ../../../../CZK_project/Model/queue_withptf_gsmp.sm -ss -exportss ../../../../CZK_project/Output/t=0.1_median_dynamic/explicit/ph_10_30_1E-5
@@ -36,9 +36,9 @@ Starting value iteration...
 Value iteration took 2403 iterations and 0.053 seconds.
 
 Reducing ACTMC to equivalent DTMC took 0.01 seconds.
-Computing steady-state probabilities for the equivalent DTMC took 0.06 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.059 seconds.
 
 Printing steady-state probabilities in plain text format to file "../../../../CZK_project/Output/t=0.1_median_dynamic/explicit/ph_10_30_1E-5"...
 
-Time for steady-state probability computation: 0.08 seconds.
+Time for steady-state probability computation: 0.078 seconds.
 
