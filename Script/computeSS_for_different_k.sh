@@ -97,7 +97,8 @@ if [ $engine == "event" ]; then
 elif [ $engine == "explicit" ]; then
 	cd $PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
-	for k in $(seq 5 5 95; seq 100 100 5000);
+	#~ for k in $(seq 5 5 95; seq 100 100 5000);
+	for k in $(seq 3800 100 5000);
 		do
 			if [ "$4" == "dynamic" ]; then
 				eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
