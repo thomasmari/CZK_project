@@ -238,34 +238,35 @@ def distance_plot_epsilon(t,k,norm):
 	plt.show()
 	
 
-def performance(t,kind_of_t):
+def performance(t,kind_of_t,kind_of_epsilon):
+	#CONSTANT
+	#n=10
 	#PARAMETERS : 
 	#1 	t(float) is the timeout in sec
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
+	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
 
 	#CONSTANT
 	n="10"
 	
+	#PATH SETTING
+	if (kind_of_t=="median"):											#set the kind_of_t for naming
+		subpath = 't='+str(t)+'_median_'+kind_of_epsilon+'/'
+	else:
+		subpath = 't='+str(t)+'_regular_'+kind_of_epsilon+'/'	
 
 	#EXPLICIT	
-	engine = "explicit/"
-	if (kind_of_t=="median"):
-		subpath = 't='+str(t)+'_median/'+engine
-	else:
-		subpath = 't='+str(t)+'/'+engine
-	
-	y_event = read_float(path+subpath+'evtime_10_'+eps)
-	y_explicit = read_float(path+subpath+'phtime_10_'+eps)
-	k_explicit = read_float(path+subpath+'k_array')
+	full_path = path+subpath+"explicit/"
+		
+	y_event = read_float(full_path+'ev_time_10')
+	y_explicit = read_float(full_path+'ph_time_10')
+	k_explicit = read_float(full_path+'ph_k_array')
 	
 	#HYBRID
-	engine = "hybrid/"
-	if (kind_of_t=="median"):
-		subpath = 't='+str(t)+'_median/'+engine
-	else:
-		subpath = 't='+str(t)+'/'+engine
-	y_hybrid = read_float(path+subpath+'phtime_10_'+eps)
-	k_hybrid = read_float(path+subpath+'k_array')
+	full_path = path+subpath+"hybrid/"
+
+	y_hybrid = read_float(full_path+'ph_time_10')
+	k_hybrid = read_float(full_path+'ph_k_array')
 	
 	#DATA
 	if (len(k_hybrid)>len(k_explicit)):
@@ -281,13 +282,14 @@ def performance(t,kind_of_t):
 	plt.xscale('log')
 	plt.xlabel('K Phase Type Fitting Parameter', fontsize=14, color='black')
 	plt.ylabel('Time of Computation (s)', fontsize=14, color='black')
-	plt.title('Time of computation of the Steady States Probabilities versus k the PTF parameter')
+	plt.title('Time of computation of the Steady States Probabilities versus k the PTF parameter\n epsilon = '+eps+', '+kind_of_epsilon+' epsilon, t='+str(t)+', '+kind_of_t)
 	
-	plt.plot(k_array, y_event*len(k_array), label = 'event',linewidth=1.0)
+	plt.plot(k_array, y_event[0:1:1]*len(k_array), label = 'event',linewidth=1.0)
 	plt.plot(k_explicit, y_explicit, label = 'explicit',linewidth=1.0)
 	plt.plot(k_hybrid, y_hybrid, label = 'hybrid',linewidth=1.0)
 	plt.legend()
 	plt.show()
+
 
 
 def variance():
