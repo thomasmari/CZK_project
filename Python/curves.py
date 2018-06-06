@@ -108,7 +108,7 @@ def distance_per_state(t,kind_of_t,norm,engine,kind_of_epsilon):
 	k_array = read_float(path+subpath+engine+'/ph_k_array')					#load the bottom line for explicit
 	y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps)
 	
-	for k in k_array[0:36:2]:
+	for k in k_array[0::10]+[k_array[-1]]:
 		y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
 		y = absolute(diff_array(y_0,y_k))
 		plt.plot(states, y, label = "k="+str(k),linewidth=0.5)
@@ -124,7 +124,7 @@ def distance_per_state(t,kind_of_t,norm,engine,kind_of_epsilon):
 ########################################################################
 #############################DISTANCE (NORM)############################
 
-def distance_plot_k(t,kind_of_t,norm,kind_of_epsilon):	
+def distance_k(t,kind_of_t,norm,kind_of_epsilon):	
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
@@ -178,7 +178,7 @@ def distance_plot_k(t,kind_of_t,norm,kind_of_epsilon):
 	plt.xscale('log')
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('distance ('+norm+')', fontsize=14, color='black')
-	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, esp ='+eps+', esp ref='+eps_precise)
+	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
 	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
 	plt.plot(k_explicit, [result_event]*len(k_explicit), label = "event",linewidth=0.5)
