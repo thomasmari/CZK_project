@@ -1,0 +1,5 @@
+meeting June 5:
+- report weird hybrid steady state probabilities for the PH model to Dave Parker
+- read the OMNI paper properly 
+- try out the OMNI tool
+- try STORM model checker, because it is supposed to be faster and it would be great to "beat" STORM as well as just PRISM hybrid engine
