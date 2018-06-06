@@ -11,5 +11,4 @@
 
 #./computeSum.sh path engine epsilon
 ./computeSum.sh t=0.1_median_dynamic explicit 1E-5
-./computeSum.sh t=0.1_median_dynamic event 1E-5
 ./computeSum.sh t=0.1_median_dynamic hybrid 1E-5

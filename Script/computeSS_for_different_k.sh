@@ -50,8 +50,11 @@ echo $eps
 eps_precise="1E-10"
 
 PRISM_PATH_FROM_OUTPUT="../../../../prismGSMP/prism-gsmp/prism/bin"
+CLASSIC_PRISM_PATH_FROM_OUTPUT="../../../../prism-4.4-src/bin"
 MODEL_PATH_FROM_PRISM="../../../../CZK_project/Model"
+MODEL_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Model"
 OUTPUT_PATH_FROM_PRISM="../../../../CZK_project/Output"
+OUTPUT_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Output"
 
 #lambda and path setting
 ln_2="0.6931471805599453094" #20 digits
@@ -97,8 +100,8 @@ if [ $engine == "event" ]; then
 elif [ $engine == "explicit" ]; then
 	cd $PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
-	#~ for k in $(seq 5 5 95; seq 100 100 5000);
-	for k in $(seq 3800 100 5000);
+	for k in $(seq 5 5 95; seq 100 100 5000);
+	#~ for k in $(seq 3800 100 5000);
 		do
 			if [ "$4" == "dynamic" ]; then
 				eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
@@ -121,7 +124,8 @@ elif [ $engine == "explicit" ]; then
 
 			
 elif [ $engine == "hybrid" ]; then
-	cd $PRISM_PATH_FROM_OUTPUT
+	#~ cd $PRISM_PATH_FROM_OUTPUT
+	cd $CLASSIC_PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
 	#compute hybrid phase type
 	for k in $(seq 5 5 95; seq 100 100 5000);
@@ -132,7 +136,8 @@ elif [ $engine == "hybrid" ]; then
 			eps_k=$eps
 		fi
 		echo hybrid $k $eps_k $eps
-		./prism -hybrid -epsilon ${eps_k} -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}" > "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+		#~ ./prism -hybrid -epsilon ${eps_k} -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}" > "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+		./prism -hybrid -epsilon ${eps_k} -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
 	done
 	cd -
 	#write a readme file for hybrid computations
