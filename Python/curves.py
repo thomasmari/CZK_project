@@ -298,7 +298,7 @@ def performance(t,kind_of_t,kind_of_epsilon):
 	plt.xscale('log')
 	plt.xlabel('K Phase Type Fitting Parameter', fontsize=14, color='black')
 	plt.ylabel('Time of Computation (s)', fontsize=14, color='black')
-	plt.title('Time of computation of the Steady States Probabilities versus k the PTF parameter\n epsilon = '+eps+', '+kind_of_epsilon+' epsilon, t='+str(t)+', '+kind_of_t)
+	plt.title('Time of computation of the SSP versus k the PTF parameter\n epsilon = '+eps+', '+kind_of_epsilon+' epsilon, t='+str(t)+', '+kind_of_t,fontsize=11)
 	
 	plt.plot(k_array, y_event[0:1:1]*len(k_array), label = 'event',linewidth=1.0)
 	plt.plot(k_explicit, y_explicit, label = 'explicit',linewidth=1.0)
