@@ -15,7 +15,7 @@ explicit = 'explicit'
 
 ########################################################################
 ###################################CURVES###############################
-def curve(t,kind_of_t,engine):	
+def curve(t,kind_of_t,engine):	#out of order
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
@@ -25,7 +25,7 @@ def curve(t,kind_of_t,engine):
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
 		subpath = 't='+str(t)+'_median/'
 	else:
-		subpath = 't='+str(t)+'/'
+		subpath = 't='+str(t)+'_regular/'
 	plt.yscale('linear')
 	plt.xscale('linear')
 	plt.xlabel('Size of the Queue', fontsize=14, color='black')
@@ -87,7 +87,7 @@ def curve_epsilon(t,k,engine):
 ########################################################################
 #############################DISTANCE PER POINT#########################
 
-def distance_per_state(t,kind_of_t,norm,engine,kind_of_epsilon):	
+def diff_per_state(t,kind_of_t,engine,kind_of_epsilon):	
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
@@ -107,7 +107,14 @@ def distance_per_state(t,kind_of_t,norm,engine,kind_of_epsilon):
 	states = range(0,11,1)
 	k_array = read_float(path+subpath+engine+'/ph_k_array')					#load the bottom line for explicit
 	y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps)
-	
+	#invisible plot for scaling
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+
+
+	#real plotting
 	for k in k_array[0::10]+[k_array[-1]]:
 		y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
 		y = absolute(diff_array(y_0,y_k))
@@ -115,9 +122,12 @@ def distance_per_state(t,kind_of_t,norm,engine,kind_of_epsilon):
 	
 	plt.yscale('log')
 	plt.xscale('linear')
-	plt.xlabel('state of the queue', fontsize=14, color='black')
-	plt.ylabel('distance', fontsize=14, color='black')
-	plt.title('distance('+norm+') of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine+',epsilon='+eps+',dynamic epsilon')
+	plt.xlabel('State of the queue', fontsize=14, color='black')
+	plt.ylabel('difference', fontsize=14, color='black')
+	plt.xlim(0, 10)
+	plt.ylim(0, y_k[-1])
+	plt.gca().set_aspect('equal', adjustable='box')
+	plt.title('absolute difference between Phase Type Fitting\'s SSP and Event Model\'s SSP \ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine+',epsilon='+eps+',dynamic epsilon',fontsize=11)
 	plt.legend()
 	plt.show()	
 
@@ -177,8 +187,11 @@ def distance_k(t,kind_of_t,norm,kind_of_epsilon):
 	plt.yscale('log')
 	plt.xscale('log')
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
-	plt.ylabel('distance ('+norm+')', fontsize=14, color='black')
-	plt.title('distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
+	plt.ylabel('distance', fontsize=14, color='black')
+	if (norm=="infinite"):
+		plt.title('Maximum distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
+	else:
+		plt.title('Euclidean distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
 	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
 	plt.plot(k_explicit, [result_event]*len(k_explicit), label = "event",linewidth=0.5)
@@ -231,7 +244,10 @@ def distance_plot_epsilon(t,k,norm):
 	plt.xscale('log')
 	plt.xlabel('epsilon termination', fontsize=14, color='black')
 	plt.ylabel('distance', fontsize=14, color='black')
-	plt.title('distance ('+str(norm)+') between event model eps = 1E-13 and PTF k=1000 for engine explicit and hybrid')
+	if (norm=="infinite"):
+		plt.title('Maximum distance between event model eps = 1E-13 and PTF k=1000 for engine explicit and hybrid')
+	else:
+		plt.title('Euclidean distance between event model eps = 1E-13 and PTF k=1000 for engine explicit and hybrid')
 	plt.plot(map(float,eps_hybrid), result_hybrid, label = "hybrid",linewidth=0.5)
 	plt.plot(map(float,eps_explicit), result_explicit, label = "explicit",linewidth=0.5)
 	plt.legend()
