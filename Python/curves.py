@@ -189,7 +189,7 @@ def distance_k(t,kind_of_t,norm,kind_of_epsilon):
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('distance', fontsize=14, color='black')
 	if (norm=="infinite"):
-		plt.title('Maximum distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
+		plt.title('Infinity norm distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
 	else:
 		plt.title('Euclidean distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
