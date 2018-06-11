@@ -3,7 +3,7 @@
 #$2 lambda according to t in {regular,median} regular mean lambda = 1/t, and median means t will be the median value of exp(lambda)
 #$3 epsilon you want 
 #$4 kind_of_epsilon in {dynamic, constant} for dynamic you have eps_computation = eps/k 
-#$5 the engine in {event,explicit,hybrid,storm}
+#$5 the engine in {event,explicit,hybrid}
 #compute steady state probabilities for various k values.
 #This script must remain in CZK_project/Script !!!
 #There is only one parameter - floating point number specifying the timeout.
@@ -56,7 +56,6 @@ MODEL_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Model"
 OUTPUT_PATH_FROM_PRISM="../../../../CZK_project/Output"
 OUTPUT_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Output"
 
-sequence=$(seq 5 5 95; seq 100 100 1000);
 #lambda and path setting
 ln_2="0.6931471805599453094" #20 digits
 if [ "$2" == "regular" ]; then
@@ -101,7 +100,7 @@ if [ $engine == "event" ]; then
 elif [ $engine == "explicit" ]; then
 	cd $PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
-	for k in $sequence
+	for k in 3900 4300;
 	#~ for k in $(seq 3800 100 5000);
 		do
 			if [ "$4" == "dynamic" ]; then
@@ -110,7 +109,7 @@ elif [ $engine == "explicit" ]; then
 				eps_k=$eps
 			fi
 			echo explicit $k $eps_k eps=$eps 
-			./prism -explicit -epsilon ${eps_k} -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}" > "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+			./prism -explicit -epsilon ${eps_k} -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}_new_value" > "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_${eps}_new_value.log"
 		done
 	cd -
 	#write a readme file for explicit computations
@@ -129,7 +128,7 @@ elif [ $engine == "hybrid" ]; then
 	cd $CLASSIC_PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
 	#compute hybrid phase type
-	for k in $sequence
+	for k in $(seq 5 5 95; seq 100 100 5000);
 	do
 		if [ "$4" == "dynamic" ]; then
 			eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
@@ -149,35 +148,6 @@ elif [ $engine == "hybrid" ]; then
 	echo "naming: ph_n_k_epsilon" >> readme.txt
 	echo "steady state distributions using the CTMC with phase type on hybrid engine with Power method
 	absolute termination criteria for termination epsilon 1.0E-5 for phase type." >> readme.txt
-
-
-elif [ $engine == "storm" ]; then
-	#~ cd $PRISM_PATH_FROM_OUTPUT
-	cd $CLASSIC_PRISM_PATH_FROM_OUTPUT
-	echo engine k     epsilon_computation epsilon 
-	#compute hybrid phase type
-	for k in $sequence
-		if [ "$4" == "dynamic" ]; then
-			eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
-		else
-			eps_k=$eps
-		fi
-		for state in $seq(0,10,1)
-			echo storm $k $eps_k $eps
-			storm --prism -e sparse --multiobjective:precision ${eps_k} -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "LRA=? [qSize=$state]" --exportdot "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
-		done
-	done
-	cd -
-	#write a readme file for hybrid computations
-	touch readme.txt
-	echo "t=$1" >> readme.txt
-	echo "lambda=ln(2)/timeout" >> readme.txt
-	echo "n=10" >> readme.txt
-	echo "naming: ph_n_k_epsilon" >> readme.txt
-	echo "steady state distributions using the CTMC with phase type on hybrid engine with Power method
-	absolute termination criteria for termination epsilon 1.0E-5 for phase type." >> readme.txt
-
-
 fi
 
 
