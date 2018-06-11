@@ -56,7 +56,7 @@ MODEL_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Model"
 OUTPUT_PATH_FROM_PRISM="../../../../CZK_project/Output"
 OUTPUT_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Output"
 
-sequence=$(seq 5 5 95; seq 100 100 1000);
+sequence=$(seq 5 5 95; seq 100 100 5000);
 #lambda and path setting
 ln_2="0.6931471805599453094" #20 digits
 if [ "$2" == "regular" ]; then
@@ -156,16 +156,15 @@ elif [ $engine == "storm" ]; then
 	cd $CLASSIC_PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
 	#compute hybrid phase type
-	for k in $sequence
-		if [ "$4" == "dynamic" ]; then
-			eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
-		else
-			eps_k=$eps
-		fi
-		for state in $seq(0,10,1)
+	for k in $sequence;
+		do
+			if [ "$4" == "dynamic" ]; then
+				eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
+			else
+				eps_k=$eps
+			fi
 			echo storm $k $eps_k $eps
-			storm --prism -e sparse --multiobjective:precision ${eps_k} -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "LRA=? [qSize=$state]" --exportdot "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
-		done
+			storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.pm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --general:precision "$eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
 	done
 	cd -
 	#write a readme file for hybrid computations
