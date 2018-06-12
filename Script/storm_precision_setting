@@ -1,0 +1,12 @@
+--[general:]precision (eps) <value> ........................... The internally used precision. <value> (in (0, 1); default: 1e-06): The precision to use.
+--cudd:precision <value> ...................................... Sets the precision used by Cudd. <value> (in (0, 1); default: 1e-15): The precision up to which to constants are considered to be different.
+--[gmm++:]precision <value> ................................... The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[eigen:]precision <value> ................................... The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[native:]precision <value> .................................. The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[minmax:]precision <value> .................................. The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--glpk:inttol <value> ......................................... Sets glpk's precision for integer variables. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--gurobi:inttol <value> ....................................... Sets Gurobi's precision for integer variables. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[topologicalValueIteration:]precision <value> ............... The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[exploration:]precision (eps) <value> ....................... The precision to achieve. <value> (in (0, 1); default: 1e-06): The value to use to determine convergence.
+--abstraction:precision <value> ............................... The precision used for detecting convergence. <value> (in (0, 1); default: 0.001): The precision to achieve.
+--multiobjective:precision <value> ............................ The precision used for the approximation of numerical- and pareto queries. <value> (in (0, 1); default: 0.0001): The precision.
