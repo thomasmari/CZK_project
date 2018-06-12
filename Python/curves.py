@@ -133,7 +133,7 @@ def diff_per_state(t,kind_of_t,engine,kind_of_epsilon):
 	plt.xlim(0, 10)
 	plt.ylim(0, y_k[-1])
 	plt.gca().set_aspect('equal', adjustable='box')
-	plt.title('absolute difference between Phase Type Fitting\'s SSP and Event Model\'s SSP \ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine+',epsilon='+eps+',dynamic epsilon',fontsize=11)
+	plt.title('absolute difference between Phase Type Fitting\'s SSP and Event Model\'s SSP \ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine+',epsilon='+eps+','+kind_of_epsilon+' epsilon',fontsize=11)
 	plt.legend()
 	plt.show()	
 
