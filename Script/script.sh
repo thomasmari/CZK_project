@@ -9,6 +9,8 @@
 #~ ./computeTime.sh 0.1 explicit median dynamic
 #~ ./computeTime.sh 0.1 event median dynamic
 #~ ./computeTime.sh 0.1 hybrid median dynamic
+./computeTime.sh 0.1 storm median dynamic
+./computeTime.sh 0.1 storm median constant
 
 #./computeSum.sh path engine epsilon
 #~ ./computeSum.sh t=0.1_median_dynamic explicit 1E-5
