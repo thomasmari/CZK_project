@@ -94,7 +94,7 @@ def diff_per_state(t,kind_of_t,engine,kind_of_epsilon):
 	#1 	t(float) is the timeout in sec
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
 	#3 	norm(string) is how the norm that must be use for defining the distance {"norm_2","norm_infinite"}
-	#4 	engine(string) is the engine used in computation {"explicit","hybrid"}
+	#4 	engine(string) is the engine used in computation {"explicit","hybrid","storm"}
 	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
 	
 	#DATA
@@ -112,11 +112,16 @@ def diff_per_state(t,kind_of_t,engine,kind_of_epsilon):
 	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 
 
 	#real plotting
 	for k in k_array[0::10]+[k_array[-1]]:
-		y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
+		if (engine=="storm"):
+			y_k = read_float(path+subpath+engine+'/ph_10_'+str(int(k))+'_'+eps)
+		else:
+			y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
 		y = absolute(diff_array(y_0,y_k))
 		plt.plot(states, y, label = "k="+str(k),linewidth=0.5)
 	
