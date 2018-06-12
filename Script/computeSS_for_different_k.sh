@@ -164,7 +164,7 @@ elif [ $engine == "storm" ]; then
 				eps_k=$eps
 			fi
 			echo storm $k $eps_k $eps
-			storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.pm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --general:precision "$eps_k" --multiobjective:precision "eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+			storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.pm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --general:precision "$eps_k" --multiobjective:precision "$eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
 	done
 	cd -
 	#write a readme file for hybrid computations
