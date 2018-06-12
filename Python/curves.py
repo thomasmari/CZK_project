@@ -11,6 +11,7 @@ path = '../Output/'
 eps = "1E-5"
 eps_precise = "1E-10"
 hybrid = 'hybrid'
+storm = 'storm'
 explicit = 'explicit'
 
 ########################################################################
@@ -187,6 +188,20 @@ def distance_k(t,kind_of_t,norm,kind_of_epsilon):
 		else:
 			result = norm_infinite(diff_array(y_event,y_k))
 		result_hybrid = np.append(result_hybrid, [result], axis=0)
+
+	#STORM
+	engine = "storm/"
+	full_path = path+subpath+storm+'/'	
+	
+	k_storm = read_float(full_path+'ph_k_array')					#load the bottom line for explicit
+	result_storm = np.array([])											
+	for k in k_storm:
+		y_k = read_float(full_path+'ph_'+n+'_'+str(int(k))+'_'+eps)
+		if (norm == "norm_2"):
+			result = norm_2(diff_array(y_event,y_k))
+		else:
+			result = norm_infinite(diff_array(y_event,y_k))
+		result_storm = np.append(result_storm, [result], axis=0)
 				
 	#PLOTING
 	plt.yscale('log')
@@ -194,11 +209,12 @@ def distance_k(t,kind_of_t,norm,kind_of_epsilon):
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('distance', fontsize=14, color='black')
 	if (norm=="infinite"):
-		plt.title('Infinity norm distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
+		plt.title('Infinity norm distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise+','+kind_of_epsilon+' epsilon')
 	else:
 		plt.title('Euclidean distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
 	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
+	plt.plot(k_explicit, result_storm, label = "storm -sparse",linewidth=0.5)
 	plt.plot(k_explicit, [result_event]*len(k_explicit), label = "event",linewidth=0.5)
 
 
