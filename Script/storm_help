@@ -1,0 +1,185 @@
+Storm
+---------------
+
+version: 0.10.1 (+409 commits) build from revision g03b634d14 (DIRTY).
+
+Linked with GNU Linear Programming Kit v4.60.
+Linked with Microsoft Z3 Optimizer v4.4 Build 1 Rev 0.
+Linked with MathSAT5 version 5.3.14 (0b98b661254c) (Nov 17 2016 10:59:45, gmp 5.1.3, gcc 4.8.5, 64-bit).
+Linked with CARL.
+Command line arguments: -help 
+Current working directory: /home/storm/Documents/CZK_project/Script
+
+ERROR (SettingsManager.cpp:123): Unknown option 'help'.
+usage: storm [options]
+
+##### Module 'general' ########################################
+--[general:]help (h) <hint> ................................... Shows all available options, arguments and descriptions. <hint> (default: all): A regular expression to show help for all matching entities or 'all' for the complete help.
+--[general:]version ........................................... Prints the version information.
+--[general:]verbose (v) ....................................... Enables more verbose output.
+--[general:]precision (eps) <value> ........................... The internally used precision. <value> (in (0, 1); default: 1e-06): The precision to use.
+--[general:]config (c) <filename> ............................. If given, this file will be read and parsed for additional configuration settings. <filename> (existing file): The name of the file from which to read the configuration.
+--[general:]prop (prop) <property or filename> <filter> ....... Specifies the properties to be checked on the model. <property or filename>: The formula or the file containing the formulas. <filter> (default: all): The names of the properties to check.
+--[general:]parametricRegion .................................. Sets whether to use the parametric Region engine.
+--[general:]bisimulation (bisim) .............................. Sets whether to perform bisimulation minimization.
+--[general:]parametric ........................................ Sets whether to enable parametric model checking.
+--[general:]exact ............................................. Sets whether to enable exact model checking.
+
+##### Module 'io' #############################################
+--[io:]prismcompat (pc) ....................................... Enables PRISM compatibility. This may be necessary to process some PRISM models.
+--io:exportdot <filename> ..................................... If given, the loaded model will be written to the specified file in the dot format. <filename>: The name of the file to which the model is to be written.
+--io:exportexplicit <filename> ................................ If given, the loaded model will be written to the specified file in the drn format. <filename>: the name of the file to which the model is to be writen.
+--[io:]explicit (exp) <transition filename> <labeling filename> Parses the model given in an explicit (sparse) representation. <transition filename> (existing file): The name of the file from which to read the transitions. <labeling filename> (existing file): The name of the file from which to read the state labeling.
+--[io:]prism <filename> ....................................... Parses the model given in the PRISM format. <filename> (existing file): The name of the file from which to read the PRISM input.
+--[io:]jani <filename> ........................................ Parses the model given in the JANI format. <filename> (existing file): The name of the file from which to read the JANI input.
+--[io:]prism2jani ............................................. If set, the input PRISM model is transformed to JANI.
+--[io:]jit .................................................... If set, the model is built using the JIT model builder.
+--[io:]buildfull .............................................. If set, include all rewards and labels.
+--[io:]nobuild ................................................ If set, do not build the model.
+--[io:]explorder (eo) <name> .................................. Sets which exploration order to use. <name> (in {dfs, bfs}; default: bfs): The name of the exploration order to choose.
+--[io:]explchecks (ec) ........................................ If set, additional checks (if available) are performed during model exploration to debug the model.
+--[io:]transrew <filename> .................................... If given, the transition rewards are read from this file and added to the explicit model. Note that this requires the model to be given as an explicit model (i.e., via --explicit). <filename> (existing file): The file from which to read the transition rewards.
+--[io:]staterew <filename> .................................... If given, the state rewards are read from this file and added to the explicit model. Note that this requires the model to be given as an explicit model (i.e., via --explicit). <filename> (existing file): The file from which to read the state rewards.
+--[io:]choicelab <filename> ................................... If given, the choice labels are read from this file and added to the explicit model. Note that this requires the model to be given as an explicit model (i.e., via --explicit). <filename> (existing file): The file from which to read the choice labels.
+--[io:]constants (const) <values> ............................. Specifies the constant replacements to use in symbolic models. Note that this requires the model to be given as an symbolic model (i.e., via --prism or --jani). <values> (default: empty): A comma separated list of constants and their value, e.g. a=1,b=2,c=3.
+--[io:]janiproperty (jprop) <values> .......................... Specifies the properties from the jani model (given by --jani)  to be checked. <values> (default: empty): A comma separated list of properties to be checked
+
+##### Module 'core' ###########################################
+--[core:]counterexample (cex) ................................. Generates a counterexample for the given PRCTL formulas if not satisfied by the model.
+--[core:]nofixdl (ndl) ........................................ If the model contains deadlock states, they need to be fixed by setting this option.
+--[core:]engine (e) <name> .................................... Sets which engine is used for model building and model checking. <name> (in {sparse, hybrid, dd, expl, abs}; default: sparse): The name of the engine to use.
+--[core:]eqsolver <name> ...................................... Sets which solver is preferred for solving systems of linear equations. <name> (in {gmm++, native, eigen, elimination}; default: gmm++): The name of the solver to prefer.
+--[core:]ddlib <name> ......................................... Sets which library is preferred for decision-diagram operations. <name> (in {cudd, sylvan}; default: cudd): The name of the library to prefer.
+--[core:]lpsolver <name> ...................................... Sets which LP solver is preferred. <name> (in {gurobi, glpk}; default: glpk): The name of an LP solver.
+--[core:]smtsolver <name> ..................................... Sets which SMT solver is preferred. <name> (in {z3, mathsat}; default: z3): The name of an SMT solver.
+--[core:]statistics (stats) ................................... Sets whether to display statistics if available.
+--[core:]cuda ................................................. Sets whether to use CUDA.
+
+##### Module 'debug' ##########################################
+--[debug:]debug ............................................... Print debug output.
+--[debug:]trace ............................................... Print even more debug output.
+--[debug:]logfile (l) <filename> .............................. If specified, the log output will also be written to this file. <filename>: The name of the file to write the log.
+--[debug:]test ................................................ Activate a test setting.
+
+##### Module 'counterexample' #################################
+--counterexample:mincmd <method> .............................. Computes a counterexample for the given model in terms of a minimal command set. Note that this requires the model to be given in a symbolic format. <method> (in {maxsat, milp}; default: maxsat): Sets which technique is used to derive the counterexample.
+--counterexample:encreach ..................................... Sets whether to encode reachability for MAXSAT-based minimal command counterexample generation.
+--counterexample:schedcuts .................................... Sets whether to add the scheduler cuts for MILP-based minimal command counterexample generation.
+
+##### Module 'cudd' ###########################################
+--cudd:precision <value> ...................................... Sets the precision used by Cudd. <value> (in (0, 1); default: 1e-15): The precision up to which to constants are considered to be different.
+--cudd:maxmem <value> ......................................... Sets the upper bound of memory available to Cudd in MB. <value> (default: 4096): The memory available to Cudd (0 means unlimited).
+--cudd:reorder <method> ....................................... Sets the reordering technique used by Cudd. <method> (in {none, random, randompivot, sift, siftconv, ssift, ssiftconv, gsift, gsiftconv, win2, win2conv, win3, win3conv, win4, win4conv, annealing, genetic, exact}; default: gsift): Sets which technique is used by Cudd's reordering routines.
+
+##### Module 'sylvan' #########################################
+--sylvan:maxmem <value> ....................................... Sets the upper bound of memory available to Sylvan in MB. <value> (default: 4096): The memory available to Sylvan.
+--sylvan:threads <value> ...................................... Sets the number of threads used by Sylvan. <value>: The number of threads available to Sylvan (0 means 'auto-detect').
+
+##### Module 'gmm++' ##########################################
+--gmm++:method <name> ......................................... The method to be used for solving linear equation systems with the gmm++ engine. <name> (in {bicgstab, qmr, gmres, jacobi}; default: gmres): The name of the method to use.
+--gmm++:precond <name> ........................................ The preconditioning technique used for solving linear equation systems. <name> (in {ilu, diagonal, none}; default: ilu): The name of the preconditioning method.
+--gmm++:restart <count> ....................................... The number of iteration until restarted methods are actually restarted. <count> (default: 50): The number of iterations.
+--[gmm++:]maxiter (i) <count> ................................. The maximal number of iterations to perform before iterative solving is aborted. <count> (default: 20000): The maximal iteration count.
+--[gmm++:]precision <value> ................................... The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[gmm++:]absolute ............................................ Sets whether the relative or the absolute error is considered for detecting convergence.
+
+##### Module 'eigen' ##########################################
+--eigen:method <name> ......................................... The method to be used for solving linear equation systems with the eigen solver. <name> (in {sparselu, bicgstab, dgmres, gmres}; default: sparselu): The name of the method to use.
+--eigen:precond <name> ........................................ The preconditioning technique used for solving linear equation systems. <name> (in {ilu, diagonal, none}; default: ilu): The name of the preconditioning method.
+--eigen:restart <count> ....................................... The number of iteration until restarted methods are actually restarted. <count> (default: 50): The number of iterations.
+--[eigen:]maxiter (i) <count> ................................. The maximal number of iterations to perform before iterative solving is aborted. <count> (default: 20000): The maximal iteration count.
+--[eigen:]precision <value> ................................... The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+
+##### Module 'native' #########################################
+--native:method <name> ........................................ The method to be used for solving linear equation systems with the native engine. <name> (in {jacobi, gaussseidel, sor}; default: jacobi): The name of the method to use.
+--[native:]maxiter (i) <count> ................................ The maximal number of iterations to perform before iterative solving is aborted. <count> (default: 20000): The maximal iteration count.
+--[native:]precision <value> .................................. The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[native:]soromega <value> ................................... The omega used for SOR. <value> (in (0, 1); default: 0.9): The value of the SOR parameter.
+--[native:]absolute ........................................... Sets whether the relative or the absolute error is considered for detecting convergence.
+
+##### Module 'elimination' ####################################
+--elimination:order <name> .................................... The order that is to be used for the elimination techniques. <name> (in {fw, fwrev, bw, bwrev, rand, spen, dpen, regex}; default: fwrev): The name of the order in which states are chosen for elimination.
+--elimination:method <name> ................................... The elimination technique to use. <name> (in {state, hybrid}; default: state): The name of the elimination technique to use.
+--elimination:entrylast ....................................... Sets whether the entry states are eliminated last.
+--elimination:sccsize <maxsize> ............................... Sets the maximal size of the SCCs for which state elimination is applied. <maxsize> (default: 20): The maximal size of an SCC on which state elimination is applied.
+--elimination:use-dedicated-mc ................................ Sets whether to use the dedicated model elimination checker (only DTMCs).
+
+##### Module 'minmax' #########################################
+--[minmax:]method <name> ...................................... Sets which min/max linear equation solving technique is preferred. <name> (in {vi, value-iteration, pi, policy-iteration}; default: vi): The name of a min/max linear equation solving technique.
+--[minmax:]maxiter (i) <count> ................................ The maximal number of iterations to perform before iterative solving is aborted. <count> (default: 20000): The maximal iteration count.
+--[minmax:]precision <value> .................................. The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[minmax:]absolute ........................................... Sets whether the relative or the absolute error is considered for detecting convergence.
+
+##### Module 'bisimulation' ###################################
+--bisimulation:type <name> .................................... Sets the kind of bisimulation quotienting used. <name> (in {strong, weak}; default: strong): The name of the type to use.
+
+##### Module 'glpk' ###########################################
+--glpk:output ................................................. If set, the glpk output will be printed to the command line.
+--glpk:inttol <value> ......................................... Sets glpk's precision for integer variables. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+
+##### Module 'gurobi' #########################################
+--gurobi:threads <count> ...................................... The number of threads that may be used by Gurobi. <count> (default: 1): The number of threads.
+--gurobi:output ............................................... If set, the Gurobi output will be printed to the command line.
+--gurobi:inttol <value> ....................................... Sets Gurobi's precision for integer variables. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+
+##### Module 'topologicalValueIteration' ######################
+--[topologicalValueIteration:]maxiter (i) <count> ............. The maximal number of iterations to perform before iterative solving is aborted. <count> (default: 20000): The maximal iteration count.
+--[topologicalValueIteration:]precision <value> ............... The precision used for detecting convergence of iterative methods. <value> (in (0, 1); default: 1e-06): The precision to achieve.
+--[topologicalValueIteration:]absolute ........................ Sets whether the relative or the absolute error is considered for detecting convergence.
+
+##### Module 'parametric' #####################################
+--parametric:smt2strategy <strategy> .......................... Set the smt2 encoding strategy. <strategy>: the used strategy
+--parametric:smt2path <path> .................................. A path to a file where the result should be saved. <path>: the location.
+--parametric:resultfile <path> ................................ A path to a file where the smt2 encoding should be saved. <path>: the location.
+--parametric:derivatives ...................................... Sets whether to generate the derivatives of the resulting rational function.
+
+##### Module 'region' #########################################
+--region:regionfile <filename> ................................ Specifies the regions via a file. Format: 0.3<=p<=0.4,0.2<=q<=0.5; 0.6<=p<=0.7,0.8<=q<=0.9 <filename> (existing file): The file from which to read the regions.
+--region:regions <regions> .................................... Specifies the regions via command line. Format: '0.3<=p<=0.4,0.2<=q<=0.5; 0.6<=p<=0.7,0.8<=q<=0.9' <regions>: The considered regions.
+--region:approxmode <mode> .................................... Sets whether approximation should be done and whether lower or upper bounds are computed first. <mode> (in {off, testfirst, guessallsat, guessallviolated}; default: testfirst): The mode to use. For example, guessallsat will first try to prove ALLSAT.
+--region:samplemode <mode> .................................... Sets whether sampling should be done and whether to instantiate a model or compute+evaluate a function. <mode> (in {off, instantiate, evaluate}; default: instantiate): The mode to use.
+--region:smtmode <mode> ....................................... Sets whether SMT solving should be done and whether to encode it via a function or the model. <mode> (in {off, function, model}; default: off): The mode to use.
+--region:refinement <threshold> ............................... Sets whether refinement (iteratively split regions) should be done. Only works if exactly one region (the parameter spaces) is specified. <threshold> (in (0, 1)): Sets the fraction of undiscovered area at which refinement stops.
+
+##### Module 'smt2' ###########################################
+--smt2:solvercommand <command> ................................ If set, this command is used to call the solver and to let the solver know that it should read SMT-LIBv2 commands from standard input. If not set, only a SMT-LIB script file might be exported. <command> (default: empty): path to the solver + command line arguments.
+--smt2:exportscript <path> .................................... If set, the SMT-LIBv2 script will be exportet to this file. <path> (default: empty): path and filename to the location where the script file should be exported to.
+
+##### Module 'exploration' ####################################
+--exploration:precomp <name> .................................. Sets the kind of precomputation used. <name> (in {local, global}; default: global): The name of the type to use.
+--exploration:stepsprecomp <count> ............................ Sets the number of exploration steps to perform until a precomputation is triggered. <count> (default: 100000): The number of exploration steps to perform.
+--exploration:pathsprecomp <count> ............................ If set, a precomputation is perfomed periodically after the given number of paths has been sampled. <count> (default: 100000): The number of paths to sample until a precomputation is triggered.
+--exploration:nextstate <name> ................................ Sets the next-state heuristic to use. <name> (in {probdiffs, prob, unif}; default: probdiffs): The name of the heuristic to use. 'prob' samples according to the probabilities in the system, 'probdiffs' takes into account probabilities and the differences between the current bounds and 'unif' samples uniformly.
+--[exploration:]precision (eps) <value> ....................... The precision to achieve. <value> (in (0, 1); default: 1e-06): The value to use to determine convergence.
+
+##### Module 'resources' ######################################
+--[resources:]timeout (t) <time> .............................. If given, computation will abort after the timeout has been reached. <time> (default: 0): The number of seconds after which to timeout.
+--[resources:]timemem (tm) .................................... Prints CPU time and memory consumption at the end.
+
+##### Module 'abstraction' ####################################
+--abstraction:decomposition <value> ........................... Sets whether to apply decomposition during the abstraction. <value> (in {on, off}; default: on): The value of the flag.
+--abstraction:split <mode> .................................... Sets which predicates are split into atoms for the refinement. <mode> (in {all, none, non-guard}; default: all): The mode to use.
+--abstraction:all-guards <value> .............................. Sets whether all guards are added as initial predicates. <value> (in {on, off}; default: on): The value of the flag.
+--abstraction:interpolation <value> ........................... Sets whether interpolation is to be used to eliminate spurious pivot blocks. <value> (in {on, off}; default: on): The value of the flag.
+--abstraction:precision <value> ............................... The precision used for detecting convergence. <value> (in (0, 1); default: 0.001): The precision to achieve.
+--abstraction:pivot-heuristic <name> .......................... Sets the pivot selection heuristic. <name> (in {nearest-max-dev, most-prob-path, max-weighted-dev}; default: nearest-max-dev): The name of an available heuristic.
+--abstraction:reuse <mode> .................................... Sets whether to reuse all results. <mode> (in {all, none, qualitative, quantitative}; default: all): The mode to use.
+
+##### Module 'exportJani' #####################################
+--[exportJani:]jani-output (output) <filename> ................ Destination for the jani model. <filename>: path to file
+--[exportJani:]standard-compliant (standard) .................. Export in standard compliant variant.
+
+##### Module 'jitbuilder' #####################################
+--[jitbuilder:]doctor ......................................... Show debugging information on why the jit-based model builder is not working on your system.
+--[jitbuilder:]compiler <name> ................................ The compiler in the jit-based model builder. <name> (default: c++): The name of the executable. Defaults to c++.
+--[jitbuilder:]storm <dir> .................................... The include directory of Storm. <dir>: The directory that contains the headers of Storm.
+--[jitbuilder:]boost <dir> .................................... The include directory of boost. <dir>: The directory containing the boost headers version >= 1.61.
+--[jitbuilder:]carl <dir> ..................................... The include directory of carl. <dir>: The directory containing the carl headers.
+--[jitbuilder:]cxxflags <flags> ............................... The flags passed to the compiler. <flags>: The compiler flags.
+
+##### Module 'multiobjective' #################################
+--multiobjective:exportplot <directory> ....................... Saves data for plotting of pareto curves and achievable values. <directory>: A path to a directory in which the results will be saved.
+--multiobjective:precision <value> ............................ The precision used for the approximation of numerical- and pareto queries. <value> (in (0, 1); default: 0.0001): The precision.
+--multiobjective:maxsteps <value> ............................. Aborts the computation after the given number of refinement steps (= computed pareto optimal points). <value>: the threshold for the number of refinement steps to be performed.
+
+ERROR (storm.cpp:39): An exception caused Storm to terminate. The message of the exception is: Unknown option 'help'.
