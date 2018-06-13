@@ -1,12 +1,12 @@
 #~ #./computeSS_for_different_k.sh t lambda eps  eps_type engine
 #~ ./computeSS_for_different_k.sh 0.1 median 1E-5  dynamic explicit
 
-./computeSS_for_different_k.sh 0.1 median 1E-15  dynamic event
+./computeSS_for_different_k.sh 0.1 median 1E-10  dynamic event
 
-./computeSS_for_different_k.sh 0.1 median 1E-15  dynamic storm
-./computeSS_for_different_k.sh 0.1 median 1E-15  constant storm
-./computeSS_for_different_k.sh 0.1 median 1E-15  constant hybrid
-./computeSS_for_different_k.sh 0.1 median 1E-15  dynamic hybrid
+./computeSS_for_different_k.sh 0.1 median 1E-10  dynamic storm
+./computeSS_for_different_k.sh 0.1 median 1E-10  constant storm
+./computeSS_for_different_k.sh 0.1 median 1E-10  constant hybrid
+./computeSS_for_different_k.sh 0.1 median 1E-10  dynamic hybrid
 
 
 
@@ -24,5 +24,5 @@
 
 #./computeSum.sh path engine epsilon
 #~ ./computeSum.sh t=0.1_median_dynamic explicit 1E-5
-./computeSum.sh t=0.1_median_constant hybrid 1E-15
-./computeSum.sh t=0.1_median_dynamic hybrid 1E-15
+./computeSum.sh t=0.1_median_constant hybrid 1E-10
+./computeSum.sh t=0.1_median_dynamic hybrid 1E-10
