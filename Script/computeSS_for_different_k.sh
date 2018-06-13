@@ -46,8 +46,8 @@ fi
 engine="$5"
 eps=$(awk -v a="$3" 'BEGIN{print (a)}')
 echo $eps
-
 eps_precise="1E-10"
+
 
 PRISM_PATH_FROM_OUTPUT="../../../../prismGSMP/prism-gsmp/prism/bin"
 CLASSIC_PRISM_PATH_FROM_OUTPUT="../../../../prism-4.4-src/bin"
@@ -56,7 +56,7 @@ MODEL_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Model"
 OUTPUT_PATH_FROM_PRISM="../../../../CZK_project/Output"
 OUTPUT_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Output"
 
-sequence=$(seq 50000 50001 1);
+sequence=$(seq 1 1 9; seq 10 10 900; seq 1000 1000 4000; seq 5000 5000 50000);
 #lambda and path setting
 ln_2="0.6931471805599453094" #20 digits
 if [ "$2" == "regular" ]; then
@@ -102,7 +102,6 @@ elif [ $engine == "explicit" ]; then
 	cd $PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
 	for k in $sequence
-	#~ for k in $(seq 3800 100 5000);
 		do
 			if [ "$4" == "dynamic" ]; then
 				eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
@@ -129,7 +128,7 @@ elif [ $engine == "hybrid" ]; then
 	cd $CLASSIC_PRISM_PATH_FROM_OUTPUT
 	echo engine k     epsilon_computation epsilon 
 	#compute hybrid phase type
-	for k in 50000;
+	for k in $sequence;
 	do
 		if [ "$4" == "dynamic" ]; then
 			eps_k=$(awk -v e="$eps" -v kk="$k" 'BEGIN{print (e / kk)}')
