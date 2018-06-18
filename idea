@@ -7,3 +7,13 @@ PRISM_JAVASTACKSIZE="-Xss40M"
 PRISM_JAVASTACKSIZE="-Xss128M"
 
 ./prism -explicit -epsilon ${eps_precise} -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps_precise}" > "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps_precise}.log"
+
+vm tip
+sudo apt update
+sudo apt install default-jre
+sudo apt install default-jdke
+sudo apt install gawk
+sudo apt install bc
+
+
+install jdk

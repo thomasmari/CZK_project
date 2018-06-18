@@ -8,8 +8,8 @@ from norm import *
 #GLOBAL VARIABLE
 n='10'
 path = '../Output/'
-eps = "1E-5"
-eps_precise = "1E-10"
+eps = "1E-10"
+eps_precise = "1E-15"
 hybrid = 'hybrid'
 storm = 'storm'
 explicit = 'explicit'
@@ -88,7 +88,7 @@ def curve_epsilon(t,k,engine):
 ########################################################################
 #############################DISTANCE PER POINT#########################
 
-def diff_per_state(t,kind_of_t,engine,kind_of_epsilon):	
+def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon):	
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
@@ -111,8 +111,8 @@ def diff_per_state(t,kind_of_t,engine,kind_of_epsilon):
 	#invisible plot for scaling
 	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 
@@ -134,7 +134,7 @@ def diff_per_state(t,kind_of_t,engine,kind_of_epsilon):
 	plt.ylim(0, y_k[-1])
 	plt.gca().set_aspect('equal', adjustable='box')
 	plt.title('absolute difference between Phase Type Fitting\'s SSP and Event Model\'s SSP \ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine+',epsilon='+eps+','+kind_of_epsilon+' epsilon',fontsize=11)
-s	plt.legend()
+	plt.legend()
 	plt.show()	
 
 ########################################################################
@@ -164,16 +164,16 @@ def distance_k(t,kind_of_t,norm,kind_of_epsilon):
 	else:
 		result_event = norm_infinite(diff_array(y_ref,y_event))
 	
-	#EXPLICIT
-	k_explicit = read_float(full_path+'ph_k_array')					#load the bottom line for explicit
-	result_explicit = np.array([])											
-	for k in k_explicit:
-		y_k = read_float(full_path+'sumph_'+n+'_'+str(int(k))+'_'+eps)
-		if (norm == "norm_2"):
-			result = norm_2(diff_array(y_ref,y_k))
-		else:
-			result = norm_infinite(diff_array(y_ref,y_k))
-		result_explicit = np.append(result_explicit, [result], axis=0)
+	#~ #EXPLICIT
+	#~ k_explicit = read_float(full_path+'ph_k_array')					#load the bottom line for explicit
+	#~ result_explicit = np.array([])											
+	#~ for k in k_explicit:
+		#~ y_k = read_float(full_path+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+		#~ if (norm == "norm_2"):
+			#~ result = norm_2(diff_array(y_ref,y_k))
+		#~ else:
+			#~ result = norm_infinite(diff_array(y_ref,y_k))
+		#~ result_explicit = np.append(result_explicit, [result], axis=0)
 	
 	#HYBRID
 	engine = "explicit/"
@@ -213,9 +213,9 @@ def distance_k(t,kind_of_t,norm,kind_of_epsilon):
 	else:
 		plt.title('Euclidean distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
-	plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
-	plt.plot(k_explicit, result_storm, label = "storm -sparse",linewidth=0.5)
-	plt.plot(k_explicit, [result_event]*len(k_explicit), label = "event",linewidth=0.5)
+	#~ plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
+	plt.plot(k_hybrid, result_storm, label = "storm -sparse",linewidth=0.5)
+	plt.plot(k_hybrid, [result_event]*len(k_hybrid), label = "event",linewidth=0.5)
 
 
 	plt.legend()
