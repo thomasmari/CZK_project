@@ -7,7 +7,7 @@ Linked with GNU Linear Programming Kit v4.60.
 Linked with Microsoft Z3 Optimizer v4.4 Build 1 Rev 0.
 Linked with MathSAT5 version 5.3.14 (0b98b661254c) (Nov 17 2016 10:59:45, gmp 5.1.3, gcc 4.8.5, 64-bit).
 Linked with CARL.
-Command line arguments: --prism ../../CZK_project/Model/queue_withptf_ctmc.pm --prop ../../CZK_project/Model/storm_prop.csl -e sparse -pc --precision 2.5e-15 --abstraction:precision 2.5e-15 --constants k=40000,timeout=0.1,lambda=6.93147180559945309400 
+Command line arguments: --prism ../../CZK_project/Model/queue_withptf_ctmc.sm --prop ../../CZK_project/Model/storm_prop.csl -e sparse -pc --precision 2.5e-15 --abstraction:precision 2.5e-15 --constants k=40000,timeout=0.1,lambda=6.93147180559945309400 
 Current working directory: /home/storm/Documents/prism-4.4-src/bin
 
  WARN (Program.cpp:179): The input model is a CTMC, but uses probabilistic commands like they are used in PRISM. Consider rewriting the commands to use Markovian commands instead.
@@ -20,7 +20,7 @@ Current working directory: /home/storm/Documents/prism-4.4-src/bin
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
-Time for model construction: 1.272s.
+Time for model construction: 1.426s.
 
 -------------------------------------------------------------- 
 Model type: 	CTMC (sparse)
@@ -46,44 +46,44 @@ choice labels: 	no
 
 Model checking property LRA=? [(qSize = 0)] ...
 Result (initial states): 0.0003437305153
-Time for model checking: 0.749s.
+Time for model checking: 0.716s.
 
 Model checking property LRA=? [(qSize = 1)] ...
 Result (initial states): 0.001120145951
-Time for model checking: 0.738s.
+Time for model checking: 0.711s.
 
 Model checking property LRA=? [(qSize = 2)] ...
 Result (initial states): 0.002240257047
-Time for model checking: 0.751s.
+Time for model checking: 0.711s.
 
 Model checking property LRA=? [(qSize = 3)] ...
 Result (initial states): 0.004480441025
-Time for model checking: 0.754s.
+Time for model checking: 0.713s.
 
 Model checking property LRA=? [(qSize = 4)] ...
 Result (initial states): 0.008960733295
-Time for model checking: 0.753s.
+Time for model checking: 0.711s.
 
 Model checking property LRA=? [(qSize = 5)] ...
 Result (initial states): 0.01792158402
-Time for model checking: 0.744s.
+Time for model checking: 0.717s.
 
 Model checking property LRA=? [(qSize = 6)] ...
 Result (initial states): 0.0358477828
-Time for model checking: 0.750s.
+Time for model checking: 0.706s.
 
 Model checking property LRA=? [(qSize = 7)] ...
 Result (initial states): 0.07168896845
-Time for model checking: 0.752s.
+Time for model checking: 0.712s.
 
 Model checking property LRA=? [(qSize = 8)] ...
 Result (initial states): 0.142469147
-Time for model checking: 0.748s.
+Time for model checking: 0.712s.
 
 Model checking property LRA=? [(qSize = 9)] ...
 Result (initial states): 0.2718937595
-Time for model checking: 0.738s.
+Time for model checking: 0.710s.
 
 Model checking property LRA=? [(qSize = 10)] ...
 Result (initial states): 0.4430334503
-Time for model checking: 0.755s.
+Time for model checking: 0.714s.

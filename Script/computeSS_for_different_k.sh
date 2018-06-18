@@ -49,11 +49,11 @@ echo $eps
 eps_precise="1E-10"
 
 
-PRISM_PATH_FROM_OUTPUT="../../../../prismGSMP/prism-gsmp/prism/bin"
+PRISM_PATH_FROM_OUTPUT="../../../../prism-gsmp/prism/bin"
 CLASSIC_PRISM_PATH_FROM_OUTPUT="../../../../prism-4.4-src/bin"
-MODEL_PATH_FROM_PRISM="../../../../CZK_project/Model"
+MODEL_PATH_FROM_PRISM="../../../CZK_project/Model"
 MODEL_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Model"
-OUTPUT_PATH_FROM_PRISM="../../../../CZK_project/Output"
+OUTPUT_PATH_FROM_PRISM="../../../CZK_project/Output"
 OUTPUT_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Output"
 
 sequence=$(seq 1 1 9; seq 10 10 90; seq 100 100 900; seq 1000 1000 4000; seq 5000 5000 50000);
@@ -84,12 +84,13 @@ else
 fi
 
 
-cd $PRISM_PATH_FROM_OUTPUT
+
 
 #STARTING COMPUTATION
 
 
 if [ $engine == "event" ]; then
+	cd $PRISM_PATH_FROM_OUTPUT
 	echo engine epsilon_computation
 	#compute explicit event
 	echo event $eps
@@ -163,7 +164,7 @@ elif [ $engine == "storm" ]; then
 				eps_k=$eps
 			fi
 			echo storm $k $eps_k $eps
-			storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.pm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --precision "$eps_k" --abstraction:precision "$eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+			storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --precision "$eps_k" --abstraction:precision "$eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
 	done
 	cd -
 	#write a readme file for hybrid computations
