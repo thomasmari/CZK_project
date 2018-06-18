@@ -1,0 +1,69 @@
+PRISM
+=====
+
+Version: 4.4
+Date: Sun Jun 17 02:47:06 EDT 2018
+Hostname: storm-eval
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -epsilon 1E-15 -maxiters 100000000 -power -absolute -const 'k=2000,timeout=0.2,lambda=3.46573590279972654700' ../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../CZK_project/Output/t=0.2_median_constant/hybrid/ph_10_2000_1E-15
+
+Parsing model file "../../CZK_project/Model/queue_withptf_ctmc.sm"...
+
+Type:        CTMC
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=2000,timeout=0.2,lambda=3.4657359028
+
+Computing reachable states...
+
+Reachability (BFS): 22000 iterations in 0.79 seconds (average 0.000036, setup 0.00)
+
+Time for model construction: 1.25 seconds.
+
+Type:        CTMC
+States:      22000 (1 initial)
+Transitions: 42000
+
+Rate matrix: 156 nodes (3 terminal), 42000 minterms, vars: 15r/15c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:22000
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=208] [4.1 Kb]
+Building hybrid MTBDD matrix... [levels=15, nodes=238] [11.2 KB]
+Adding explicit sparse matrices... [levels=15, num=1, compact] [271.5 KB]
+Allocating iteration vectors... [2 x 171.9 KB]
+TOTAL: [626.4 KB]
+
+Starting iterations...
+Iteration 29396: max diff=0.000000, 5.00 sec so far
+Iteration 58279: max diff=0.000000, 10.01 sec so far
+Iteration 86802: max diff=0.000000, 15.01 sec so far
+Iteration 116579: max diff=0.000000, 20.02 sec so far
+Iteration 145954: max diff=0.000000, 25.02 sec so far
+Iteration 175256: max diff=0.000000, 30.02 sec so far
+Iteration 204934: max diff=0.000000, 35.03 sec so far
+Iteration 234687: max diff=0.000000, 40.03 sec so far
+Iteration 264189: max diff=0.000000, 45.04 sec so far
+Iteration 293797: max diff=0.000000, 50.04 sec so far
+Iteration 323465: max diff=0.000000, 55.04 sec so far
+Iteration 352915: max diff=0.000000, 60.05 sec so far
+Iteration 382322: max diff=0.000000, 65.05 sec so far
+
+Power method: 385773 iterations in 65.63 seconds (average 0.000170, setup 0.00)
+
+Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/t=0.2_median_constant/hybrid/ph_10_2000_1E-15"...
+
+Time for steady-state probability computation: 67.243 seconds.
+

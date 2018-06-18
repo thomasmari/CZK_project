@@ -1,0 +1,34 @@
+PRISM
+=====
+
+Version: 4.4.GSMP
+Date: Sun Jun 17 02:39:46 EDT 2018
+Hostname: storm-eval
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -explicit -epsilon 1.42857e-17 -maxiters 100000000 -power -absolute -const 'k=70,timeout=0.2,lambda=3.46573590279972654700' ../../../CZK_project/Model/queue_withptf_gsmp.sm -ss -exportss ../../../CZK_project/Output/t=0.2_median_dynamic/explicit/ph_10_70_1E-15
+
+Parsing model file "../../../CZK_project/Model/queue_withptf_gsmp.sm"...
+
+Type:        CTMC
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=70,timeout=0.2,lambda=3.4657359028
+
+Computing reachable states... 770 states
+Reachable states exploration and model construction done in 0.041 secs.
+Sorting reachable states list...
+
+Time for model construction: 0.054 seconds.
+
+Type:        CTMC
+States:      770 (1 initial)
+Transitions: 1470
+
+Error: Explicit engine CTMC steady-state computation implemented yet..
+
