@@ -118,7 +118,7 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon):
 
 
 	#real plotting
-	for k in k_array[0::10]+[k_array[-1]]:
+	for k in k_array[0::4]:
 		if (engine=="storm"):
 			y_k = read_float(path+subpath+engine+'/ph_10_'+str(int(k))+'_'+eps)
 		else:
