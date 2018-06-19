@@ -88,33 +88,40 @@ def curve_epsilon(t,k,engine):
 ########################################################################
 #############################DISTANCE PER POINT#########################
 
-def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon):	
+def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon,eps_precise):	
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
 	#1 	t(float) is the timeout in sec
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
-	#3 	norm(string) is how the norm that must be use for defining the distance {"norm_2","norm_infinite"}
-	#4 	engine(string) is the engine used in computation {"explicit","hybrid","storm"}
+	#3 	engine(string) is the engine used in computation {"explicit","hybrid","storm"}
+	#4 	epsilon "*E-*"
 	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
-	
+	#6 	epsilon of reference "*E-*"
+
 	#DATA
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
 		subpath = 't='+str(t)+'_median'
 	else:
 		subpath = 't='+str(t)+'_regular'
-	subpath += ('_'+kind_of_epsilon+'/')
+	
+	subpath_ref = subpath + ('_'+eps_precise+'_'+kind_of_epsilon+'/')
+	subpath += ('_'+eps+'_'+kind_of_epsilon+'/')
+
 	
 	states = range(0,11,1)
-	k_array = read_float(path+subpath+engine+'/ph_k_array')					#load the bottom line for explicit
-	y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps)
+	k_array = read_float(path+subpath+engine+'/ph_k_array')	
+	k_hybrid = read_float(path+subpath+"hybrid"+'/ph_k_array')					#load the bottom line for explicit
+	k_storm = read_float(path+subpath+"storm"+'/ph_k_array')					#load the bottom line for explicit
+				#load the bottom line for explicit
+	y_0 = read_float(path+subpath_ref+'explicit'+'/ev_10_k_'+eps_precise)
 	#invisible plot for scaling
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_hybrid[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_hybrid[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_storm[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_storm[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 
 
 	#real plotting
@@ -133,31 +140,36 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon):
 	plt.xlim(0, 10)
 	plt.ylim(0, y_k[-1])
 	plt.gca().set_aspect('equal', adjustable='box')
-	plt.title('absolute difference between Phase Type Fitting\'s SSP and Event Model\'s SSP \ntimeout='+str(t)+'(s),lambda='+kind_of_t+',engine='+engine+',epsilon='+eps+','+kind_of_epsilon+' epsilon',fontsize=11)
+	plt.title('absolute difference between Phase Type Fitting\'s SSP and Event Model\'s SSP \ntimeout='+str(t)+'(s),lambda='+kind_of_t+',\nengine='+engine+',epsilon='+eps+','+kind_of_epsilon+' epsilon, ref = '+eps_precise,fontsize=11)
 	plt.legend()
 	plt.show()	
 
 ########################################################################
 #############################DISTANCE (NORM)############################
 
-def distance_k(t,kind_of_t,norm,kind_of_epsilon):	
+def distance_k(t,kind_of_t,norm,eps,kind_of_epsilon,eps_precise):	
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
 	#1 	t(float) is the timeout in sec
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
 	#3 	norm(string) is how the norm that must be use for defining the distance {"norm_2","norm_infinite"}
+	#4 	epsilon "*E-*"
 	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
+	#6 	epsilon of reference "*E-*"
 
 
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
-		subpath = 't='+str(t)+'_median_'+kind_of_epsilon+'/'
+		subpath = 't='+str(t)+'_median_'+eps+'_'+kind_of_epsilon+'/'
+		subpath_ref = 't='+str(t)+'_median_'+eps_precise+'_'+kind_of_epsilon+'/'
 	else:
-		subpath = 't='+str(t)+'_regular_'+kind_of_epsilon+'/'
+		subpath = 't='+str(t)+'_regular_'+eps+'_'+kind_of_epsilon+'/'
+		subpath_ref = 't='+str(t)+'_regular_'+eps_precise+'_'+kind_of_epsilon+'/'
 	#EVENT
 	engine = "explicit/"
 	full_path = path+subpath+explicit+'/'										#set the engine for naming
-	y_ref = read_float(full_path+'ev_'+n+'_k_'+eps_precise) 	#this is the reference distribution (event and precise)
+	full_path_ref = path+subpath_ref+explicit+'/'										#set the engine for naming
+	y_ref = read_float(full_path_ref+'ev_'+n+'_k_'+eps_precise) 	#this is the reference distribution (event and precise)
 	y_event = read_float(full_path+'ev_'+n+'_k_'+eps) 			#this is the event distribution
 	if (norm == "norm_2"):
 		result_event = norm_2(diff_array(y_ref,y_event))
@@ -209,13 +221,13 @@ def distance_k(t,kind_of_t,norm,kind_of_epsilon):
 	plt.xlabel('PTF parameter k', fontsize=14, color='black')
 	plt.ylabel('distance', fontsize=14, color='black')
 	if (norm=="infinite"):
-		plt.title('Infinity norm distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise+','+kind_of_epsilon+' epsilon')
+		plt.title('Infinity norm distance of SSP for a queue versus PH fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise+','+kind_of_epsilon+' epsilon')
 	else:
 		plt.title('Euclidean distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
 	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
 	#~ plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
-	plt.plot(k_hybrid, result_storm, label = "storm -sparse",linewidth=0.5)
-	plt.plot(k_hybrid, [result_event]*len(k_hybrid), label = "event",linewidth=0.5)
+	plt.plot(k_storm, result_storm, label = "storm -sparse",linewidth=0.5)
+	plt.plot(k_storm, [result_event]*len(k_storm), label = "event",linewidth=0.5)
 
 
 	plt.legend()
