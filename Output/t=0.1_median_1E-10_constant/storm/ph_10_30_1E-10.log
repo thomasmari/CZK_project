@@ -20,7 +20,7 @@ Current working directory: /home/storm/Documents/prism-4.4-src/bin
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
-Time for model construction: 0.081s.
+Time for model construction: 0.072s.
 
 -------------------------------------------------------------- 
 Model type: 	CTMC (sparse)

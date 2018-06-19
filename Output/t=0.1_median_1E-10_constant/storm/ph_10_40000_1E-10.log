@@ -20,7 +20,7 @@ Current working directory: /home/storm/Documents/prism-4.4-src/bin
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
-Time for model construction: 1.415s.
+Time for model construction: 1.479s.
 
 -------------------------------------------------------------- 
 Model type: 	CTMC (sparse)
@@ -46,44 +46,44 @@ choice labels: 	no
 
 Model checking property LRA=? [(qSize = 0)] ...
 Result (initial states): 0.0003353204103
-Time for model checking: 0.600s.
+Time for model checking: 0.819s.
 
 Model checking property LRA=? [(qSize = 1)] ...
 Result (initial states): 0.001110617329
-Time for model checking: 0.601s.
+Time for model checking: 0.814s.
 
 Model checking property LRA=? [(qSize = 2)] ...
 Result (initial states): 0.002231519255
-Time for model checking: 0.604s.
+Time for model checking: 0.813s.
 
 Model checking property LRA=? [(qSize = 3)] ...
 Result (initial states): 0.004471808039
-Time for model checking: 0.602s.
+Time for model checking: 0.823s.
 
 Model checking property LRA=? [(qSize = 4)] ...
 Result (initial states): 0.008952565009
-Time for model checking: 0.606s.
+Time for model checking: 0.824s.
 
 Model checking property LRA=? [(qSize = 5)] ...
 Result (initial states): 0.01791479686
-Time for model checking: 0.599s.
+Time for model checking: 0.827s.
 
 Model checking property LRA=? [(qSize = 6)] ...
 Result (initial states): 0.0358438171
-Time for model checking: 0.602s.
+Time for model checking: 0.819s.
 
 Model checking property LRA=? [(qSize = 7)] ...
 Result (initial states): 0.07168901673
-Time for model checking: 0.602s.
+Time for model checking: 0.821s.
 
 Model checking property LRA=? [(qSize = 8)] ...
 Result (initial states): 0.1424750147
-Time for model checking: 0.605s.
+Time for model checking: 0.820s.
 
 Model checking property LRA=? [(qSize = 9)] ...
 Result (initial states): 0.2719114139
-Time for model checking: 0.609s.
+Time for model checking: 0.818s.
 
 Model checking property LRA=? [(qSize = 10)] ...
 Result (initial states): 0.4430641106
-Time for model checking: 0.602s.
+Time for model checking: 0.826s.
