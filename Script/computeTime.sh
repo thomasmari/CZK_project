@@ -101,7 +101,7 @@ do
 		#epsilon
 		if [[ $2 =~ 'storm' ]]; then
 			grep 'k=' $file > temp_eps0
-			grep -Eo '--precision ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
+			grep -Eo 'precision ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
 			grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps >> $target_eps
 		else
 			grep 'k=' $file > temp_eps0
