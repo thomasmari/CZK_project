@@ -1,0 +1,76 @@
+PRISM
+=====
+
+Version: 4.4
+Date: Wed Jun 20 05:28:58 EDT 2018
+Hostname: storm-eval
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -epsilon 2e-11 -maxiters 100000000 -power -absolute -const 'k=50000,timeout=0.1,lambda=6.93147180559945309400' ../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../CZK_project/Output/t=0.1_median_1E-6_dynamic/hybrid/ph_10_50000_1E-6
+
+Parsing model file "../../CZK_project/Model/queue_withptf_ctmc.sm"...
+
+Type:        CTMC
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=50000,timeout=0.1,lambda=6.9314718056
+
+Computing reachable states...
+
+Reachability (BFS): 550000 iterations in 23.39 seconds (average 0.000043, setup 0.00)
+
+Time for model construction: 247.152 seconds.
+
+Type:        CTMC
+States:      550000 (1 initial)
+Transitions: 1050000
+
+Rate matrix: 226 nodes (3 terminal), 1050000 minterms, vars: 20r/20c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:550000
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=303] [5.9 Kb]
+Building hybrid MTBDD matrix... [levels=20, nodes=343] [16.1 KB]
+Adding explicit sparse matrices... [levels=14, num=9, compact] [419.9 KB]
+Allocating iteration vectors... [2 x 4.2 MB]
+TOTAL: [8.8 MB]
+
+Starting iterations...
+Iteration 747: max diff=0.000000, 5.00 sec so far
+Iteration 1525: max diff=0.000000, 10.01 sec so far
+Iteration 2273: max diff=0.000000, 15.01 sec so far
+Iteration 3015: max diff=0.000000, 20.02 sec so far
+Iteration 3754: max diff=0.000000, 25.02 sec so far
+Iteration 4521: max diff=0.000000, 30.02 sec so far
+Iteration 5260: max diff=0.000000, 35.03 sec so far
+Iteration 6051: max diff=0.000000, 40.04 sec so far
+Iteration 6809: max diff=0.000000, 45.04 sec so far
+Iteration 7580: max diff=0.000000, 50.05 sec so far
+Iteration 8346: max diff=0.000000, 55.06 sec so far
+Iteration 9125: max diff=0.000000, 60.06 sec so far
+Iteration 9883: max diff=0.000000, 65.07 sec so far
+Iteration 10687: max diff=0.000000, 70.08 sec so far
+Iteration 11460: max diff=0.000000, 75.08 sec so far
+Iteration 12216: max diff=0.000000, 80.09 sec so far
+Iteration 12968: max diff=0.000000, 85.10 sec so far
+Iteration 13701: max diff=0.000000, 90.10 sec so far
+Iteration 14438: max diff=0.000000, 95.10 sec so far
+Iteration 15182: max diff=0.000000, 100.11 sec so far
+Iteration 15932: max diff=0.000000, 105.12 sec so far
+Iteration 16676: max diff=0.000000, 110.12 sec so far
+Iteration 17417: max diff=0.000000, 115.12 sec so far
+Iteration 18162: max diff=0.000000, 120.13 sec so far
+Iteration 18906: max diff=0.000000, 125.14 sec so far
+Iteration 19648: max diff=0.000000, 130.14 sec so far
+Iteration 20387: max diff=0.000000, 135.15 sec so far
