@@ -68,6 +68,8 @@ touch temp_k
 
 
 echo extracting log ...
+echo $path
+echo $subpath
 for file in $(ls -t -r  $path$subpath$data*.log); #the order of modification matter = reverse order of last modification
 do	
 	echo $file
