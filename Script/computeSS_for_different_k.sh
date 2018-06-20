@@ -6,8 +6,7 @@
 #$5 the engine in {event,explicit,hybrid,storm}
 #compute steady state probabilities for various k values.
 #This script must remain in CZK_project/Script !!!
-#There is only one parameter - floating point number specifying the timeout.
-#Lambda is derived as (ln 2 / timeout).
+# median means Lambda is derived as (ln 2 / timeout).
 
 
 
@@ -96,8 +95,6 @@ if [ $engine == "event" ]; then
 	echo engine epsilon_computation
 	#compute explicit event
 	echo event $eps
-	./prism -explicit -epsilon ${eps_precise} -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps_precise}" > "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps_precise}.log"
-	echo event $eps_precise
 	./prism -explicit -epsilon ${eps} -maxiters 100000000 -power -absolute -const timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/timeoutqueue.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps}" > "$OUTPUT_PATH_FROM_PRISM/${path}/explicit/ev_10_k_${eps}.log"
 	cd -
 	

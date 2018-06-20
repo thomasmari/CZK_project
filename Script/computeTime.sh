@@ -57,8 +57,11 @@ target_time=$path$subpath$data'_time_10'
 rm -f $target_time #in case of recomputation
 target_eps=$path$subpath$data'_eps_array'
 rm -f $target_eps
-target_k=$path$subpath$data'_k_array'
-rm -f $target_k
+if ! [[ $2 =~ 'event' ]]; then
+	target_k=$path$subpath$data'_k_array'
+	rm -f $target_k
+fi
+
 
 touch temp
 touch temp_command
@@ -82,8 +85,9 @@ grep "Command line: prism"  temp > temp_command
 grep "Command line arguments: --prism"  temp >> temp_command #concat command in temp_command
 
 echo done
-echo k_array
+
 if [ "$2" != "event" ]; then
+	echo k_array
 	grep -Eo 'k=[0-9]+' temp_command > temp_k
 	grep -Eo '[0-9]+' temp_k > $target_k
 	sort -g $target_k >temp_k #sort the value in k_array
@@ -94,41 +98,51 @@ echo done
 
 echo epsilon and time ...
 
-cat $target_k| while read line
-do
-
+if [[ $2 =~ 'event' ]]; then
+	file=$path$subpath$data'_10_k_'$4'.log'
+	echo $file
+	#epsilon
+	grep 'epsilon' $file > temp_eps0
+	grep -Eo 'epsilon ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
+	grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps >> $target_eps
+	#time
+	grep "Time for steady-state probability computation:" $file > temp_time
+	grep -Eo '[0-9]+.[0-9]+' temp_time >> $target_time
+else
+	cat $target_k| while read line
+	do
 	for file in $(ls $path$subpath$data'_10_'$line'_'*.log); #the order of modification matter = reverse order of last modification but there is in fqct only one file corresponding
-	do	
-		echo $file
-		#epsilon
-		if [[ $2 =~ 'storm' ]]; then
-			grep 'k=' $file > temp_eps0
-			grep -Eo 'precision ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
-			grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps >> $target_eps
-		else
-			grep 'k=' $file > temp_eps0
-			grep -Eo 'epsilon ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
-			grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps >> $target_eps
-		fi
-		#time
-		if [[ $2 =~ 'storm' ]]; then
-			grep "Time for model checking:" $file > temp_time
-			grep -Eo '[0-9]+.[0-9]+' temp_time > temp_time2
-			gawk -v k=11 -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' temp_time2 >> $target_time
+		do	
+			echo $file
+			#epsilon
+			if [[ $2 =~ 'storm' ]]; then
+				grep 'k=' $file > temp_eps0
+				grep -Eo 'precision ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
+				grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps >> $target_eps
+			else
+				grep 'k=' $file > temp_eps0
+				grep -Eo 'epsilon ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
+				grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps >> $target_eps
+			fi
+			#time
+			if [[ $2 =~ 'storm' ]]; then
+				grep "Time for model checking:" $file > temp_time
+				grep -Eo '[0-9]+.[0-9]+' temp_time > temp_time2
+				gawk -v k=11 -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' temp_time2 >> $target_time
 
-		else
-			grep "Time for steady-state probability computation:" $file > temp_time
-			grep -Eo '[0-9]+.[0-9]+' temp_time >> $target_time
-		fi
-		#result extract
-		if [[ $2 =~ 'storm' ]]; then
-			target=${file::-4}
-			grep "Result (initial states)" $file > temp_file
-			grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+[.]?[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_file > $target
-		fi
+			else
+				grep "Time for steady-state probability computation:" $file > temp_time
+				grep -Eo '[0-9]+.[0-9]+' temp_time >> $target_time
+			fi
+			#result extract
+			if [[ $2 =~ 'storm' ]]; then
+				target=${file::-4}
+				grep "Result (initial states)" $file > temp_file
+				grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+[.]?[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_file > $target
+			fi
+		done
 	done
-done
-
+fi
 
 
 echo erasing temps
