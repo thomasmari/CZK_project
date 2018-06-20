@@ -96,8 +96,11 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon,eps_precise):
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
 	#3 	engine(string) is the engine used in computation {"explicit","hybrid","storm"}
 	#4 	epsilon "*E-*"
-	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
+	#5 	kind_of_epsilon(string) in {"dynamic","constant","standart"}
 	#6 	epsilon of reference "*E-*"
+	
+	if (kind_of_epsilon=="standart"):											#set the kind_of_t for naming
+				eps="standart"
 
 	#DATA
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
@@ -105,8 +108,11 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon,eps_precise):
 	else:
 		subpath = 't='+str(t)+'_regular'
 	
-	subpath_ref = subpath + ('_'+eps_precise+'_'+kind_of_epsilon+'/')
-	subpath += ('_'+eps+'_'+kind_of_epsilon+'/')
+	subpath_ref = subpath + ('_'+eps_precise+'_'+'constant'+'/')
+	if (kind_of_epsilon=="standart"):											#set the kind_of_t for naming
+		subpath += ('_standart/')
+	else:
+		subpath += ('_'+eps+'_'+kind_of_epsilon+'/')
 
 	
 	states = range(0,11,1)
@@ -125,11 +131,17 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon,eps_precise):
 
 
 	#real plotting
-	for k in k_array[0::4]:
+	for k in k_array[0::4]: #1 curve on 4
 		if (engine=="storm"):
-			y_k = read_float(path+subpath+engine+'/ph_10_'+str(int(k))+'_'+eps)
+			if (kind_of_epsilon=="standart"):											#set the kind_of_t for naming
+				y_k = read_float(path+subpath+engine+'/ph_10_'+str(int(k))+'_standart')
+			else:
+				y_k = read_float(path+subpath+engine+'/ph_10_'+str(int(k))+'_'+eps)
 		else:
-			y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)
+			if (kind_of_epsilon=="standart"):											#set the kind_of_t for naming
+				y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_standart')
+			else:
+				y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)			
 		y = absolute(diff_array(y_0,y_k))
 		plt.plot(states, y, label = "k="+str(k),linewidth=0.5)
 	
@@ -154,20 +166,28 @@ def distance_k(t,kind_of_t,norm,eps,kind_of_epsilon,eps_precise):
 	#1 	t(float) is the timeout in sec
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
 	#3 	norm(string) is how the norm that must be use for defining the distance {"norm_2","norm_infinite"}
-	#4 	epsilon "*E-*"
-	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
+	#4 	epsilon "*E-*" or "standart"
+	#5 	kind_of_epsilon(string) in {"dynamic","constant","standart"}
 	#6 	epsilon of reference "*E-*"
-
+	
+	if (kind_of_epsilon=="standart"):
+		eps = "1E-6"
 
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
-		subpath = 't='+str(t)+'_median_'+eps+'_'+kind_of_epsilon+'/'
-		subpath_ref = 't='+str(t)+'_median_'+eps_precise+'_'+kind_of_epsilon+'/'
+		subpath1 = 't='+str(t)+'_median_'
+		subpath_ref = 't='+str(t)+'_median_'
 	else:
-		subpath = 't='+str(t)+'_regular_'+eps+'_'+kind_of_epsilon+'/'
-		subpath_ref = 't='+str(t)+'_regular_'+eps_precise+'_'+kind_of_epsilon+'/'
+		subpath1 = 't='+str(t)+'_regular_'
+		subpath_ref = 't='+str(t)+'_regular_'
+	
+	if (kind_of_epsilon=="standart"):											#set the kind_of_t for naming
+		subpath2 = subpath1+'standart/'
+	else:
+		subpath2 = subpath1 + eps+'_'+kind_of_epsilon+'/'
+	subpath_ref += eps_precise+'_'+"constant"+'/'
 	#EVENT
 	engine = "explicit/"
-	full_path = path+subpath+explicit+'/'										#set the engine for naming
+	full_path = path+subpath1+eps+'_'+'constant/'+explicit+'/'										#set the engine for naming
 	full_path_ref = path+subpath_ref+explicit+'/'										#set the engine for naming
 	y_ref = read_float(full_path_ref+'ev_'+n+'_k_'+eps_precise) 	#this is the reference distribution (event and precise)
 	y_event = read_float(full_path+'ev_'+n+'_k_'+eps) 			#this is the event distribution
@@ -189,12 +209,16 @@ def distance_k(t,kind_of_t,norm,eps,kind_of_epsilon,eps_precise):
 	
 	#HYBRID
 	engine = "explicit/"
-	full_path = path+subpath+hybrid+'/'	
+	full_path = path+subpath2+hybrid+'/'	
 	
 	k_hybrid = read_float(full_path+'ph_k_array')					#load the bottom line for explicit
 	result_hybrid = np.array([])											
 	for k in k_hybrid:
-		y_k = read_float(full_path+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+		if (kind_of_epsilon=="standart"):											#set the kind_of_t for naming
+			y_k = read_float(full_path+'sumph_'+n+'_'+str(int(k))+'_standart')
+		else:
+			y_k = read_float(full_path+'sumph_'+n+'_'+str(int(k))+'_'+eps)
+		
 		if (norm == "norm_2"):
 			result = norm_2(diff_array(y_event,y_k))
 		else:
@@ -203,12 +227,16 @@ def distance_k(t,kind_of_t,norm,eps,kind_of_epsilon,eps_precise):
 
 	#STORM
 	engine = "storm/"
-	full_path = path+subpath+storm+'/'	
+	full_path = path+subpath2+storm+'/'	
 	
 	k_storm = read_float(full_path+'ph_k_array')					#load the bottom line for explicit
 	result_storm = np.array([])											
 	for k in k_storm:
-		y_k = read_float(full_path+'ph_'+n+'_'+str(int(k))+'_'+eps)
+		if (kind_of_epsilon=="standart"):											#set the kind_of_t for naming
+			y_k = read_float(full_path+'ph_'+n+'_'+str(int(k))+'_standart')
+		else:
+			y_k = read_float(full_path+'ph_'+n+'_'+str(int(k))+'_'+eps)
+
 		if (norm == "norm_2"):
 			result = norm_2(diff_array(y_event,y_k))
 		else:
@@ -287,35 +315,44 @@ def distance_plot_epsilon(t,k,norm):
 	plt.show()
 	
 
-def performance(t,kind_of_t,kind_of_epsilon):
+def performance(t,kind_of_t,eps,kind_of_epsilon):
 	#CONSTANT
 	#n=10
 	#PARAMETERS : 
 	#1 	t(float) is the timeout in sec
 	#2 	kind_of_t(string) is how t was choosen in {"regular","median"} according to lambda
 	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
+	#4 	epsilon "*E-*"
+	#5 	kind_of_epsilon(string) in {"dynamic","constant"}
+	#6 	epsilon of reference "*E-*"
 
 	#CONSTANT
 	n="10"
 	
 	#PATH SETTING
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
-		subpath = 't='+str(t)+'_median_'+kind_of_epsilon+'/'
+		subpath = 't='+str(t)+'_median_'+eps+'_'+kind_of_epsilon+'/'
 	else:
-		subpath = 't='+str(t)+'_regular_'+kind_of_epsilon+'/'	
+		subpath = 't='+str(t)+'_regular_'+eps+'_'+kind_of_epsilon+'/'	
 
 	#EXPLICIT	
-	full_path = path+subpath+"explicit/"
+	#~ full_path = path+subpath+"explicit/"
 		
-	y_event = read_float(full_path+'ev_time_10')
-	y_explicit = read_float(full_path+'ph_time_10')
-	k_explicit = read_float(full_path+'ph_k_array')
+	#~ y_event = read_float(full_path+'ev_time_10')
+	#~ y_explicit = read_float(full_path+'ph_time_10')
+	#~ k_explicit = read_float(full_path+'ph_k_array')
 	
 	#HYBRID
 	full_path = path+subpath+"hybrid/"
 
 	y_hybrid = read_float(full_path+'ph_time_10')
 	k_hybrid = read_float(full_path+'ph_k_array')
+
+	#Storm
+	full_path = path+subpath+"storm/"
+
+	y_storm = read_float(full_path+'ph_time_10')
+	k_storm = read_float(full_path+'ph_k_array')
 	
 	#DATA
 	if (len(k_hybrid)>len(k_explicit)):
@@ -333,9 +370,10 @@ def performance(t,kind_of_t,kind_of_epsilon):
 	plt.ylabel('Time of Computation (s)', fontsize=14, color='black')
 	plt.title('Time of computation of the SSP versus k the PTF parameter\n epsilon = '+eps+', '+kind_of_epsilon+' epsilon, t='+str(t)+', '+kind_of_t,fontsize=11)
 	
-	plt.plot(k_array, y_event[0:1:1]*len(k_array), label = 'event',linewidth=1.0)
-	plt.plot(k_explicit, y_explicit, label = 'explicit',linewidth=1.0)
+	plt.plot(k_array, y_event[0:1:1]*len(k_storm), label = 'event',linewidth=1.0)
+	#~ plt.plot(k_explicit, y_explicit, label = 'explicit',linewidth=1.0)
 	plt.plot(k_hybrid, y_hybrid, label = 'hybrid',linewidth=1.0)
+	plt.plot(k_storm, y_storm, label = 'storm -sparse',linewidth=1.0)
 	plt.legend()
 	plt.show()
 
