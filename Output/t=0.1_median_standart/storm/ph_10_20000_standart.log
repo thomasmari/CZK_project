@@ -1,0 +1,89 @@
+Storm
+---------------
+
+version: 0.10.1 (+409 commits) build from revision g03b634d14 (DIRTY).
+
+Linked with GNU Linear Programming Kit v4.60.
+Linked with Microsoft Z3 Optimizer v4.4 Build 1 Rev 0.
+Linked with MathSAT5 version 5.3.14 (0b98b661254c) (Nov 17 2016 10:59:45, gmp 5.1.3, gcc 4.8.5, 64-bit).
+Linked with CARL.
+Command line arguments: --prism ../../CZK_project/Model/queue_withptf_ctmc.sm --prop ../../CZK_project/Model/storm_prop.csl -e sparse -pc --constants k=20000,timeout=0.1,lambda=6.93147180559945309400 
+Current working directory: /home/storm/Documents/prism-4.4-src/bin
+
+ WARN (Program.cpp:179): The input model is a CTMC, but uses probabilistic commands like they are used in PRISM. Consider rewriting the commands to use Markovian commands instead.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+Time for model construction: 0.789s.
+
+-------------------------------------------------------------- 
+Model type: 	CTMC (sparse)
+States: 	220000
+Transitions: 	420000
+Reward Models:  none
+Labels: 	13
+   * deadlock -> 0 state(s)
+   * init -> 1 state(s)
+   * (qSize = 10) -> 20000 state(s)
+   * (qSize = 1) -> 20000 state(s)
+   * (qSize = 2) -> 20000 state(s)
+   * (qSize = 0) -> 20000 state(s)
+   * (qSize = 3) -> 20000 state(s)
+   * (qSize = 6) -> 20000 state(s)
+   * (qSize = 7) -> 20000 state(s)
+   * (qSize = 5) -> 20000 state(s)
+   * (qSize = 9) -> 20000 state(s)
+   * (qSize = 4) -> 20000 state(s)
+   * (qSize = 8) -> 20000 state(s)
+choice labels: 	no
+-------------------------------------------------------------- 
+
+Model checking property LRA=? [(qSize = 0)] ...
+Result (initial states): 0.07605716917
+Time for model checking: 0.222s.
+
+Model checking property LRA=? [(qSize = 1)] ...
+Result (initial states): 0.08957959095
+Time for model checking: 0.228s.
+
+Model checking property LRA=? [(qSize = 2)] ...
+Result (initial states): 0.09017606327
+Time for model checking: 0.222s.
+
+Model checking property LRA=? [(qSize = 3)] ...
+Result (initial states): 0.09047422845
+Time for model checking: 0.222s.
+
+Model checking property LRA=? [(qSize = 4)] ...
+Result (initial states): 0.09062327555
+Time for model checking: 0.220s.
+
+Model checking property LRA=? [(qSize = 5)] ...
+Result (initial states): 0.09069778136
+Time for model checking: 0.220s.
+
+Model checking property LRA=? [(qSize = 6)] ...
+Result (initial states): 0.09073502538
+Time for model checking: 0.227s.
+
+Model checking property LRA=? [(qSize = 7)] ...
+Result (initial states): 0.09075364296
+Time for model checking: 0.221s.
+
+Model checking property LRA=? [(qSize = 8)] ...
+Result (initial states): 0.09076294957
+Time for model checking: 0.222s.
+
+Model checking property LRA=? [(qSize = 9)] ...
+Result (initial states): 0.0907685287
+Time for model checking: 0.221s.
+
+Model checking property LRA=? [(qSize = 10)] ...
+Result (initial states): 0.1093717446
+Time for model checking: 0.228s.

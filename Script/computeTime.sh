@@ -1,10 +1,10 @@
 #####README
-# There is only one parameters, that is t. The logs (for t) must be already computed 
+# The logs (for t) must be already computed 
 # $1 = t(int) the timeout
 # $2 = engine/data in {event,hybrid,explicit,storm}
 # $3 = data_type in {regular,epsilon,median}
-# $4 = epsilon
-# $5 kind_of_epsilon in {dynamic, constant} for dynamic you have eps_computation = eps/k 
+# $4 = epsilon (doesn't count if standart, put "1E-0" or "standart" or anything)
+# $5 kind_of_epsilon in {dynamic, constant, standart} for dynamic you have eps_computation = eps/k 
 # Return a file of computation time for hybrid and explicit engine in both of their folders
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : phtime_n_epsilon, the folder give the engine and the timeout
@@ -17,12 +17,22 @@ fi
 engine="$2"
 
 #Path Setting
-if [ "$3" == "regular" ]; then
-	path="../Output/t=$1_regular_$4_$5/"
-elif [ "$3" == "epsilon" ]; then
-	path="../Output/t=$1_epsilon_$4_$5/"
+if [ "$5" == "standart" ]; then
+	if [ "$3" == "regular" ]; then
+		path="../Output/t=$1_regular_standart/"
+	elif [ "$3" == "epsilon" ]; then
+		path="../Output/t=$1_epsilon_standart/"
+	else
+		path="../Output/t=$1_median_standart/"
+	fi
 else
-	path="../Output/t=$1_median_$4_$5/"
+	if [ "$3" == "regular" ]; then
+		path="../Output/t=$1_regular_$4_$5/"
+	elif [ "$3" == "epsilon" ]; then
+		path="../Output/t=$1_epsilon_$4_$5/"
+	else
+		path="../Output/t=$1_median_$4_$5/"
+	fi
 fi
 
 #engine setting
@@ -67,14 +77,14 @@ echo done
 
 echo extracting command
 grep "Command line: prism"  temp > temp_command
-grep "Command line arguments: --prism"  temp >> temp_command
+grep "Command line arguments: --prism"  temp >> temp_command #concat command in temp_command
 
 echo done
 echo k_array
 if [ "$2" != "event" ]; then
 	grep -Eo 'k=[0-9]+' temp_command > temp_k
 	grep -Eo '[0-9]+' temp_k > $target_k
-	sort -g $target_k >temp_k
+	sort -g $target_k >temp_k #sort the value in k_array
 	cat temp_k >$target_k
 fi
 echo done
@@ -85,13 +95,13 @@ echo epsilon and time ...
 cat $target_k| while read line
 do
 
-	for file in $(ls $path$subpath$data'_10_'$line'_'*.log); #the order of modification matter = reverse order of last modification
+	for file in $(ls $path$subpath$data'_10_'$line'_'*.log); #the order of modification matter = reverse order of last modification but there is in fqct only one file corresponding
 	do	
 		echo $file
 		#epsilon
 		if [[ $2 =~ 'storm' ]]; then
 			grep 'k=' $file > temp_eps0
-			grep -Eo 'general:precision ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
+			grep -Eo '--precision ([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps0 > temp_eps
 			grep -Eo '([0-9]+[e E]-[0-9]+|[0-9]+.[0-9]+([e E]-[0-9]+)?)' temp_eps >> $target_eps
 		else
 			grep 'k=' $file > temp_eps0
@@ -105,7 +115,7 @@ do
 			gawk -v k=11 -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' temp_time2 >> $target_time
 
 		else
-			grep "Time for steady-state probability computation" temp > temp_time
+			grep "Time for steady-state probability computation:" $file > temp_time
 			grep -Eo '[0-9]+.[0-9]+' temp_time >> $target_time
 		fi
 		#result extract

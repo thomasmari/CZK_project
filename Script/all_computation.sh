@@ -5,17 +5,13 @@
 #~ ###################################t=0.1
 #./computeSS_for_different_k.sh t lambda eps  eps_type engine
 #~ ./computeSS_for_different_k.sh "$1" median "$2"  dynamic explicit
-#~ ./computeSS_for_different_k.sh "$1" median "$2"  dynamic event
-#~ ./computeSS_for_different_k.sh "$1" median "$2"  constant event
+./computeSS_for_different_k.sh "$1" median "$2"  dynamic event
+./computeSS_for_different_k.sh "$1" median "$2"  constant event
 ./computeSS_for_different_k.sh "$1" median "$2"  dynamic storm
 ./computeSS_for_different_k.sh "$1" median "$2"  constant storm
 ./computeSS_for_different_k.sh "$1" median "$2"  dynamic hybrid
 ./computeSS_for_different_k.sh "$1" median "$2"  constant hybrid
-for i in $(seq 1 1 20);
-	do
-		./computeSS_for_different_k.sh "$1" median 1E-"$i"  dynamic event
-		./computeSS_for_different_k.sh "$1" median 1E-"$i"  constant event
-	done
+
 
 #~ #./computeTime.sh t engine data_type kind_of_epsilon
 #~ ./computeTime.sh "$1" explicit median dynamic

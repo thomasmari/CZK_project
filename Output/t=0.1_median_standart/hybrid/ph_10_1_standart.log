@@ -1,0 +1,62 @@
+PRISM
+=====
+
+Version: 4.4
+Date: Tue Jun 19 11:02:38 EDT 2018
+Hostname: storm-eval
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -maxiters 100000000 -power -absolute -const 'k=1,timeout=0.1,lambda=6.93147180559945309400' ../../CZK_project/Model/queue_withptf_ctmc.sm -ss -exportss ../../CZK_project/Output/t=0.1_median_standart/hybrid/ph_10_1_standart
+
+Parsing model file "../../CZK_project/Model/queue_withptf_ctmc.sm"...
+
+Type:        CTMC
+Modules:     main trigger 
+Variables:   qSize i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=1,timeout=0.1,lambda=6.9314718056
+
+Warning: Guard for command 1 of module "trigger" is never satisfied.
+
+Computing reachable states...
+
+Reachability (BFS): 11 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+Time for model construction: 0.011 seconds.
+
+Type:        CTMC
+States:      11 (1 initial)
+Transitions: 21
+
+Rate matrix: 36 nodes (3 terminal), 21 minterms, vars: 5r/5c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:11
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=50] [1.0 Kb]
+Building hybrid MTBDD matrix... [levels=5, nodes=57] [2.7 KB]
+Adding explicit sparse matrices... [levels=5, num=1, compact] [0.2 KB]
+Allocating iteration vectors... [2 x 0.1 KB]
+TOTAL: [3.0 KB]
+
+Starting iterations...
+
+Power method: 168 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/t=0.1_median_standart/hybrid/ph_10_1_standart"...
+
+Time for steady-state probability computation: 0.007 seconds.
+
+---------------------------------------------------------------------
+
+Note: There was 1 warning during computation.
+

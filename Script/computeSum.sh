@@ -2,7 +2,7 @@
 #####README
 # $1 = path from "../Output/"  example t=?_regular_dynamic 
 # $2 = engine in {explicit,hybrid}
-# $3 = epsilon
+# $3 = epsilon or standart
 # The logs (for t) must be already computed 
 # computeTime must be already computed
 # In the result the kline is the time of computation for the ph_n_k_eps
