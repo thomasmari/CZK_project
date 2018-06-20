@@ -46,10 +46,10 @@ sequence=$(seq 1 1 9; seq 10 10 90; seq 100 100 900; seq 1000 1000 4000; seq 500
 ln_2="0.6931471805599453094" #20 digits
 if [ "$2" == "regular" ]; then
 	lambda=$(echo "scale=20;1/$1" | bc)
-	path="t=$1_regular_standart"
+	path="t=$1_regular_standard"
 else
 	lambda=$(echo "scale=20;${ln_2}/$1" | bc)
-	path="t=$1_median_standart"
+	path="t=$1_median_standard"
 fi
 echo lambda = $lambda
 echo path = $path
@@ -89,8 +89,8 @@ elif [ $engine == "explicit" ]; then
 	echo engine k     epsilon_computation epsilon 
 	for k in $sequence
 		do
-			echo explicit $k standart_epsilon 
-			./prism -explicit -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_standart" > "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_standart.log"
+			echo explicit $k standard_epsilon 
+			./prism -explicit -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_PRISM/queue_withptf_gsmp.sm" -ss -exportss "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_standard" > "$OUTPUT_PATH_FROM_PRISM/${path}/${engine}/ph_10_${k}_standard.log"
 		done
 	cd -
 	#write a readme file for explicit computations
@@ -111,8 +111,8 @@ elif [ $engine == "hybrid" ]; then
 	#compute hybrid phase type
 	for k in $sequence;
 	do
-		echo hybrid $k standart epsilon
-		./prism -hybrid -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_standart" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_standart.log"
+		echo hybrid $k standard epsilon
+		./prism -hybrid -maxiters 100000000 -power -absolute -const k=$k,timeout=$1,lambda=$lambda "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" -ss -exportss "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_standard" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_standard.log"
 	done
 	cd -
 	#write a readme file for hybrid computations
@@ -132,8 +132,8 @@ elif [ $engine == "storm" ]; then
 	#compute hybrid phase type
 	for k in $sequence;
 		do
-			echo storm $k standart_epsilon
-			storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_standart.log"
+			echo storm $k standard_epsilon
+			storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_standard.log"
 	done
 	cd -
 	#write a readme file for hybrid computations

@@ -3,8 +3,8 @@
 # $1 = t(int) the timeout
 # $2 = engine/data in {event,hybrid,explicit,storm}
 # $3 = data_type in {regular,epsilon,median}
-# $4 = epsilon (doesn't count if standart, put "1E-0" or "standart" or anything)
-# $5 kind_of_epsilon in {dynamic, constant, standart} for dynamic you have eps_computation = eps/k 
+# $4 = epsilon (doesn't count if standard, put "1E-0" or "standard" or anything)
+# $5 kind_of_epsilon in {dynamic, constant, standard} for dynamic you have eps_computation = eps/k 
 # Return a file of computation time for hybrid and explicit engine in both of their folders
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : phtime_n_epsilon, the folder give the engine and the timeout
@@ -17,13 +17,13 @@ fi
 engine="$2"
 
 #Path Setting
-if [ "$5" == "standart" ]; then
+if [ "$5" == "standard" ]; then
 	if [ "$3" == "regular" ]; then
-		path="../Output/t=$1_regular_standart/"
+		path="../Output/t=$1_regular_standard/"
 	elif [ "$3" == "epsilon" ]; then
-		path="../Output/t=$1_epsilon_standart/"
+		path="../Output/t=$1_epsilon_standard/"
 	else
-		path="../Output/t=$1_median_standart/"
+		path="../Output/t=$1_median_standard/"
 	fi
 else
 	if [ "$3" == "regular" ]; then
