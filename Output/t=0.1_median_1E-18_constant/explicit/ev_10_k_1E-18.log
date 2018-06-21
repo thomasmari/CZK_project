@@ -2,8 +2,8 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Thu Jun 21 13:51:43 CEST 2018
-Hostname: thomas
+Date: Thu Jun 21 09:30:19 EDT 2018
+Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -explicit -epsilon 1E-18 -maxiters 100000000 -power -absolute -const 'timeout=0.1,lambda=6.93147180559945309400' ../../../CZK_project/Model/timeoutqueue.sm -ss -exportss ../../../CZK_project/Output/t=0.1_median_1E-18_constant/explicit/ev_10_k_1E-18
 
@@ -24,7 +24,7 @@ Computing reachable states... 11 states
 Reachable states exploration and model construction done in 0.006 secs.
 Sorting reachable states list...
 
-Time for model construction: 0.014 seconds.
+Time for model construction: 0.017 seconds.
 
 Type:        GSMP
 States:      11 (1 initial)
@@ -41,8 +41,8 @@ Starting Prob1...
 Prob1 took 0.0 seconds.
 target=10, yes=11, no=0, maybe=0
 Starting value iteration (with Power method)...
-Value iteration (with Power method) took 1 iterations, 0 multiplications and 0.0 seconds.
-Probabilistic reachability took 0.0 seconds.
+Value iteration (with Power method) took 1 iterations, 0 multiplications and 0.001 seconds.
+Probabilistic reachability took 0.007 seconds.
 
 Probability of reaching BSCC 1: 1.0
 
@@ -50,10 +50,10 @@ Computing steady-state probabilities for BSCC 1
 Starting value iteration...
 Value iteration took 358 iterations and 0.001 seconds.
 
-Reducing ACTMC to equivalent DTMC took 0.254 seconds.
-Computing steady-state probabilities for the equivalent DTMC took 0.004 seconds.
+Reducing ACTMC to equivalent DTMC took 0.504 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.019 seconds.
 
 Printing steady-state probabilities in plain text format to file "../../../CZK_project/Output/t=0.1_median_1E-18_constant/explicit/ev_10_k_1E-18"...
 
-Time for steady-state probability computation: 0.265 seconds.
+Time for steady-state probability computation: 0.531 seconds.
 
