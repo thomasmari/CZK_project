@@ -1,0 +1,492 @@
+storm@storm-eval:~$ cd Documents/CZK_project/Script/
+storm@storm-eval:~/Documents/CZK_project/Script$ ./script.sh 
+Please specify number "timeout" as the first parameter!
+Please specify number "timeout" as the first parameter!
+storm@storm-eval:~/Documents/CZK_project/Script$ ./script.sh 0.1
+1E-1
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-1_constant
+engine epsilon_computation
+event 1E-1
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-1_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-1_constant/
+explicit/
+../Output/t=0.1_median_1E-1_constant/explicit/ev_10_k_1E-1.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-1_constant/explicit/ev_10_k_1E-1.log
+erasing temps
+done
+storm@storm-eval:~/Documents/CZK_project/Script$ ./script.sh 0.1
+1E-1
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-1_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-1_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-1
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-1_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-1_constant/
+explicit/
+../Output/t=0.1_median_1E-1_constant/explicit/ev_10_k_1E-1.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-1_constant/explicit/ev_10_k_1E-1.log
+erasing temps
+done
+1E-2
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-2_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-2_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-2
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-2_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-2_constant/
+explicit/
+../Output/t=0.1_median_1E-2_constant/explicit/ev_10_k_1E-2.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-2_constant/explicit/ev_10_k_1E-2.log
+erasing temps
+done
+1E-3
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-3_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-3_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-3
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-3_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-3_constant/
+explicit/
+../Output/t=0.1_median_1E-3_constant/explicit/ev_10_k_1E-3.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-3_constant/explicit/ev_10_k_1E-3.log
+erasing temps
+done
+1E-4
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-4_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-4_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-4
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-4_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-4_constant/
+explicit/
+../Output/t=0.1_median_1E-4_constant/explicit/ev_10_k_1E-4.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-4_constant/explicit/ev_10_k_1E-4.log
+erasing temps
+done
+1E-5
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-5_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-5_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-5
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-5_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-5_constant/
+explicit/
+../Output/t=0.1_median_1E-5_constant/explicit/ev_10_k_1E-5.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-5_constant/explicit/ev_10_k_1E-5.log
+erasing temps
+done
+1E-6
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-6_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-6_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-6
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-6_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-6_constant/
+explicit/
+../Output/t=0.1_median_1E-6_constant/explicit/ev_10_k_1E-6.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-6_constant/explicit/ev_10_k_1E-6.log
+erasing temps
+done
+1E-7
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-7_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-7_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-7
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-7_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-7_constant/
+explicit/
+../Output/t=0.1_median_1E-7_constant/explicit/ev_10_k_1E-7.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-7_constant/explicit/ev_10_k_1E-7.log
+erasing temps
+done
+1E-8
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-8_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-8_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-8
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-8_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-8_constant/
+explicit/
+../Output/t=0.1_median_1E-8_constant/explicit/ev_10_k_1E-8.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-8_constant/explicit/ev_10_k_1E-8.log
+erasing temps
+done
+1E-9
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-9_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-9_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-9
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-9_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-9_constant/
+explicit/
+../Output/t=0.1_median_1E-9_constant/explicit/ev_10_k_1E-9.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-9_constant/explicit/ev_10_k_1E-9.log
+erasing temps
+done
+1E-10
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-10_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-10_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-10
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-10_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-10_constant/
+explicit/
+../Output/t=0.1_median_1E-10_constant/explicit/ev_10_k_1E-10.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-10_constant/explicit/ev_10_k_1E-10.log
+erasing temps
+done
+1E-11
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-11_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-11_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-11
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-11_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-11_constant/
+explicit/
+../Output/t=0.1_median_1E-11_constant/explicit/ev_10_k_1E-11.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-11_constant/explicit/ev_10_k_1E-11.log
+erasing temps
+done
+1E-12
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-12_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-12_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-12
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-12_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-12_constant/
+explicit/
+../Output/t=0.1_median_1E-12_constant/explicit/ev_10_k_1E-12.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-12_constant/explicit/ev_10_k_1E-12.log
+erasing temps
+done
+1E-13
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-13_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-13_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-13
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-13_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-13_constant/
+explicit/
+../Output/t=0.1_median_1E-13_constant/explicit/ev_10_k_1E-13.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-13_constant/explicit/ev_10_k_1E-13.log
+erasing temps
+done
+1E-14
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-14_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-14_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-14
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-14_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-14_constant/
+explicit/
+../Output/t=0.1_median_1E-14_constant/explicit/ev_10_k_1E-14.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-14_constant/explicit/ev_10_k_1E-14.log
+erasing temps
+done
+1E-15
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-15_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-15_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-15
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-15_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-15_constant/
+explicit/
+../Output/t=0.1_median_1E-15_constant/explicit/ev_10_k_1E-15.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-15_constant/explicit/ev_10_k_1E-15.log
+erasing temps
+done
+1E-16
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-16_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-16_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-16
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-16_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-16_constant/
+explicit/
+../Output/t=0.1_median_1E-16_constant/explicit/ev_10_k_1E-16.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-16_constant/explicit/ev_10_k_1E-16.log
+erasing temps
+done
+1E-17
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-17_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-17_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-17
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-17_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-17_constant/
+explicit/
+../Output/t=0.1_median_1E-17_constant/explicit/ev_10_k_1E-17.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-17_constant/explicit/ev_10_k_1E-17.log
+erasing temps
+done
+1E-18
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-18_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-18_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-18
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-18_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-18_constant/
+explicit/
+../Output/t=0.1_median_1E-18_constant/explicit/ev_10_k_1E-18.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-18_constant/explicit/ev_10_k_1E-18.log
+erasing temps
+done
+1E-19
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-19_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-19_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-19
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-19_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-19_constant/
+explicit/
+../Output/t=0.1_median_1E-19_constant/explicit/ev_10_k_1E-19.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-19_constant/explicit/ev_10_k_1E-19.log
+erasing temps
+done
+1E-20
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-20_constant
+mkdir: cannot create directory ‘t=0.1_median_1E-20_constant’: File exists
+mkdir: cannot create directory ‘explicit’: File exists
+engine epsilon_computation
+event 1E-20
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-20_constant/explicit
+extracting log ...
+../Output/t=0.1_median_1E-20_constant/
+explicit/
+../Output/t=0.1_median_1E-20_constant/explicit/ev_10_k_1E-20.log
+done
+extracting command
+done
+done
+epsilon and time ...
+../Output/t=0.1_median_1E-20_constant/explicit/ev_10_k_1E-20.log
+erasing temps
+done
+storm@storm-eval:~/Documents/CZK_project/Script$ ./computeSS_for_different_k_temp.sh 0.1 median 1E-6 dynamic storm./computeSS_for_different_k_temp.sh 0.1 median 1E-6 dynamic storm
+1E-6
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-6_dynamic
+mkdir: cannot create directory ‘t=0.1_median_1E-6_dynamic’: File exists
+mkdir: cannot create directory ‘storm./computeSS_for_different_k_temp.sh’: No such file or directory
+./computeSS_for_different_k_temp.sh: line 84: cd: storm./computeSS_for_different_k_temp.sh: No such file or directory
+storm@storm-eval:~/Documents/CZK_project/Script$ ./computeSS_for_different_k_temp.sh 0.1 median 1E-6 dynamic storm && ./computeSS_for_different_k_temp.sh 0.1 median 1E-6 dynamic storm
+1E-6
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-6_dynamic
+mkdir: cannot create directory ‘t=0.1_median_1E-6_dynamic’: File exists
+mkdir: cannot create directory ‘storm’: File exists
+engine k epsilon_computation epsilon
+storm 60000 1.66667e-11 1E-6
+storm 70000 1.42857e-11 1E-6
+storm 80000 1.25e-11 1E-6
+storm 90000 1.11111e-11 1E-6
+storm 100000 1e-11 1E-6
+storm 200000 5e-12 1E-6
+storm 300000 3.33333e-12 1E-6
+storm 400000 2.5e-12 1E-6
+storm 500000 2e-12 1E-6
+storm 600000 1.66667e-12 1E-6
+storm 700000 1.42857e-12 1E-6
+storm 800000 1.25e-12 1E-6
+storm 900000 1.11111e-12 1E-6
+storm 1000000 1e-12 1E-6
+storm 2000000 5e-13 1E-6
+storm 3000000 3.33333e-13 1E-6
+storm 4000000 2.5e-13 1E-6
+storm 5000000 2e-13 1E-6
+./computeSS_for_different_k_temp.sh: line 158: 12814 Killed                  storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --precision "$eps_k" --abstraction:precision "$eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+storm 6000000 1.66667e-13 1E-6
+storm 7000000 1.42857e-13 1E-6
+storm 8000000 1.25e-13 1E-6
+storm 9000000 1.11111e-13 1E-6
+./computeSS_for_different_k_temp.sh: line 158: 15762 Killed                  storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --precision "$eps_k" --abstraction:precision "$eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+storm 10000000 1e-13 1E-6
+/home/storm/Documents/CZK_project/Output/t=0.1_median_1E-6_dynamic/storm
+1E-6
+lambda = 6.93147180559945309400
+path = t=0.1_median_1E-6_dynamic
+mkdir: cannot create directory ‘t=0.1_median_1E-6_dynamic’: File exists
+mkdir: cannot create directory ‘storm’: File exists
+engine k epsilon_computation epsilon
+storm 60000 1.66667e-11 1E-6
+storm 70000 1.42857e-11 1E-6
+storm 80000 1.25e-11 1E-6
+storm 90000 1.11111e-11 1E-6
+storm 100000 1e-11 1E-6
+storm 200000 5e-12 1E-6
+storm 300000 3.33333e-12 1E-6
+storm 400000 2.5e-12 1E-6
+storm 500000 2e-12 1E-6
+storm 600000 1.66667e-12 1E-6
+storm 700000 1.42857e-12 1E-6
+storm 800000 1.25e-12 1E-6
+storm 900000 1.11111e-12 1E-6
+storm 1000000 1e-12 1E-6
+storm 2000000 5e-13 1E-6
+storm 3000000 3.33333e-13 1E-6
+storm 4000000 2.5e-13 1E-6
+storm 5000000 2e-13 1E-6
+./computeSS_for_different_k_temp.sh: line 158: 21189 Killed                  storm --prism "$MODEL_PATH_FROM_CLASSIC_PRISM/queue_withptf_ctmc.sm" --prop "$MODEL_PATH_FROM_CLASSIC_PRISM/storm_prop.csl" -e sparse -pc --precision "$eps_k" --abstraction:precision "$eps_k" --constants k="$k",timeout="$1",lambda="$lambda" > "$OUTPUT_PATH_FROM_CLASSIC_PRISM/${path}/${engine}/ph_10_${k}_${eps}.log"
+storm 6000000 1.66667e-13 1E-6
+storm 7000000 1.42857e-13 1E-6
+storm 8000000 1.25e-13 1E-6

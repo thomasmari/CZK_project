@@ -1,6 +1,6 @@
 #$1 = t
 #$2=eps
-sequence=$(seq 1 1 1);
+sequence=$(seq 1 1 20);
 for k in $sequence
 	do
 		./computeSS_for_different_k.sh "$1" median "1E-$k" constant event
