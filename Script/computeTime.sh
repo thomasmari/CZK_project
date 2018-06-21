@@ -128,8 +128,9 @@ else
 			if [[ $2 =~ 'storm' ]]; then
 				grep "Time for model checking:" $file > temp_time
 				grep -Eo '[0-9]+.[0-9]+' temp_time > temp_time2
-				gawk -v k=11 -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' temp_time2 >> $target_time
-
+				gawk -v k=11 -v CONVFMT=%.17g '{s+=$1}NR%k==0{printf "%.20lf\n", s;s=0}' temp_time2 > temp_time
+				time=$(cat temp_time)
+				echo "scale=2; $time / 11" | bc >> $target_time
 			else
 				grep "Time for steady-state probability computation:" $file > temp_time
 				grep -Eo '[0-9]+.[0-9]+' temp_time >> $target_time

@@ -35,7 +35,7 @@ def curve(t,kind_of_t,engine):	#out of order
 
 	y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
 	x = range(0,11,1)
-	plt.plot(x, y_0, label = 'event model',linewidth=0.7)
+	plt.plot(x, y_0, label = 'PRISM ACTMC',linewidth=0.7)
 	k_array = [50,1000,2000,3000,4000,5000]
 	for k in k_array:
 		y_k = read_float(path+subpath+engine+'/sumph_10_'+str(k)+'_'+eps)
@@ -70,7 +70,7 @@ def curve_epsilon(t,k,engine):
 
 	#y_0 = read_float(path+subpath+'explicit'+'/ev_10_k_'+eps_precise)	#event_model
 	x = range(0,11,1)
-	#plt.plot(x, y_0, label = 'event model',linewidth=0.7)
+	#plt.plot(x, y_0, label = 'PRISM ACTMC',linewidth=0.7)
 	eps_array = read_file(path+subpath+data+'_eps_array')
 	print eps_array
 	for i,e in enumerate(eps_array[0::1]):
@@ -254,10 +254,10 @@ def distance_k(t,kind_of_t,norm,eps,kind_of_epsilon,eps_precise):
 		plt.title('Infinity norm distance of SSP for a queue versus PH fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise+','+kind_of_epsilon+' epsilon')
 	else:
 		plt.title('Euclidean distance of SSP for a queue versus phase type fitting parameter k\ntimeout='+str(t)+','+kind_of_t+' lambda, eps ='+eps+', eps ref='+eps_precise)
-	plt.plot(k_hybrid, result_hybrid, label = "hybrid",linewidth=0.5)
-	#~ plt.plot(k_explicit, result_explicit, label = "explicit",linewidth=0.5)
-	plt.plot(k_storm, result_storm, label = "storm -sparse",linewidth=0.5)
-	plt.plot(k_storm, [result_event]*len(k_storm), label = "event",linewidth=0.5)
+	plt.plot(k_hybrid, result_hybrid, label = "PRISM -hybrid",linewidth=0.5)
+	#~ plt.plot(k_explicit, result_explicit, label = "PRISM -explicit",linewidth=0.5)
+	plt.plot(k_storm, result_storm, label = "STORM -sparse",linewidth=0.5)
+	plt.plot(k_storm, [result_event]*len(k_storm), label = "PRISM ACTMC",linewidth=0.5)
 
 
 	plt.legend()
@@ -311,8 +311,8 @@ def distance_plot_epsilon(t,k,norm):
 		plt.title('Maximum distance between event model eps = 1E-13 and PTF k=1000 for engine explicit and hybrid')
 	else:
 		plt.title('Euclidean distance between event model eps = 1E-13 and PTF k=1000 for engine explicit and hybrid')
-	plt.plot(map(float,eps_hybrid), result_hybrid, label = "hybrid",linewidth=0.5)
-	plt.plot(map(float,eps_explicit), result_explicit, label = "explicit",linewidth=0.5)
+	plt.plot(map(float,eps_hybrid), result_hybrid, label = "PRISM -hybrid",linewidth=0.5)
+	plt.plot(map(float,eps_explicit), result_explicit, label = "PRISM -explicit",linewidth=0.5)
 	plt.legend()
 	plt.show()
 	
@@ -330,17 +330,21 @@ def performance(t,kind_of_t,eps,kind_of_epsilon):
 
 	#CONSTANT
 	n="10"
+
 	
 	#PATH SETTING
 	if (kind_of_t=="median"):											#set the kind_of_t for naming
 		subpath = 't='+str(t)+'_median_'+eps+'_'+kind_of_epsilon+'/'
+		subpath_event = 't='+str(t)+'_median_'+eps+'_constant/'
 	else:
 		subpath = 't='+str(t)+'_regular_'+eps+'_'+kind_of_epsilon+'/'	
+		subpath_event = 't='+str(t)+'_regular_'+eps+'_constant/'	
 
 	#EXPLICIT	
-	#~ full_path = path+subpath+"explicit/"
+	full_path = path+subpath+"explicit/"
+	full_path_event = path+subpath_event+"explicit/"
 		
-	#~ y_event = read_float(full_path+'ev_time_10')
+	y_event = read_float(full_path_event+'ev_time_10')
 	#~ y_explicit = read_float(full_path+'ph_time_10')
 	#~ k_explicit = read_float(full_path+'ph_k_array')
 	
@@ -356,14 +360,15 @@ def performance(t,kind_of_t,eps,kind_of_epsilon):
 	y_storm = read_float(full_path+'ph_time_10')
 	k_storm = read_float(full_path+'ph_k_array')
 	
-	#DATA
-	if (len(k_hybrid)>len(k_explicit)):
-		k_array = k_hybrid
-		max_length = len(k_hybrid)
-	else:
-		k_array = k_explicit
-		max_length = len(k_explicit)
-		
+	#~ #DATA
+	#~ if (len(k_hybrid)>len(k_explicit)):
+		#~ k_array = k_hybrid
+		#~ max_length = len(k_hybrid)
+	#~ else:
+		#~ k_array = k_explicit
+		#~ max_length = len(k_explicit)
+	k_array = k_storm
+	max_length = len(k_storm)	
 	
 	#PLOTING
 	plt.yscale('log')
@@ -372,10 +377,10 @@ def performance(t,kind_of_t,eps,kind_of_epsilon):
 	plt.ylabel('Time of Computation (s)', fontsize=14, color='black')
 	plt.title('Time of computation of the SSP versus k the PTF parameter\n epsilon = '+eps+', '+kind_of_epsilon+' epsilon, t='+str(t)+', '+kind_of_t,fontsize=11)
 	
-	plt.plot(k_array, y_event[0:1:1]*len(k_storm), label = 'event',linewidth=1.0)
-	#~ plt.plot(k_explicit, y_explicit, label = 'explicit',linewidth=1.0)
-	plt.plot(k_hybrid, y_hybrid, label = 'hybrid',linewidth=1.0)
-	plt.plot(k_storm, y_storm, label = 'storm -sparse',linewidth=1.0)
+	plt.plot(k_array, y_event[0:1:1]*len(k_storm), label = 'PRISM ACTMC',linewidth=1.0)
+	#~ plt.plot(k_explicit, y_explicit, label = 'PRISM -explicit',linewidth=1.0)
+	plt.plot(k_hybrid, y_hybrid, label = 'PRISM -hybrid',linewidth=1.0)
+	plt.plot(k_storm, y_storm, label = 'STORM -sparse',linewidth=1.0)
 	plt.legend()
 	plt.show()
 
