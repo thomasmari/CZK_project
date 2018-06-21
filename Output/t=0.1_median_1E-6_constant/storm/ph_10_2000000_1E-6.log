@@ -20,3 +20,29 @@ Current working directory: /home/storm/Documents/prism-4.4-src/bin
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
  WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+Time for model construction: 2356.644s.
+
+-------------------------------------------------------------- 
+Model type: 	CTMC (sparse)
+States: 	22000000
+Transitions: 	42000000
+Reward Models:  none
+Labels: 	13
+   * deadlock -> 0 state(s)
+   * init -> 1 state(s)
+   * (qSize = 10) -> 2000000 state(s)
+   * (qSize = 1) -> 2000000 state(s)
+   * (qSize = 2) -> 2000000 state(s)
+   * (qSize = 0) -> 2000000 state(s)
+   * (qSize = 3) -> 2000000 state(s)
+   * (qSize = 6) -> 2000000 state(s)
+   * (qSize = 7) -> 2000000 state(s)
+   * (qSize = 5) -> 2000000 state(s)
+   * (qSize = 9) -> 2000000 state(s)
+   * (qSize = 4) -> 2000000 state(s)
+   * (qSize = 8) -> 2000000 state(s)
+choice labels: 	no
+-------------------------------------------------------------- 
+
+Model checking property LRA=? [(qSize = 0)] ...
+ERROR (storm.cpp:42): An unexpected exception occurred and caused Storm to terminate. The message of this exception is: std::bad_alloc

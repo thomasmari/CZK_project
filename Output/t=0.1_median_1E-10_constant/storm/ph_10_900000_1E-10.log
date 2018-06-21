@@ -53,3 +53,37 @@ Result (initial states): 0.001118064278
 Time for model checking: 550.322s.
 
 Model checking property LRA=? [(qSize = 2)] ...
+Result (initial states): 0.002277959565
+Time for model checking: 482.489s.
+
+Model checking property LRA=? [(qSize = 3)] ...
+Result (initial states): 0.004505784451
+Time for model checking: 423.102s.
+
+Model checking property LRA=? [(qSize = 4)] ...
+Result (initial states): 0.008962148054
+Time for model checking: 381.599s.
+
+Model checking property LRA=? [(qSize = 5)] ...
+Result (initial states): 0.01791042536
+Time for model checking: 407.044s.
+
+Model checking property LRA=? [(qSize = 6)] ...
+Result (initial states): 0.03585150568
+Time for model checking: 343.309s.
+
+Model checking property LRA=? [(qSize = 7)] ...
+Result (initial states): 0.07171316744
+Time for model checking: 261.209s.
+
+Model checking property LRA=? [(qSize = 8)] ...
+Result (initial states): 0.1424867545
+Time for model checking: 224.717s.
+
+Model checking property LRA=? [(qSize = 9)] ...
+Result (initial states): 0.2718685127
+Time for model checking: 333.849s.
+
+Model checking property LRA=? [(qSize = 10)] ...
+Result (initial states): 0.4429603736
+Time for model checking: 478.480s.
