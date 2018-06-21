@@ -1,0 +1,398 @@
+%% This is file `elsarticle-template-1-num.tex',
+%%
+%% Copyright 2009 Elsevier Ltd
+%%
+%% This file is part of the 'Elsarticle Bundle'.
+%% ---------------------------------------------
+%%
+%% It may be distributed under the conditions of the LaTeX Project Public
+%% License, either version 1.2 of this license or (at your option) any
+%% later version.  The latest version of this license is in
+%%    http://www.latex-project.org/lppl.txt
+%% and version 1.2 or later is part of all distributions of LaTeX
+%% version 1999/12/01 or later.
+%%
+%% Template article for Elsevier's document class `elsarticle'
+%% with numbered style bibliographic references
+%%
+%% $Id: elsarticle-template-1-num.tex 149 2009-10-08 05:01:15Z rishi $
+%% $URL: http://lenova.river-valley.com/svn/elsbst/trunk/elsarticle-template-1-num.tex $
+%%
+\documentclass[article,12pt]{elsarticle}
+
+%% Use the option review to obtain double line spacing
+%% \documentclass[preprint,review,12pt]{elsarticle}
+
+%% Use the options 1p,twocolumn; 3p; 3p,twocolumn; 5p; or 5p,twocolumn
+%% for a journal layout:
+%% \documentclass[final,1p,times]{elsarticle}
+%% \documentclass[final,1p,times,twocolumn]{elsarticle}
+%% \documentclass[final,3p,times]{elsarticle}
+%% \documentclass[final,3p,times,twocolumn]{elsarticle}
+%% \documentclass[final,5p,times]{elsarticle}
+%% \documentclass[final,5p,times,twocolumn]{elsarticle}
+
+%% The graphicx package provides the includegraphics command.
+\usepackage{graphicx}
+%% The amssymb package provides various useful mathematical symbols
+\usepackage{amssymb}
+%% The amsthm package provides extended theorem environments
+%% \usepackage{amsthm}
+\usepackage{pgf}
+\usepackage{tikz}
+\usetikzlibrary{arrows,automata}
+\usetikzlibrary{chains,shapes.multipart}
+
+\usepackage{listings}
+\usepackage{color}
+%% PRISM CODE LISTING 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\lstset{frame=tb,
+	language=Java,
+	aboveskip=1mm,
+	belowskip=1mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\fontsize{8.8}{8.5}\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+	morekeywords={event, gsmp, dirac, exponential, uniform, weibull, erlang,
+		module, init, rewards, endrewards, label, true, endmodule}
+}
+
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,       % false: boxed links; true: colored links
+    linkcolor=red,          % color of internal links 
+    urlcolor=cyan           % color of external links
+}
+
+\usepackage{float}
+
+%% The lineno packages adds line numbers. Start line numbering with
+%% \begin{linenumbers}, end it with \end{linenumbers}. Or switch it on
+%% for the whole article with \linenumbers after \end{frontmatter}.
+\usepackage{lineno}
+
+%% natbib.sty is loaded by default. However, natbib options can be
+%% provided with \biboptions{...} command. Following options are
+%% valid:
+
+%%   round  -  round parentheses are used (default)
+%%   square -  square brackets are used   [option]
+%%   curly  -  curly braces are used      {option}
+%%   angle  -  angle brackets are used    <option>
+%%   semicolon  -  multiple citations separated by semi-colon
+%%   colon  - same as semicolon, an earlier confusion
+%%   comma  -  separated by comma
+%%   numbers-  selects numerical citations
+%%   super  -  numerical citations as superscripts
+%%   sort   -  sorts multiple citations according to order in ref. list
+%%   sort&compress   -  like sort, but also compresses numerical citations
+%%   compress - compresses without sorting
+%%
+%% \biboptions{comma,round}
+
+% \biboptions{}
+
+% \journal{Journal Name}
+
+\begin{document}
+
+\begin{frontmatter}
+
+%% Title, authors and addresses
+
+\title{Efficient modeling of timeouts in PRISM}
+
+%% use the tnoteref command within \title for footnotes;
+%% use the tnotetext command for the associated footnote;
+%% use the fnref command within \author or \address for footnotes;
+%% use the fntext command for the associated footnote;
+%% use the corref command within \author for corresponding author footnotes;
+%% use the cortext command for the associated footnote;
+%% use the ead command for the email address,
+%% and the form \ead[url] for the home page:
+%%
+%% \title{Title\tnoteref{label1}}
+%% \tnotetext[label1]{}
+%% \author{Name\corref{cor1}\fnref{label2}}
+%% \ead{email address}
+%% \ead[url]{home page}
+%% \fntext[label2]{}
+%% \cortext[cor1]{}
+%% \address{Address\fnref{label3}}
+%% \fntext[label3]{}
+
+
+%% use optional labels to link authors explicitly to addresses:
+%% \author[label1,label2]{<author name>}
+%% \address[label1]{<address>}
+%% \address[label2]{<address>}
+
+\author{John Smith}
+
+\address{California, United States}
+
+\begin{abstract}
+Phase-type fitting remains the only way of modeling non-Markovian distributions within PRISM model checker.
+When analyzing models with phase-type distributions, it is problematic to obtain results of sufficient precision within reasonable time.
+We ran experimental computations and deduced a reasonable way of obtaining precise analysis results for phase-type fitted PRISM CTMCs.
+Lastly, we hint at an entirely different (and arguably better) approach to handling non-Markovian distributions.
+\end{abstract}
+
+\begin{keyword}
+PRISM model checker \sep CTMC \sep deterministic timeout \sep phase-type distribution \sep modeling \sep analysis
+%% keywords here, in the form: keyword \sep keyword
+
+%% MSC codes here, in the form: \MSC code \sep code
+%% or \MSC[2008] code \sep code (2000 is the default)
+
+\end{keyword}
+
+\end{frontmatter}
+
+%%
+%% Start line numbering here if you want
+%%
+\linenumbers
+
+%% main text
+\section{Introduction}
+\label{S:1}
+
+PRISM \cite{KNP11} and Storm \cite{DBLP:journals/corr/DehnertJK017} are popular tools for modeling and analysis of stochastic systems in continuous time. They use efficient algorithms for analysis of continuous time Markov chains (CTMC). This approach suffers from a severe restriction of modeling power --- the time between transitions must be exponentially distributed. This restriction can be remedied by the use of phase-type distributions, which can approximate any general distribution with arbitrary accuracy by only using exponential distributions \cite{Buchholz:2014:IMP:2683922}. However, the use of phase-type distributions drastically increases the number of states within the CTMC.
+
+In this paper, we experimentally evaluate the precision of the result and required computation time of various approaches to analysis of continuous time stochastic models with deterministic transitions (timeouts). The obtained results are then compared against results of our extension of PRISM capable of efficiently analyzing CTMC with non-Markovian alarms (ACTMC).
+
+
+% \subsection{Subsection One}
+
+% Quisque elit ipsum, porttitor et imperdiet in, facilisis ac diam. Nunc facilisis interdum felis eget tincidunt. In condimentum fermentum leo, non consequat leo imperdiet pharetra. Fusce ac massa ipsum, vel convallis diam. Quisque eget turpis felis. Curabitur posuere, risus eu placerat porttitor, magna metus mollis ipsum, eu volutpat nisl erat ac justo. Nullam semper, mi at iaculis viverra, nunc velit iaculis nunc, eu tempor ligula eros in nulla. Aenean dapibus eleifend convallis. Cras ut libero tellus. Integer mollis eros eget risus malesuada fringilla mattis leo facilisis. Etiam interdum turpis eget odio ultricies sed convallis magna accumsan. Morbi in leo a mauris sollicitudin molestie at non nisl.
+
+% \begin{table}[h]
+% \centering
+% \begin{tabular}{l l l}
+% \hline
+% \textbf{Treatments} & \textbf{Response 1} & \textbf{Response 2}\\
+% \hline
+% Treatment 1 & 0.0003262 & 0.562 \\
+% Treatment 2 & 0.0015681 & 0.910 \\
+% Treatment 3 & 0.0009271 & 0.296 \\
+% \hline
+% \end{tabular}
+% \caption{Table caption}
+% \end{table}
+
+% \subsection{Subsection Two}
+
+% Donec eget ligula venenatis est posuere eleifend in sit amet diam. Vestibulum sollicitudin mauris ac augue blandit ultricies. Nulla facilisi. Etiam ut turpis nunc. Praesent leo orci, tincidunt vitae feugiat eu, feugiat a massa. Duis mauris ipsum, tempor vel condimentum nec, suscipit non mi. Fusce quis urna dictum felis posuere sagittis ac sit amet erat. In in ultrices lectus. Nulla vitae ipsum lectus, a gravida erat. Etiam quam nisl, blandit ut porta in, accumsan a nibh. Phasellus sodales euismod dolor sit amet elementum. Phasellus varius placerat erat, nec gravida libero pellentesque id. Fusce nisi ante, euismod nec cursus at, suscipit a enim. Nulla facilisi.
+
+% \begin{figure}[h]
+% \centering\includegraphics[width=0.4\linewidth]{placeholder}
+% \caption{Figure caption}
+% \end{figure}
+
+% Integer risus dui, condimentum et gravida vitae, adipiscing et enim. Aliquam erat volutpat. Pellentesque diam sapien, egestas eget gravida ut, tempor eu nulla. Vestibulum mollis pretium lacus eget venenatis. Fusce gravida nisl quis est molestie eu luctus ipsum pretium. Maecenas non eros lorem, vel adipiscing odio. Etiam dolor risus, mattis in pellentesque id, pellentesque eu nibh. Mauris nec ante at orci ultricies placerat ac non massa. Aenean imperdiet, ante eu sollicitudin vestibulum, dolor felis dapibus arcu, sit amet fermentum urna nibh sit amet mauris. Suspendisse adipiscing mollis dolor quis lobortis.
+
+% \begin{equation}
+% \label{eq:emc}
+% e = mc^2
+% \end{equation}
+
+\section{Experimental evaluation}
+\label{S:2}
+
+	\begin{figure}[H]
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+		semithick]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		
+		\node[initial,state] (s0)                    {$0$};
+		\node[state]         (s1) [right of=s0] {$1$};
+		\node[state]         (s2) [right of=s1] {$2$};
+		\node[state]         (s3) [right of=s2] {$3$};
+		\node[state]         (s4) [right of=s3]       {$4$};
+		\node[state]         (sw) [right of=s4,fill=white,text=black]       {...};
+		\node[state]         (sn) [right of=sw]       {$10$};
+		
+		
+		
+		\path[->, dashed]  
+        (s0) edge [bend left]             node {$t$} (s1);
+        \path[->]
+		(s1) edge [bend left] node {$\lambda$} (s0);
+        \path[->, dashed]
+		(s1) edge  [bend left]            node {$t$} (s2);
+        \path[->]
+		(s2) edge [bend left]             node {$\lambda$} (s1);
+        \path[->, dashed]
+		(s2) edge [bend left]  node {$t$} (s3);
+        \path[->]
+		(s3) edge [bend left]              node {$\lambda$} (s2);
+        \path[->, dashed]
+		(s3) edge [bend left]  node {$t$} (s4);
+        \path[->]
+		(s4) edge [bend left]             node {$\lambda$} (s3);
+        \path[->, dashed]
+		(s4) edge [bend left]  node {$t$} (sw);
+        \path[->]
+		(sw) edge [bend left]             node {$\lambda$} (s4);
+        \path[->, dashed]
+		(sw) edge [bend left]  node {$t$} (sn);
+        \path[->]
+		(sn) edge [bend left]             node {$\lambda$} (sw);
+        \path[->, dashed]
+        (sn) edge [loop right]  node {$t$} (sn);
+		\end{tikzpicture}
+		\caption{Model of a D/M/1/10 queue with production timeout $t = 0.1$ and service rate $\lambda = \frac{ln(2)}{timeout} \approx 6.931471805599453094$. The deterministic arrival event does not reset when the exponential service event occurs.}
+		\label{fig:D/M/1/10}
+	\end{figure}
+
+We have chosen to model a D/M/1/10 queue (deterministic arrivals, exponentially distributed service, single server, capacity of 10) as shown in Figure \ref{fig:D/M/1/10}. The deterministic arrivals are approximated by a phase-type distribution, so the model remains a CTMC and can be analyzed by PRISM. The PRISM model we used is shown in Figure \ref{fig:D/M/1/10_PRISM}.
+We computed the steady-state distribution with various values of PRISM termination epsilon $\epsilon$ and the number of phases $k$.
+
+	\begin{figure}[H]
+		\begin{lstlisting}
+ctmc
+
+const int k;
+const int qCapacity = 10;
+const double timeout = 0.1;
+const double lambda = 6.931471805599453094;
+
+module main
+
+qSize : [0..qCapacity] init 0;
+
+[produce] (qSize <= qCapacity) -> (qSize' = min(qSize+1,qCapacity));
+[consume] (qSize > 0) -> lambda: (qSize' = qSize - 1);
+
+endmodule
+
+module trigger
+
+i : [1..k+1];
+
+[] i < k -> k/timeout : (i'=i+1);
+[produce] i = k -> k/timeout : (i'=1);
+
+endmodule
+		\end{lstlisting}
+		\caption{PRISM CTMC model of the D/M/1/10 queue as shown in Figure \ref{fig:D/M/1/10} with a phase-type distribution approximating the arrival timeout. The phase-type module \emph{trigger} is used as suggested on the \href{http://www.prismmodelchecker.org/manual/FrequentlyAskedQuestions/PRISMModelling}{PRISM website}. Phase-type parameter $k$ represents the number of phases. Increasing $k$ should improve the approximation of the timeout. }
+		\label{fig:D/M/1/10_PRISM}
+	\end{figure}
+    
+\subsection{Default absolute termination epsilon $\epsilon = 10^{-6}$}
+\label{S:2.1}
+    
+First, we used the PRISM default absolute termination epsilon $\epsilon = 10^{-6}$. The results are shown in Figure \ref{fig:distance_constant_standard_constant_kappa}. For this $\epsilon$, the obtained results are arguably insufficient. Increasing $k$ does little to improve the precision, and only up to about $k \leq 50$, at which point increasing $k$ further starts making the precision worse.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[trim=0.3cm 0cm 0cm 1.35cm,width=15cm, clip]{distance_constant_1E-6.png}
+\end{center}
+\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for default absolute termination epsilon $\epsilon = 10^{-6}$. ACTMC results for $\epsilon = 10^{-6}$ are also compared to the reference and have a smaller error than the declared $\epsilon = 10^{-6}$.}
+\label{fig:distance_constant_standard_constant_kappa}
+\end{figure}
+
+\pagebreak
+\subsection{Lowering absolute termination epsilon to $\epsilon = 10^{-10}$}
+\label{S:2.2}
+
+For much lower $\epsilon = 10^{-10}$, the precision of the result improves only marginally in comparison to the default $\epsilon$ in Section \ref{S:2.1}. The results are shown in Figure \ref{fig:distance_constant_1E-10_constant_kappa}.
+
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{distance_constant_1E-10.png}
+\end{center}
+\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference and have a smaller error than the declared $\epsilon = 10^{-10}$.}
+\label{fig:distance_constant_1E-10_constant_kappa}
+\end{figure}
+
+\pagebreak
+\subsection{Adjusting epsilon $\epsilon = 10^{-10}$ to $k$}
+\label{S:2.3}
+
+Since increasing $k$ increases the amount of phases (intermediate states) and each phase may have error up to $\epsilon$, the actual potential error for each state of the queue is $\epsilon \cdot k$. To compensate for this, we devise a simple formula
+$$\epsilon^{'} = \frac{\epsilon}{k}$$
+where $\epsilon^{'}$ is the adjusted epsilon that should be given to PRISM if precision $\epsilon$ is desired for $k$ phases.
+Using adjusted epsilon, the results get significantly better, as shown in Figure \ref{fig:distance_dynamic_1E-10_constant_kappa}. What's more, the phase-type fitting results now seem to converge towards the reference steadily as $k$ increases. This indicates that this approach is correct, and that the reference is trustworthy.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{distance_dynamic_1E-10.png}
+\end{center}
+\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered and adjusted absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference and have a smaller error than the declared $\epsilon = 10^{-10}$.}
+\label{fig:distance_dynamic_1E-10_constant_kappa}
+\end{figure}
+
+\subsection{Required computation time to obtain precise results}
+\label{S:2.4}
+
+Although we have shown it is possible to obtain relatively precise results using phase-type distributions, the precision comes at a rather steep cost in computation time. This is shown in Figure \ref{fig:performance_dynamic}. Note that even though Storm is one of the fastest available tools, it still struggles to deliver good precision within reasonable time. The computations all ran on the same virtual machine under same conditions\footnote{Running in a virtual machine might have reduced the performance. The virtual machine we used is available at the \href{http://www.stormchecker.org/documentation/vm/vm.html}{Storm website}.}.
+
+\begin{figure}[H]
+\begin{center}
+\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{performance_dynamic.png}
+\end{center}
+\caption{Time of computation in seconds of the steady-state probabilities against various values of $k$ for lowered and adjusted absolute termination epsilon $\epsilon = 10^{-10}$, i.e. corresponding to the data shown in Figure \ref{fig:distance_dynamic_1E-10_constant_kappa}. The computation of our PRISM ACTMC is constant in regards to $k$ because it does not use phase-type fitting. }
+\label{fig:performance_dynamic}
+\end{figure}
+
+\pagebreak
+\section{Conclusion}
+We have presented a reliable method for high-precision analysis of PRISM CTMC models with phase-type distributions, that is, adjusting the termination epsilon by the number of phases. However, the large number of phases drastically increases the computation time.
+
+For better performance, we suggest usage of more specialized tools that can deal with non-Markovian distributions directly, without phase-type fitting. Our PRISM ACTMC extension\footnote{Our PRISM ACTMC extension is not fully completed yet and lacks optimization. It will be officially released later, but early development version is available at \href{https://github.com/VojtechRehak/prism-gsmp}{https://github.com/VojtechRehak/prism-gsmp}.} has delivered results with sufficient precision a lot faster.
+    
+
+%% The Appendices part is started with the command \appendix;
+%% appendix sections are then done as normal sections
+%% \appendix
+
+%% \section{}
+%% \label{}
+
+%% References
+%%
+%% Following citation commands can be used in the body text:
+%% Usage of \cite is as follows:
+%%   \cite{key}          ==>>  [#]
+%%   \cite[chap. 2]{key} ==>>  [#, chap. 2]
+%%   \citet{key}         ==>>  Author [#]
+
+%% References with bibTeX database:
+
+\bibliographystyle{model1-num-names}
+\bibliography{sample.bib}
+
+%% Authors are advised to submit their bibtex database files. They are
+%% requested to list a bibtex style file in the manuscript if they do
+%% not want to use model1-num-names.bst.
+
+%% References without bibTeX database:
+
+% \begin{thebibliography}{00}
+
+%% \bibitem must have the following form:
+%%   \bibitem{key}...
+%%
+
+% \bibitem{}
+
+% \end{thebibliography}
+
+
+\end{document}
+
+%%
+%% End of file `elsarticle-template-1-num.tex'.
