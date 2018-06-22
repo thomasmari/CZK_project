@@ -125,6 +125,8 @@
 		The subject of this internship is first modeling some system  in the PrismGSMP. That is a continuous system with rates instead of probabilistic transition. Transitiom are syncronized with event which follows some probabilistic laws like exponential law or dirac. One good property about the exponenial law is the events are markovian. That is the probability of the event of happening doenst depends on the time already spend.
 		
 	\end{abstract}
+	\keywords{CTMC}
+	
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%SECTION1%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -614,7 +616,7 @@ endmodule
 
 \begin{figure}
 	\centering
-	\includegraphics[width=15cm]{picture/New_model/distance_constant_1E-5.png}
+	\includegraphics[width=15cm]{picture/New_model/1E-5/distance_constant_1E-5.png}
 	\caption{Infinite Distance of distribution of the SSP computation between the event model and the PTF model using hybrid engine versus the PTF parameter k,$t=0.1$,median $\lambda$,$\epsilon=10^{-5}$}
 	\label{fig:dist_const_1E-5}
 \end{figure}
@@ -646,14 +648,14 @@ $$CDF(t-\delta) \leq \epsilon$$
 
 \begin{figure}
 	\centering
-	\includegraphics[width=17cm]{picture/New_model/diff_explicit_dynamic.png}
+	\includegraphics[width=17cm]{picture/New_model/1E-5/diff_explicit_dynamic.png}
 	\caption{Absolute Difference between SSP of event model and of SSP PTF model using explicit engine versus state of queue,$t=1$,median $\lambda$,$\epsilon=10^{-5}$}
 	\label{fig:dist_dynamic_explicit}
 \end{figure}	
 
 \begin{figure}
 	\centering
-	\includegraphics[width=17cm]{picture/New_model/diff_hybrid_dynamic.png}
+	\includegraphics[width=17cm]{picture/New_model/1E-5/diff_hybrid_dynamic.png}
 	\caption{Absolute Difference between SSP of event model and of SSP PTF model using hybrid engine versus state of queue,$t=1$,median $\lambda$,$\epsilon=10^{-5}$}
 	\label{fig:dist_dynamic_hybrid}
 \end{figure}
@@ -661,7 +663,7 @@ $$CDF(t-\delta) \leq \epsilon$$
 \subsection{more data}
 \begin{figure}
 	\centering
-	\includegraphics[width=17cm]{picture/New_model/distance_versus_k.png}
+	\includegraphics[width=17cm]{picture/New_model/1E-5/distance_dynamic_1E-5.png}
 	\caption{infinity norm distance between SSP of event model with 1E-10 epsilon termination and SSP of event model and PTH model using hybrid and explicit,$t=1$,median $\lambda$,$\epsilon=10^{-5}$}
 	\label{fig:dist_versus_k}
 \end{figure}
@@ -669,7 +671,7 @@ $$CDF(t-\delta) \leq \epsilon$$
 
 \begin{figure}
 	\centering
-	\includegraphics[width=16cm]{picture/New_model/performance_versus_k.png}
+	\includegraphics[width=16cm]{picture/New_model/1E-5/performance_dynamic.png}
 	\caption{Computation time for different values of $k$. For about $k>200$, GSMP implementation starts outperforming all phase-typed computations, despite the GSMP implementation being relatively poorly optimized.}
 	\label{fig:performance}
 \end{figure}
