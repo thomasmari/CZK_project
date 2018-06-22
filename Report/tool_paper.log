@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.17)  22 JUN 2018 12:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.18 (TeX Live 2017/Debian) (preloaded format=pdflatex 2018.5.17)  22 JUN 2018 12:33
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -940,7 +940,11 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstlang1.sty
 File: lstlang1.sty 2015/06/04 1.6 listings language file
 )
-(./tool_paper.aux)
+(./tool_paper.aux
+
+LaTeX Warning: Label `S:2.2' multiply defined.
+
+)
 \openout1 = `tool_paper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 122.
@@ -965,6 +969,7 @@ LaTeX Font Info:    ... okay on input line 122.
 LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 122.
 LaTeX Font Info:    Try loading font information for FMS+futm on input line 122
 .
+
 (/usr/share/texlive/texmf-dist/tex/latex/fourier/fmsfutm.fd
 File: fmsfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FMS/futm.
 )
@@ -1154,57 +1159,57 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 273.
+(Font)              scaled to size 11.03998pt on input line 275.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 273.
+(Font)              scaled to size 8.27998pt on input line 275.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 273.
+(Font)              scaled to size 6.43999pt on input line 275.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 11.03998pt on input line 273.
+(Font)              scaled to size 11.03998pt on input line 275.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 8.27998pt on input line 273.
+(Font)              scaled to size 8.27998pt on input line 275.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.43999pt on input line 273.
+(Font)              scaled to size 6.43999pt on input line 275.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 273.
+(hyperref)                removing `math shift' on input line 275.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\epsilon' on input line 273.
+(hyperref)                removing `\epsilon' on input line 275.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 273.
+(hyperref)                removing `superscript' on input line 275.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 273.
+(hyperref)                removing `math shift' on input line 275.
 
 [2pdfTeX warning (ext4): destination with the same identifier (name{figure.2.1}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.277 
+l.279 
       pdfTeX warning (ext4): destination with the same identifier (name{figure.
 2.2}) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.277 
+l.279 
       ]
-<picture/New_model/1E-6/distance_constant_1E-6.png, id=86, 462.528pt x 346.896p
+<picture/New_model/1E-6/distance_constant_1E-6.png, id=90, 462.528pt x 346.896p
 t>
 File: picture/New_model/1E-6/distance_constant_1E-6.png Graphic file (type png)
 
 <use picture/New_model/1E-6/distance_constant_1E-6.png>
 Package pdftex.def Info: picture/New_model/1E-6/distance_constant_1E-6.png  use
-d on input line 280.
+d on input line 282.
 (pdftex.def)             Requested size: 426.79134pt x 290.01321pt.
 
-Overfull \hbox (8.53578pt too wide) in paragraph at lines 280--281
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 282--283
  [] 
  []
 
@@ -1213,35 +1218,35 @@ Overfull \hbox (8.53578pt too wide) in paragraph at lines 280--281
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.287 	\subsection
+l.289 	\subsection
                   {Lowering absolute termination epsilon to $\epsilon = 10^{...
  <./picture/New_model/1E-6/distance_constant_1E-6.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 287.
+(hyperref)                removing `math shift' on input line 289.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\epsilon' on input line 287.
+(hyperref)                removing `\epsilon' on input line 289.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 287.
+(hyperref)                removing `superscript' on input line 289.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 287.
+(hyperref)                removing `math shift' on input line 289.
 
-<picture/New_model/1E-10/distance_constant_1E-10.png, id=97, 462.528pt x 346.89
-6pt>
+<picture/New_model/1E-10/distance_constant_1E-10.png, id=101, 462.528pt x 346.8
+96pt>
 File: picture/New_model/1E-10/distance_constant_1E-10.png Graphic file (type pn
 g)
 <use picture/New_model/1E-10/distance_constant_1E-10.png>
 Package pdftex.def Info: picture/New_model/1E-10/distance_constant_1E-10.png  u
-sed on input line 295.
+sed on input line 297.
 (pdftex.def)             Requested size: 426.79134pt x 288.2104pt.
 
-Overfull \hbox (8.53578pt too wide) in paragraph at lines 295--296
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 297--298
  [] 
  []
 
@@ -1250,66 +1255,66 @@ Overfull \hbox (8.53578pt too wide) in paragraph at lines 295--296
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.302 	\subsection
+l.304 	\subsection
                   {Adjusting epsilon $\epsilon = 10^{-10}$ to $k$} <./picture/N
 ew_model/1E-10/distance_constant_1E-10.png>]
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 302.
+(hyperref)                removing `math shift' on input line 304.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `\epsilon' on input line 302.
+(hyperref)                removing `\epsilon' on input line 304.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `superscript' on input line 302.
+(hyperref)                removing `superscript' on input line 304.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 302.
+(hyperref)                removing `math shift' on input line 304.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 302.
+(hyperref)                removing `math shift' on input line 304.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (PDFDocEncoding):
-(hyperref)                removing `math shift' on input line 302.
+(hyperref)                removing `math shift' on input line 304.
 
-<picture/New_model/1E-10/distance_dynamic_1E-10.png, id=107, 462.528pt x 346.89
+<picture/New_model/1E-10/distance_dynamic_1E-10.png, id=111, 462.528pt x 346.89
 6pt>
 File: picture/New_model/1E-10/distance_dynamic_1E-10.png Graphic file (type png
 )
 <use picture/New_model/1E-10/distance_dynamic_1E-10.png>
 Package pdftex.def Info: picture/New_model/1E-10/distance_dynamic_1E-10.png  us
-ed on input line 312.
+ed on input line 314.
 (pdftex.def)             Requested size: 426.79134pt x 288.2104pt.
 
-Overfull \hbox (8.53578pt too wide) in paragraph at lines 312--313
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 314--315
  [] 
  []
 
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.99199pt on input line 321.
+(Font)              scaled to size 6.99199pt on input line 323.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.99199pt on input line 321.
+(Font)              scaled to size 6.99199pt on input line 323.
 [5pdfTeX warning (ext4): destination with the same identifier (name{figure.2.5}
 ) has been already used, duplicate ignored
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.322 
+l.324 
        <./picture/New_model/1E-10/distance_dynamic_1E-10.png>]
-<picture/New_model/1E-6/performance_dynamic.png, id=120, 462.528pt x 346.896pt>
+<picture/New_model/1E-6/performance_dynamic.png, id=123, 462.528pt x 346.896pt>
 
 File: picture/New_model/1E-6/performance_dynamic.png Graphic file (type png)
 <use picture/New_model/1E-6/performance_dynamic.png>
 Package pdftex.def Info: picture/New_model/1E-6/performance_dynamic.png  used o
-n input line 325.
+n input line 327.
 (pdftex.def)             Requested size: 426.79134pt x 288.2104pt.
 
-Overfull \hbox (8.53578pt too wide) in paragraph at lines 325--326
+Overfull \hbox (8.53578pt too wide) in paragraph at lines 327--328
  [] 
  []
 
@@ -1318,37 +1323,31 @@ Overfull \hbox (8.53578pt too wide) in paragraph at lines 325--326
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.332 	\section
+l.334 	\section
                {Conclusion} <./picture/New_model/1E-6/performance_dynamic.png>]
 No file tool_paper.bbl.
 [7]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 375.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 375.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 377.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 377.
  (./tool_paper.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 375.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 375.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 377.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 377.
+Package rerunfilecheck Info: File `tool_paper.out' has not changed.
+(rerunfilecheck)             Checksum: 0C1C11F9EF95BC095D52CC900C9F1FB5;598.
 
-
-Package rerunfilecheck Warning: File `tool_paper.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `tool_paper.out':
-(rerunfilecheck)             Before: C85370E931C403DC3F946CFAB7583948;518
-(rerunfilecheck)             After:  0C1C11F9EF95BC095D52CC900C9F1FB5;598.
 
 LaTeX Warning: There were undefined references.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+LaTeX Warning: There were multiply-defined labels.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 375.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 377.
  ) 
 Here is how much of TeX's memory you used:
- 23945 strings out of 492982
- 453756 string characters out of 6134896
+ 23946 strings out of 492982
+ 453772 string characters out of 6134896
  673654 words of memory out of 5000000
- 26802 multiletter control sequences out of 15000+600000
+ 26803 multiletter control sequences out of 15000+600000
  140822 words of font info for 280 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  64i,11n,68p,8845b,1170s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -1360,10 +1359,10 @@ ype1/public/fourier/fourier-mlit.pfb></usr/share/texlive/texmf-dist/fonts/type1
 8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/adobe/utopia/putri8a.pfb></us
 r/share/texmf/fonts/type1/public/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/
 type1/public/cm-super/sftt0900.pfb>
-Output written on tool_paper.pdf (7 pages, 228444 bytes).
+Output written on tool_paper.pdf (7 pages, 227986 bytes).
 PDF statistics:
- 181 PDF objects out of 1000 (max. 8388607)
- 148 compressed objects within 2 object streams
+ 184 PDF objects out of 1000 (max. 8388607)
+ 151 compressed objects within 2 object streams
  49 named destinations out of 1000 (max. 500000)
- 51313 words of extra memory for PDF output out of 51595 (max. 10000000)
+ 51321 words of extra memory for PDF output out of 51595 (max. 10000000)
 
