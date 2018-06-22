@@ -267,11 +267,29 @@
 		\label{fig:D/M/1/10_PRISM}
 	\end{figure}
 	
-	\subsection{Obtaining trustworthy reference}
+	\pagebreak
+	\subsection{Obtaining precise results for reference}
 	\label{S:2.1}
 	
+%%%	In order to obtain some steady-state probabilities of reference to compare precision of different tools and engines, we computed the same steady-state probabilities two different ways. The first one is the phase type fitting method described as above (ref to the first page). The second one is by using our PRISM ACTMC implementation with precise termination epsilon.
+%%%	 the computation  results are quite similar as shown in picture citation
+	 
+%%%	 put picture diff_per_stqte 
+%%%	 explain picture
 	
+	%%% little conclusion: we can from now trust the event model as a reference 
+	 
+	 In order to compare the precision of the results obtained by the experiments, a trustworthy high-precision reference is needed. To achieve this, we used our own PRISM ACTMC implementation, which is capable of analyzing the given model directly without phase-type fitting. Using our implementation, we have computed the steady-state probabilities for very precise termination epsilon $\epsilon = 10^{-20}$ and compared it to the steady-state probabilities obtained by PRISM CTMC with phase-type fitting for $\epsilon = 10^{-16}$ and $k = 800000$. As shown in Figure \ref{fig:diff_storm_dynamic}, the differences between the computations are smaller than $10^6$. Under the hypothesis that the true result is closer to the result obtained from PRISM ACTMC than to the result obtained from Storm, we can conclude that the PRISM ACTMC can serve as reference with precision at least $10^{-6}$.
+	 
+	 	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{picture/New_model/1E-10/diff_storm_dynamic.png}
+		\end{center}
+		\caption{Absolute difference of steady-state probabilities of the CTMC with phase-type fitting ($\epsilon = 10^{-16}$, $k = 800000$) from PRISM ACTMC ($\epsilon = 10^{-20}$).}
+		\label{fig:diff_storm_dynamic}
+	\end{figure}
 	
+	\pagebreak
 	\subsection{Default absolute termination epsilon $\epsilon = 10^{-6}$}
 	\label{S:2.2}
 	
