@@ -267,8 +267,13 @@
 		\label{fig:D/M/1/10_PRISM}
 	\end{figure}
 	
-	\subsection{Default absolute termination epsilon $\epsilon = 10^{-6}$}
+	\subsection{Obtaining trustworthy reference}
 	\label{S:2.1}
+	
+	
+	
+	\subsection{Default absolute termination epsilon $\epsilon = 10^{-6}$}
+	\label{S:2.2}
 	
 	First, we used the PRISM default absolute termination epsilon $\epsilon = 10^{-6}$. The results are shown in Figure \ref{fig:distance_constant_standard_constant_kappa}. For this $\epsilon$, the obtained results are arguably insufficient. Increasing $k$ does little to improve the precision, and only up to about $k \leq 50$, at which point increasing $k$ further starts making the precision worse.
 	
@@ -276,7 +281,7 @@
 		\begin{center}
 			\includegraphics[trim=0.3cm 0cm 0cm 1.35cm,width=15cm, clip]{picture/New_model/1E-6/distance_constant_1E-6.png}
 		\end{center}
-		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for default absolute termination epsilon $\epsilon = 10^{-6}$. ACTMC results for $\epsilon = 10^{-6}$ are also compared to the reference and have a smaller error than the declared $\epsilon = 10^{-6}$.}
+		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for default absolute termination epsilon $\epsilon = 10^{-6}$. ACTMC results for $\epsilon = 10^{-6}$ are also compared to the reference.}
 		\label{fig:distance_constant_standard_constant_kappa}
 	\end{figure}
 	
@@ -284,14 +289,14 @@
 	\subsection{Lowering absolute termination epsilon to $\epsilon = 10^{-10}$}
 	\label{S:2.2}
 	
-	For much lower $\epsilon = 10^{-10}$, the precision of the result improves only marginally in comparison to the default $\epsilon$ in Section \ref{S:2.1}. The results are shown in Figure \ref{fig:distance_constant_1E-10_constant_kappa}.
+	For much lower $\epsilon = 10^{-10}$, the precision of the result improves. However, for higher $k$ the precision continues to deteriorate like in Section \ref{S:2.2}. The results are shown in Figure \ref{fig:distance_constant_1E-10_constant_kappa}.
 	
 	
 	\begin{figure}[H]
 		\begin{center}
 			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{picture/New_model/1E-10/distance_constant_1E-10.png}
 		\end{center}
-		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference and have a smaller error than the declared $\epsilon = 10^{-10}$.}
+		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference.}
 		\label{fig:distance_constant_1E-10_constant_kappa}
 	\end{figure}
 	
@@ -308,7 +313,7 @@
 		\begin{center}
 			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{picture/New_model/1E-10/distance_dynamic_1E-10.png}
 		\end{center}
-		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered and adjusted absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference and have a smaller error than the declared $\epsilon = 10^{-10}$.}
+		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered and adjusted absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference.}
 		\label{fig:distance_dynamic_1E-10_constant_kappa}
 	\end{figure}
 	
