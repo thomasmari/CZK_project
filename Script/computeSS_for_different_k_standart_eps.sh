@@ -7,6 +7,21 @@
 #There is only one parameter - floating point number specifying the timeout.
 #Lambda is derived as (ln 2 / timeout).
 
+if [ "$1" == "help" ]; then
+	echo '5 argument are expected :'
+	echo '$1 is the the timeout in second, the one we choose to run tests was 0.1'
+	echo '$2 lambda according to t in {regular,median}'
+	echo '   regular : lambda = 1/t'
+	echo '   median : t will be the median value of the exponential distribution exp(lambda) (ln(2)/t)'
+	echo '$3 the engine in {event,explicit,hybrid,storm} that will do the computation'
+	echo '   event is the ACTMC model checker'
+	echo '   explicit is the ACTMC model checker for only CTMC model'
+	echo '   hybrid is the PRISM model checker with hybrid engine'
+	echo '   storm is the Storm model checker with sparse engine'
+	echo 'Result :'
+	echo 'It will compute logs and outputs for the specified parameters for a fixed range of k from 1 to 5000 with exponential steps without setting any epsilon'
+	exit 1
+	fi
 
 
 #check parameter

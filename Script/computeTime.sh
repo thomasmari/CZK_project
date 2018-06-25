@@ -8,6 +8,29 @@
 # Return a file of computation time for hybrid and explicit engine in both of their folders
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : phtime_n_epsilon, the folder give the engine and the timeout
+
+if [ "$1" == "help" ]; then
+	echo '5 argument are expected :'
+	echo '$1 is the the timeout in second, the one we choose to run tests was 0.1'
+	echo '$2 the engine in {event,explicit,hybrid,storm} that will do the computation'
+	echo '   event is the ACTMC model checker'
+	echo '   explicit is the ACTMC model checker for only CTMC model'
+	echo '   hybrid is the PRISM model checker with hybrid engine'
+	echo '   storm is the Storm model checker with sparse engine'
+	echo '$3 lambda according to t in {regular,median}'
+	echo '   regular : lambda = 1/t'
+	echo '   median : t will be the median value of the exponential distribution exp(lambda) (ln(2)/t'
+	echo '$4 is the the precision epsilon in [1-9]+{E-}[1-9]+ format, in prism it is the termination epsilon for power method, in storm it set the --epsilon option (1E-6 is the default value for both PRISM and Storm)'
+	echo '$5 kind_of_epsilon in {dynamic, constant} for dynamic you have eps_computation = eps/k '
+	echo '   constant : the precision epsilon will remain the same for every computations'
+	echo '   dynamic : the precision epsilon will depend on k eps_computation = eps/k'
+	
+
+	echo 'Result :'
+	echo 'It will extract from the logs the time of computation, the result for Storm, the list of ph fiting parameter k used'
+	exit 1
+	fi
+
 reNum='^[-+]?[0-9]+\.?[0-9]*$'
 if ! [[ $1 =~ $reNum ]] ; then
   echo "Please specify number \"timeout\" as the first parameter!"

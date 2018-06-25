@@ -8,6 +8,19 @@
 # In the result the kline is the time of computation for the ph_n_k_eps
 # naming : sumph_n_k_epsilon, the folder give the engine and the timeout
 # Are fixed constant : epsilon=1E-5
+
+if [ "$1" == "help" ]; then
+	echo '3 argument are expected :'
+	echo '$1 is the name of the folder which contains the results from "../Output/" example : "t=0.1_median_1E-10_dynamic"'
+	echo '$2 the engine in {explicit,hybrid} that will do the computation'
+	echo '   explicit is the ACTMC model checker for only CTMC model'
+	echo '   hybrid is the PRISM model checker with hybrid engine'
+	echo '$3 is the the precision epsilon in [1-9]+{E-}[1-9]+ format, in prism it is the termination epsilon for power method, in storm it set the --epsilon option (1E-6 is the default value for both PRISM and Storm)'
+	echo 'Result :'
+	echo 'It will compute the compute the steady probability for the set of states with same qSize, in fact we add the probabilities of each states with same qSize, computeTime must be lauched before this script'
+	exit 1
+	fi
+
 path="../Output/"
 subpath=$1
 engine=$2
