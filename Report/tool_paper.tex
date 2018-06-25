@@ -149,6 +149,7 @@
 	In this paper, we experimentally evaluate the precision of the result and required computation time of various approaches to analysis of continuous time stochastic models with deterministic transitions (timeouts). The obtained results are then compared against results of our extension of PRISM capable of efficiently analyzing CTMC with non-Markovian alarms (ACTMC).
 	
 	
+	
 	% \subsection{Subsection One}
 	
 	% Quisque elit ipsum, porttitor et imperdiet in, facilisis ac diam. Nunc facilisis interdum felis eget tincidunt. In condimentum fermentum leo, non consequat leo imperdiet pharetra. Fusce ac massa ipsum, vel convallis diam. Quisque eget turpis felis. Curabitur posuere, risus eu placerat porttitor, magna metus mollis ipsum, eu volutpat nisl erat ac justo. Nullam semper, mi at iaculis viverra, nunc velit iaculis nunc, eu tempor ligula eros in nulla. Aenean dapibus eleifend convallis. Cras ut libero tellus. Integer mollis eros eget risus malesuada fringilla mattis leo facilisis. Etiam interdum turpis eget odio ultricies sed convallis magna accumsan. Morbi in leo a mauris sollicitudin molestie at non nisl.
@@ -283,7 +284,7 @@
 	 
 	 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{picture/New_model/1E-10/diff_storm_dynamic.png}
+			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{picture/New_model/1E-10/diff_storm_dynamic_paper.png}
 		\end{center}
 		\caption{Absolute difference of steady-state probabilities of the CTMC with phase-type fitting ($\epsilon = 10^{-16}$, $k = 800000$) from PRISM ACTMC ($\epsilon = 10^{-20}$).}
 		\label{fig:diff_storm_dynamic}
@@ -357,12 +358,12 @@
 	
 	%% The Appendices part is started with the command \appendix;
 	%% appendix sections are then done as normal sections
-	%% \appendix
+\appendix
 	
-	%% \section{}
-	%% \label{}
+\section{}
+\label{}
 	
-	%% References
+References
 	%%
 	%% Following citation commands can be used in the body text:
 	%% Usage of \cite is as follows:
@@ -372,8 +373,10 @@
 	
 	%% References with bibTeX database:
 	
-	\bibliographystyle{model1-num-names}
-	\bibliography{sample.bib}
+	%\bibliographystyle{model1-num-names}
+	\bibliographystyle{alpha}	
+	\bibliography{sample}
+
 	
 	%% Authors are advised to submit their bibtex database files. They are
 	%% requested to list a bibtex style file in the manuscript if they do

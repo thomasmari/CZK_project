@@ -132,6 +132,7 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon,eps_precise):
 
 	#real plotting
 	for k in k_array[0::4]: #1 curve on 4
+	#~ for k in [k_array[-1]]: #1 curve on 4
 		if (engine=="storm"):
 			if (kind_of_epsilon=="standard"):											#set the kind_of_t for naming
 				y_k = read_float(path+subpath+engine+'/ph_10_'+str(int(k))+'_standard')
