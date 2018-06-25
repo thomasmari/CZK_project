@@ -1,0 +1,100 @@
+Storm
+---------------
+
+version: 0.10.1 (+409 commits) build from revision g03b634d14 (DIRTY).
+
+Linked with GNU Linear Programming Kit v4.60.
+Linked with Microsoft Z3 Optimizer v4.4 Build 1 Rev 0.
+Linked with MathSAT5 version 5.3.14 (0b98b661254c) (Nov 17 2016 10:59:45, gmp 5.1.3, gcc 4.8.5, 64-bit).
+Linked with CARL.
+Command line arguments: --prism ../../CZK_project/Model/queue_withptf_ctmc.sm --prop ../../CZK_project/Model/storm_prop.csl -e sparse -pc --precision 1.66667e-21 --abstraction:precision 1.66667e-21 --constants k=600000,timeout=0.1,lambda=6.93147180559945309400 
+Current working directory: /home/storm/Documents/prism-4.4-src/bin
+
+ WARN (Program.cpp:179): The input model is a CTMC, but uses probabilistic commands like they are used in PRISM. Consider rewriting the commands to use Markovian commands instead.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+ WARN (Program.cpp:1104): The model uses synchronizing Markovian commands. This may lead to unexpected verification results, because of unclear semantics.
+Time for model construction: 30.893s.
+
+-------------------------------------------------------------- 
+Model type: 	CTMC (sparse)
+States: 	6600000
+Transitions: 	12600000
+Reward Models:  none
+Labels: 	13
+   * deadlock -> 0 state(s)
+   * init -> 1 state(s)
+   * (qSize = 10) -> 600000 state(s)
+   * (qSize = 1) -> 600000 state(s)
+   * (qSize = 2) -> 600000 state(s)
+   * (qSize = 0) -> 600000 state(s)
+   * (qSize = 3) -> 600000 state(s)
+   * (qSize = 6) -> 600000 state(s)
+   * (qSize = 7) -> 600000 state(s)
+   * (qSize = 5) -> 600000 state(s)
+   * (qSize = 9) -> 600000 state(s)
+   * (qSize = 4) -> 600000 state(s)
+   * (qSize = 8) -> 600000 state(s)
+choice labels: 	no
+-------------------------------------------------------------- 
+
+Model checking property LRA=? [(qSize = 0)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.000343682843
+Time for model checking: 5754.817s.
+
+Model checking property LRA=? [(qSize = 1)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.001120022664
+Time for model checking: 3109.505s.
+
+Model checking property LRA=? [(qSize = 2)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.002240042772
+Time for model checking: 5350.876s.
+
+Model checking property LRA=? [(qSize = 3)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.004480077328
+Time for model checking: 5177.073s.
+
+Model checking property LRA=? [(qSize = 4)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.008960135781
+Time for model checking: 13444.704s.
+
+Model checking property LRA=? [(qSize = 5)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.01792064879
+Time for model checking: 5740.685s.
+
+Model checking property LRA=? [(qSize = 6)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.03584643269
+Time for model checking: 7167.199s.
+
+Model checking property LRA=? [(qSize = 7)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.07168732288
+Time for model checking: 8289.547s.
+
+Model checking property LRA=? [(qSize = 8)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.1424680116
+Time for model checking: 8576.716s.
+
+Model checking property LRA=? [(qSize = 9)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.271895254
+Time for model checking: 9481.382s.
+
+Model checking property LRA=? [(qSize = 10)] ...
+ WARN (GmmxxLinearEquationSolver.cpp:203): Iterative solver did not converge.
+Result (initial states): 0.4430383687
+Time for model checking: 11655.380s.

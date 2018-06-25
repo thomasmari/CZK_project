@@ -55,8 +55,9 @@ MODEL_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Model"
 OUTPUT_PATH_FROM_PRISM="../../../CZK_project/Output"
 OUTPUT_PATH_FROM_CLASSIC_PRISM="../../CZK_project/Output"
 
-sequence=$(seq 1 1 9; seq 10 10 90; seq 100 100 900; seq 1000 1000 4000; seq 5000 5000 50000);
-#~ sequence=$(seq 900000 100000 900000; seq 1000000 1000000 10000000);
+#~ sequence=$(seq 1 1 9; seq 10 10 90; seq 100 100 900; seq 1000 1000 4000; seq 5000 5000 50000);
+#~ sequence=$(seq 60000 10000 90000; seq 100000 100000 1000000; seq 1000000 1000000 10000000);
+sequence=$(seq 2000000 2000000 2000000);
 
 #lambda and path setting
 ln_2="0.6931471805599453094" #20 digits
