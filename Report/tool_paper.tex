@@ -81,11 +81,12 @@
 
 \title{
 	%\vspace{-1in} 	
-	\usefont{OT1}{bch}{b}{n}
-	\normalfont \normalsize \textsc{School of random department names} \\ [25pt]
-	\horrule{0.5pt} \\[0.4cm]
-	\huge Efficient modeling of timeouts in PRISM \\
-	\horrule{2pt} \\[0.5cm]
+	%\usefont{OT1}{bch}{b}{n}
+	%\normalfont \normalsize \textsc{School name, institutions,...} \\ [25pt]
+	%\horrule{0.5pt} \\[0.4cm]
+	%\huge Efficient modeling of timeouts in PRISM \\
+	Efficient modeling of timeouts in PRISM \\
+	%\horrule{2pt} \\[0.5cm]
 }
 \author{
 	\normalfont 								\normalsize
@@ -123,7 +124,9 @@
 
 \usepackage[
 backend=biber,
-style=alphabetic,
+%this is the label style in the bibliography at the end of document
+style=numeric,
+%this is the label style for each citation in the document
 citestyle=numeric,
 sorting=none,
 %sortcae=false                  
@@ -139,7 +142,7 @@ sorting=none,
 	\begin{abstract}
 		Phase-type fitting remains the only way of modeling non-Markovian distributions within PRISM model checker.
 		When analyzing models with phase-type distributions, it is problematic to obtain results of sufficient precision within reasonable time.
-		We ran experimental computations and deduced a reasonable way of obtaining precise analysis results for phase-type fitted PRISM CTMCs.
+		We ran experimental computations and deduced a reliable way of obtaining precise analysis results for phase-type fitted PRISM CTMCs.
 		Lastly, we hint at an entirely different (and arguably better) approach to handling non-Markovian distributions.
 	\end{abstract}
 	
