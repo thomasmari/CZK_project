@@ -27,8 +27,11 @@
 %\title{Project Report}
 %
 %%% Preamble
-\documentclass[paper=a4, fontsize=11pt]{scrartcl}
-\usepackage[T1]{fontenc}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+%\documentclass[paper=a4, fontsize=11pt]{scrartcl}
+%\usepackage[T1]{fontenc}
 \usepackage{fourier}
 \usepackage{hyperref}
 
@@ -118,10 +121,21 @@
 		module, init, rewards, endrewards, label, true, endmodule}
 }
 
+\usepackage[
+backend=biber,
+style=alphabetic,
+citestyle=numeric,
+sorting=none,
+%sortcae=false                  
+%citestyle=authoryear
+]{biblatex}
+
+\addbibresource{tool_paper.bib} %Imports bibliography file
+
 %%% Begin document
 \begin{document}
 	\maketitle
-	
+
 	\begin{abstract}
 		Phase-type fitting remains the only way of modeling non-Markovian distributions within PRISM model checker.
 		When analyzing models with phase-type distributions, it is problematic to obtain results of sufficient precision within reasonable time.
@@ -142,14 +156,14 @@
 	
 	%% main text
 	\section{Introduction}
-	\label{S:1}
+	\label{intro}
 	
 	PRISM \cite{KNP11} and Storm \cite{DBLP:journals/corr/DehnertJK017} are popular tools for modeling and analysis of stochastic systems in continuous time. They use efficient algorithms for analysis of continuous time Markov chains (CTMC). This approach suffers from a severe restriction of modeling power --- the time between transitions must be exponentially distributed. This restriction can be remedied by the use of phase-type distributions, which can approximate any general distribution with arbitrary accuracy by only using exponential distributions \cite{Buchholz:2014:IMP:2683922}. However, the use of phase-type distributions drastically increases the number of states within the CTMC.
 	
 	In this paper, we experimentally evaluate the precision of the result and required computation time of various approaches to analysis of continuous time stochastic models with deterministic transitions (timeouts). The obtained results are then compared against results of our extension of PRISM capable of efficiently analyzing CTMC with non-Markovian alarms (ACTMC).
 	
 	
-	
+
 	% \subsection{Subsection One}
 	
 	% Quisque elit ipsum, porttitor et imperdiet in, facilisis ac diam. Nunc facilisis interdum felis eget tincidunt. In condimentum fermentum leo, non consequat leo imperdiet pharetra. Fusce ac massa ipsum, vel convallis diam. Quisque eget turpis felis. Curabitur posuere, risus eu placerat porttitor, magna metus mollis ipsum, eu volutpat nisl erat ac justo. Nullam semper, mi at iaculis viverra, nunc velit iaculis nunc, eu tempor ligula eros in nulla. Aenean dapibus eleifend convallis. Cras ut libero tellus. Integer mollis eros eget risus malesuada fringilla mattis leo facilisis. Etiam interdum turpis eget odio ultricies sed convallis magna accumsan. Morbi in leo a mauris sollicitudin molestie at non nisl.
@@ -185,7 +199,7 @@
 	% \end{equation}
 	
 	\section{Experimental evaluation}
-	\label{S:2}
+	\label{experimetal_evaluation}
 	
 	\begin{figure}[H]
 		\centering
@@ -268,9 +282,9 @@
 		\label{fig:D/M/1/10_PRISM}
 	\end{figure}
 	
-	\pagebreak
+	%\pagebreak
 	\subsection{Obtaining precise results for reference}
-	\label{S:2.1}
+	\label{reference}
 	
 %%%	In order to obtain some steady-state probabilities of reference to compare precision of different tools and engines, we computed the same steady-state probabilities two different ways. The first one is the phase type fitting method described as above (ref to the first page). The second one is by using our PRISM ACTMC implementation with precise termination epsilon.
 %%%	 the computation  results are quite similar as shown in picture citation
@@ -280,19 +294,13 @@
 	
 	%%% little conclusion: we can from now trust the event model as a reference 
 	 
-	 In order to compare the precision of the results obtained by the experiments, a trustworthy high-precision reference is needed. To achieve this, we used our own PRISM ACTMC implementation, which is capable of analyzing the given model directly without phase-type fitting. Using our implementation, we have computed the steady-state probabilities for very precise termination epsilon $\epsilon = 10^{-20}$ and compared it to the steady-state probabilities obtained by PRISM CTMC with phase-type fitting for $\epsilon = 10^{-16}$ and $k = 800000$. As shown in Figure \ref{fig:diff_storm_dynamic}, the differences between the computations are smaller than $10^6$. Under the hypothesis that the true result is closer to the result obtained from PRISM ACTMC than to the result obtained from Storm, we can conclude that the PRISM ACTMC can serve as reference with precision at least $10^{-6}$.
+%%	 In order to compare the precision of the results obtained by the experiments, a trustworthy high-precision reference is needed. To achieve this, we used our own PRISM ACTMC implementation, which is capable of analyzing the given model directly without phase-type fitting. Using our implementation, we have computed the steady-state probabilities for very precise termination epsilon $\epsilon = 10^{-20}$ and compared it to the steady-state probabilities obtained by PRISM CTMC with phase-type fitting for $\epsilon = 10^{-16}$ and $k = 1000000$. As shown in Figure \ref{fig:diff_storm_dynamic}, the differences between the computations are smaller than $10^6$. Under the hypothesis that the true result is closer to the result obtained from PRISM ACTMC than to the result obtained from Storm, we can conclude that the PRISM ACTMC can serve as reference with precision at least $10^{-6}$.%%
 	 
-	 	\begin{figure}[H]
-		\begin{center}
-			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{picture/New_model/1E-10/diff_storm_dynamic_paper.png}
-		\end{center}
-		\caption{Absolute difference of steady-state probabilities of the CTMC with phase-type fitting ($\epsilon = 10^{-16}$, $k = 800000$) from PRISM ACTMC ($\epsilon = 10^{-20}$).}
-		\label{fig:diff_storm_dynamic}
-	\end{figure}
+	 In order to compare the precision of the results obtained by the experiments, a trustworthy high-precision reference is needed. To achieve this, we have modeled the given D/M/1/10 queue in Oris \cite{Bucci2010}. The steady-state distribution obtained by Oris equals the steady-state distribution obtained by our PRISM ACTMC implementation up to at least 14 digits. Hence, our tool can be considered a trustworthy reference with precision of $10^{-14}$.
 	
-	\pagebreak
+	%\pagebreak
 	\subsection{Default absolute termination epsilon $\epsilon = 10^{-6}$}
-	\label{S:2.2}
+	\label{default_absolute}
 	
 	First, we used the PRISM default absolute termination epsilon $\epsilon = 10^{-6}$. The results are shown in Figure \ref{fig:distance_constant_standard_constant_kappa}. For this $\epsilon$, the obtained results are arguably insufficient. Increasing $k$ does little to improve the precision, and only up to about $k \leq 50$, at which point increasing $k$ further starts making the precision worse.
 	
@@ -306,9 +314,9 @@
 	
 	\pagebreak
 	\subsection{Lowering absolute termination epsilon to $\epsilon = 10^{-10}$}
-	\label{S:2.2}
+	\label{lowering}
 	
-	For much lower $\epsilon = 10^{-10}$, the precision of the result improves. However, for higher $k$ the precision continues to deteriorate like in Section \ref{S:2.2}. The results are shown in Figure \ref{fig:distance_constant_1E-10_constant_kappa}.
+	For much lower $\epsilon = 10^{-10}$, the precision of the result improves. However, for higher $k$ the precision continues to deteriorate like in Section \ref{lowering}. The results are shown in Figure \ref{fig:distance_constant_1E-10_constant_kappa}.
 	
 	
 	\begin{figure}[H]
@@ -319,9 +327,9 @@
 		\label{fig:distance_constant_1E-10_constant_kappa}
 	\end{figure}
 	
-	\pagebreak
+	%\pagebreak
 	\subsection{Adjusting epsilon $\epsilon = 10^{-10}$ to $k$}
-	\label{S:2.3}
+	\label{adjusting}
 	
 	Since increasing $k$ increases the amount of phases (intermediate states) and each phase may have error up to $\epsilon$, the actual potential error for each state of the queue is $\epsilon \cdot k$. To compensate for this, we devise a simple formula
 	$$\epsilon^{'} = \frac{\epsilon}{k}$$
@@ -337,7 +345,7 @@
 	\end{figure}
 	
 	\subsection{Required computation time to obtain precise results}
-	\label{S:2.4}
+	\label{computation_time}
 	
 	Although we have shown it is possible to obtain relatively precise results using phase-type distributions, the precision comes at a rather steep cost in computation time. This is shown in Figure \ref{fig:performance_dynamic}. Note that even though Storm is one of the fastest available tools, it still struggles to deliver good precision within reasonable time. The computations all ran on the same virtual machine under same conditions\footnote{Running in a virtual machine might have reduced the performance. The virtual machine we used is available at the \href{http://www.stormchecker.org/documentation/vm/vm.html}{Storm website}.}.
 	
@@ -349,7 +357,7 @@
 		\label{fig:performance_dynamic}
 	\end{figure}
 	
-	\pagebreak
+	%\pagebreak
 	\section{Conclusion}
 	We have presented a reliable method for high-precision analysis of PRISM CTMC models with phase-type distributions, that is, adjusting the termination epsilon by the number of phases. However, the large number of phases drastically increases the computation time.
 	
@@ -360,10 +368,7 @@
 	%% appendix sections are then done as normal sections
 \appendix
 	
-\section{}
-\label{}
-	
-References
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%REFERENCES%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 	%%
 	%% Following citation commands can be used in the body text:
 	%% Usage of \cite is as follows:
@@ -374,9 +379,9 @@ References
 	%% References with bibTeX database:
 	
 	%\bibliographystyle{model1-num-names}
-	\bibliographystyle{alpha}	
-	\bibliography{sample}
-
+	%\bibliographystyle{alpha}	
+	%\bibliography{tool_paper}
+\printbibliography
 	
 	%% Authors are advised to submit their bibtex database files. They are
 	%% requested to list a bibtex style file in the manuscript if they do

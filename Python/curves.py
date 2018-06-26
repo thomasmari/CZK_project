@@ -122,17 +122,17 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon,eps_precise):
 				#load the bottom line for explicit
 	y_0 = read_float(path+subpath_ref+'explicit'+'/ev_10_k_'+eps_precise)
 	#invisible plot for scaling
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_hybrid[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_hybrid[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_hybrid[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'hybrid'+'/sumph_10_'+str(int(k_hybrid[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[0]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'explicit'+'/sumph_10_'+str(int(k_array[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_storm[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
-	plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_storm[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_storm[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
+	#~ plt.plot(states,absolute(diff_array(y_0,read_float(path+subpath+'storm'+'/ph_10_'+str(int(k_storm[-1]))+'_'+eps))),'r-', alpha=0.0,linewidth=1.5)
 
 
 	#real plotting
-	for k in k_array[0::4]: #1 curve on 4
-	#~ for k in [k_array[-1]]: #1 curve on 4
+	#~ for k in k_array[0::4]: #1 curve on 4
+	for k in [k_array[-1]]: #1 curve on 4
 		if (engine=="storm"):
 			if (kind_of_epsilon=="standard"):											#set the kind_of_t for naming
 				y_k = read_float(path+subpath+engine+'/ph_10_'+str(int(k))+'_standard')
@@ -144,6 +144,7 @@ def diff_per_state(t,kind_of_t,engine,eps,kind_of_epsilon,eps_precise):
 			else:
 				y_k = read_float(path+subpath+engine+'/sumph_10_'+str(int(k))+'_'+eps)			
 		y = absolute(diff_array(y_0,y_k))
+		print max(diff_array(y_0,y_k))
 		plt.plot(states, y, label = "k="+str(k),linewidth=0.5)
 	
 	plt.yscale('log')
