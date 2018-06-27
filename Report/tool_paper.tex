@@ -118,7 +118,7 @@
 	breaklines=true,
 	breakatwhitespace=true,
 	tabsize=3,
-	morekeywords={event, gsmp, dirac, exponential, uniform, weibull, erlang,
+	morekeywords={ctmc,event, gsmp, dirac, exponential, uniform, weibull, erlang,
 		module, init, rewards, endrewards, label, true, endmodule}
 }
 
@@ -206,11 +206,11 @@ sorting=none,
 	
 	\begin{figure}[H]
 		\centering
-		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.8cm,
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.67cm,
 		semithick]
 		\tikzstyle{every state}=[fill=white,draw=black,text=black]
 		
-		\node[initial,state] (s0)                    {$0$};
+		\node[initial, initial text ={},state] (s0)                    {$0$};
 		\node[state]         (s1) [right of=s0] {$1$};
 		\node[state]         (s2) [right of=s1] {$2$};
 		\node[state]         (s3) [right of=s2] {$3$};
