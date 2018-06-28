@@ -66,21 +66,29 @@ if [ -z "$4"  ]
     exit 1
 fi
 
-if [ -z "$5"] && [ ! $4 == "event" ];
+if [ -z "$5" ] && [ $4 != "event" ];
   then
     echo "kind of epsilon not supplied for other engine that event, choose in {dynamic,constant}"
     exit 1
 fi
 
-
+if [ -z "$6" ] && [ $4 != "event" ];
+  then
+    echo "PH fitting parameter k not supplied for other engine that event"
+    exit 1
+fi
 
 #Constant computation
 timeout="$1"			
-kindOfLambda="$2" 								#Read lamda
+kindOfLambda="$2" 							#Read lamda
 epsilon=$(awk -v a="$3" 'BEGIN{print (a)}')	#Read epsilon
 engine="$4"
-kindOfEpsilon="$5"								#Read kind_of_epsilon
-#k="$6"									#PH fitting parameter k
+if [ -z "$5" ]
+	then
+		kindOfEpsilon="constant"
+	else
+		kindOfEpsilon="$5"
+fi									#PH fitting parameter k
 
 
 #lambda and path setting
