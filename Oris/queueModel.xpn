@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<tpn-editor>
+  <tpn-entities>
+    <joint uuid="61beb0a2-4257-4139-82a3-3a70bd40ec6d" x="790" y="377">
+      <features/>
+      <properties/>
+    </joint>
+    <joint uuid="8b3af982-37c3-44b4-8bc0-2406bc832719" x="703" y="377">
+      <features/>
+      <properties/>
+    </joint>
+    <joint uuid="9914278f-bc0d-4575-afb9-689246bbc944" x="790" y="273">
+      <features/>
+      <properties/>
+    </joint>
+    <joint uuid="b96b64a5-566f-4a00-9183-7868893f84ed" x="474" y="377">
+      <features/>
+      <properties/>
+    </joint>
+    <place uuid="4d505865-a4cd-4a2b-b7a8-709778a5cc8c" x="585" y="273">
+      <features/>
+      <properties>
+        <property id="0.default.name" name="queue" satellite-x="586" satellite-y="240"/>
+        <property id="default.marking" marking="0"/>
+      </properties>
+    </place>
+    <place uuid="af593788-1667-4569-b1f5-788ff6ccd4d7" x="381" y="273">
+      <features/>
+      <properties>
+        <property id="0.default.name" name="gateway" satellite-x="379" satellite-y="241"/>
+        <property id="default.marking" marking="0"/>
+      </properties>
+    </place>
+    <place uuid="ebf34566-0797-4c95-923f-3d18dd64bcaa" x="585" y="377">
+      <features/>
+      <properties>
+        <property id="0.default.name" name="capacity" satellite-x="583" satellite-y="343"/>
+        <property id="default.marking" marking="10"/>
+      </properties>
+    </place>
+    <transition rotation-angle="0.0" uuid="acd7c1cc-91a5-457e-995e-fe32718bafc5" x="703" y="273">
+      <features>
+        <feature id="transition.stochastic"/>
+      </features>
+      <properties>
+        <property id="0.default.name" name="consumption" satellite-x="703" satellite-y="247"/>
+        <property enabling-function="" id="10.default.enablingFunction"/>
+        <property id="11.default.markingUpdate" marking-update=""/>
+        <property id="12.default.resetTransitions" reset-transitions=""/>
+        <property id="transition.stochastic" lambda="6.9314718055994531" property-data-type="3.type.exponential" satellite-x="703" satellite-y="303"/>
+      </properties>
+    </transition>
+    <transition rotation-angle="-1.5707963267948966" uuid="b805c39d-7010-4a56-a315-482f14c53a03" x="381" y="372">
+      <features>
+        <feature id="transition.stochastic"/>
+      </features>
+      <properties>
+        <property id="0.default.name" name="discard" satellite-x="413" satellite-y="357"/>
+        <property enabling-function="capacity==0" id="10.default.enablingFunction"/>
+        <property id="11.default.markingUpdate" marking-update=""/>
+        <property id="12.default.resetTransitions" reset-transitions=""/>
+        <property id="transition.stochastic" priority="0" property-data-type="0.type.immediate" satellite-x="381" satellite-y="402" weight="1"/>
+      </properties>
+    </transition>
+    <transition rotation-angle="0.0" uuid="e4cb296f-ea22-467a-8b54-a630e7feb467" x="474" y="273">
+      <features>
+        <feature id="transition.stochastic"/>
+      </features>
+      <properties>
+        <property id="0.default.name" name="enqueue" satellite-x="476" satellite-y="243"/>
+        <property enabling-function="" id="10.default.enablingFunction"/>
+        <property id="11.default.markingUpdate" marking-update=""/>
+        <property id="12.default.resetTransitions" reset-transitions=""/>
+        <property id="transition.stochastic" priority="0" property-data-type="0.type.immediate" satellite-x="474" satellite-y="303" weight="1"/>
+      </properties>
+    </transition>
+    <transition rotation-angle="0.0" uuid="fa49e9e8-a4c9-47bd-938c-42f0ddd6ca52" x="295" y="273">
+      <features>
+        <feature id="transition.stochastic"/>
+      </features>
+      <properties>
+        <property id="0.default.name" name="production" satellite-x="297" satellite-y="243"/>
+        <property enabling-function="" id="10.default.enablingFunction"/>
+        <property id="11.default.markingUpdate" marking-update=""/>
+        <property id="12.default.resetTransitions" reset-transitions=""/>
+        <property id="transition.stochastic" priority="0" property-data-type="2.type.deterministic" satellite-x="295" satellite-y="303" value="0.1" weight="1"/>
+      </properties>
+    </transition>
+    <arc from="4d505865-a4cd-4a2b-b7a8-709778a5cc8c" to="acd7c1cc-91a5-457e-995e-fe32718bafc5" uuid="2c6e0713-7e7b-42b6-a6f0-15ba089e5c3e">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="61beb0a2-4257-4139-82a3-3a70bd40ec6d" to="8b3af982-37c3-44b4-8bc0-2406bc832719" uuid="394defa3-d296-4088-b44b-ea1cf6600594">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="acd7c1cc-91a5-457e-995e-fe32718bafc5" to="9914278f-bc0d-4575-afb9-689246bbc944" uuid="3e2f9763-c13e-474a-84df-10f09802a1a1">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="8b3af982-37c3-44b4-8bc0-2406bc832719" to="ebf34566-0797-4c95-923f-3d18dd64bcaa" uuid="58092191-84ca-464f-8061-804cf68de632">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="af593788-1667-4569-b1f5-788ff6ccd4d7" to="b805c39d-7010-4a56-a315-482f14c53a03" uuid="5da8f1d8-a63a-45ec-98a2-bb4025611bf5">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="af593788-1667-4569-b1f5-788ff6ccd4d7" to="e4cb296f-ea22-467a-8b54-a630e7feb467" uuid="6fa5fb98-add9-4235-887d-0ccc252ec465">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="ebf34566-0797-4c95-923f-3d18dd64bcaa" to="b96b64a5-566f-4a00-9183-7868893f84ed" uuid="8ac61517-f681-46df-9ccf-939cdcd04694">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="fa49e9e8-a4c9-47bd-938c-42f0ddd6ca52" to="af593788-1667-4569-b1f5-788ff6ccd4d7" uuid="90475306-7831-4db6-827e-08b2d8dbcbbc">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="9914278f-bc0d-4575-afb9-689246bbc944" to="61beb0a2-4257-4139-82a3-3a70bd40ec6d" uuid="935afbca-a833-468f-8ee3-056cc397d7f8">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="e4cb296f-ea22-467a-8b54-a630e7feb467" to="4d505865-a4cd-4a2b-b7a8-709778a5cc8c" uuid="ea1a7ba3-0076-4223-a7b1-7d1a75fcebca">
+      <features/>
+      <properties/>
+    </arc>
+    <arc from="b96b64a5-566f-4a00-9183-7868893f84ed" to="e4cb296f-ea22-467a-8b54-a630e7feb467" uuid="f2092f54-8cdb-4859-baa7-1b59c386df8f">
+      <features/>
+      <properties/>
+    </arc>
+  </tpn-entities>
+</tpn-editor>
