@@ -1,0 +1,76 @@
+<html>
+  <head>
+  </head>
+  <body><strong><font style="font-size:24px;">Welcome to the website of Mário Uhrí­k</font><br>
+      <br><font style="font-size:20px;">My bachelor's thesis <a href="http://www.oris-tool.org/" target="_blank"><em>Oris 2</em></a> / <a href="http://www.fi.muni.cz/~xrehak/fdPRISM/" target="_blank"><em>fdPRISM</em></a> stochastic model benchmark:</font></strong>
+    <br>
+    <br><strong> The practical output of my thesis consisted of searching and evaluating academic publications for <em>DSPN</em>s (Deterministic and Stochastic Petri Nets)
+    <br> which I then implemented as <em>fdPRISM fdCTMC</em>s (fixed delay Continuous Time Markov Chains). Some of them I slightly modified (if suitable).
+    <br> I also recreated the <em>DSPN</em>s in <em>Oris 2</em> tool and wrote a readme file about each model, which contains the source and explanation of the model.
+    <br> Afterwards I created this webpage and the spreadsheet, so that the models could be conveniently browsed by their properties.
+    <br>
+    <br><u> The primary intention is:</u>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style> to provide convenient and well-documented collection of stochastic models implemented in both <em>fdPRISM</em> and <em>Oris 2</em></li>
+    <br><u> The primary usage is:</u>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style> a benchmark for tools used for probabilistic modeling, verification and analysis of real-time systems (namely <em>fdPRISM</em> and <em>Oris 2</em>)</li>
+    <br><u> Secondary use cases might be:</u>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style> as a compilation of <em>DSPN</em> implementations in <em>Oris 2</em></li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style> as a compilation of academic publications that had <em>DSPN</em>s in them</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style> to demonstrate <em>fdPRISM</em> <em>fdCTMC</em> is indeed equivalent formalism to <em>DSPN</em></li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style> to showcase <em>fdPRISM</em> <em>fdCTMC</em> implementation examples</li>
+    <br></strong>
+    <br><u>Explanation for some of the columns in the spreadsheet:</u><ul>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>Num_Modifiable_Parameters -&nbsp;</em>amount of modifiable parameters. They mostly affect the state space. Sortable.</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>Modifiable_Parameters</em>&nbsp;- modifiable parameters themselves. They contain the name and default value of the parameter.</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>Num_Default_Tangible_States&nbsp;</em>- amount of reachable states given for DEFAULT parameters. State space can be changed through the parameters.</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>Num_Det-Trans -</em>&nbsp;amount of deterministic (fixed delay)&nbsp;transitions in the model.</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>Num_Max_Concurrent_NonExp-Trans&nbsp;</em>- maximum amount of transitions that are not exponential (therefore, not memoryless) that may be activated simultaneously at any given time</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>Is_Regenerative -</em>&nbsp;whether the model is regenerative. Regenerative models have some memoryless configurations they are guaranteed to reach repeatedly.</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>fdPRISM_mean_payoff-ready -</em>&nbsp;whether the fdPRISM fdCTMC model is suitable for Mean Payoff analysis AND has costs/rewards implemented.</li>
+      <li>
+        <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+	</style><em>fdPRISM_fd_synthesis-ready -</em>&nbsp;whether the fdPRISM fdCTMC model is suitable for fixed-delay synthesis AND has costs/rewards implemented.</li> </ul>
+    <br>
+    <br> Click on the name of the model in the spreadsheet to reach the subpage of the model.
+    <br> If the spreadsheet fails to load, scroll down to the bottom.
+    <br> For more information please consult my thesis (which has a lot more information) <a href="http://is.muni.cz/th/433501/fi_b/" target="_blank">here</a> or contact me via e-mail: 433501@mail.muni.cz
+    <br>
+    <br>
+    <iframe align="middle" frameborder=1 height=775 name="Model Table" scrolling="no" src="https://docs.google.com/spreadsheets/d/1M9TZ8lZbt4DvLerfUyh9AF7s51sPaf_DoiBrRapub28/pubhtml?gid=1649761961&amp;single=true&amp;widget=true&amp;headers=false" width=2400> </iframe>
+    <br>
+    <br> If you would like to interact with this spreadsheet a little more (filtering, sorting...), either click <a href="https://docs.google.com/spreadsheets/d/1M9TZ8lZbt4DvLerfUyh9AF7s51sPaf_DoiBrRapub28/pub?output=xlsx" target="_blank">here</a>&nbsp;to download .xlsx of this table,<br> or you can reach the google spreadsheet of the table <a href="https://docs.google.com/spreadsheets/d/1M9TZ8lZbt4DvLerfUyh9AF7s51sPaf_DoiBrRapub28" target="_blank">here</a>.<br>
+    <br>
+    <br> You may click <a href="https://gitlab.com/Fordy/fdPRISM_fdCTMC_models" target="_blank">here</a> to reach the underlying gitlab repository.<br> There you can download all related files, including the models themselves, readme files or even the html pages.<br>
+    <br> If for any reason google drive is currently down and the model spreadsheet does not appear, you may still browse models <a href="http://www.fi.muni.cz/~xuhrik/release/" target="_blank">here</a>.<br>
+    <br>
+    <br>
+    <style type="text/css"><!--td {border: 1px solid #ccc;}br {mso-data-placement:same-cell;}-->
+</style>
+  </body>
+</html>
