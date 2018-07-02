@@ -1,0 +1,50 @@
+Type:        GSMP
+Modules:     stopAndWait 
+Variables:   transmissionResult fwd bwd 
+
+Building model...
+
+Computing reachable states... 8 states
+Reachable states exploration and model construction done in 0.01 secs.
+Sorting reachable states list...
+
+Time for model construction: 0.01 seconds.
+
+Type:        GSMP
+States:      8 (1 initial)
+Transitions: 24
+
+Exporting list of reachable states in plain text format below:
+(transmissionResult,fwd,bwd)
+0:(0,0,0)
+1:(0,0,1)
+2:(0,1,0)
+3:(0,1,1)
+4:(1,0,0)
+5:(1,0,1)
+6:(1,1,0)
+7:(1,1,1)
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+The model was recognized to be an ACTMC, so ACTMC method will be used!
+
+Initial states are all in one BSCC (so no reachability probabilities computed)
+Starting value iteration...
+Value iteration took 2398 iterations and 0.001 seconds.
+
+Reducing ACTMC to equivalent DTMC took 0.204 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.001 seconds.
+
+Printing steady-state probabilities in plain text format below:
+0:=0.9912477993292063
+1:=9.81425410775178E-5
+2:=4.8745771497622096E-5
+3:=6.4139832915807514E-9
+4:=1.46894726558431E-4
+5:=0.006511155419294228
+6:=0.0019340436166138998
+7:=1.3212181937451903E-5
+
+Time for steady-state probability computation: 0.205 seconds.
