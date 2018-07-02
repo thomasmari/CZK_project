@@ -13,5 +13,4 @@ clean:
 	rm -f Report/*.out
 	rm -f Report/*.xml
 	rm -f Report/*.synctex.gz
-
-
+	rm -f Python/*.pyc
