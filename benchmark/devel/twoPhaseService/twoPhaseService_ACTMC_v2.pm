@@ -16,8 +16,8 @@ event service2Time  = dirac(0.5); // time it takes to finish the second part of 
 
 	[continue] (preemption=1) -> CONTINUATION_RATE: (preemption'=0);
 
-	[firstStage] (stage=0) && (preemption=1) --service1Time-> (stage'=1);
+	[firstStage] (stage=0) & (preemption=0) --service1Time-> (stage'=1);
 
-	[secondStage] (stage=1) && (preemption=1) --service2Time-> (stage'=0);
+	[secondStage] (stage=1) & (preemption=0) --service2Time-> (stage'=0);
 
 endmodule

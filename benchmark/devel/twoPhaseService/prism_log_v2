@@ -1,0 +1,38 @@
+Building model...
+
+Computing reachable states... 4 states
+Reachable states exploration and model construction done in 0.003 secs.
+Sorting reachable states list...
+
+Time for model construction: 0.005 seconds.
+
+Type:        GSMP
+States:      4 (1 initial)
+Transitions: 6
+
+Exporting list of reachable states in plain text format below:
+(preemption,stage)
+0:(0,0)
+1:(0,1)
+2:(1,0)
+3:(1,1)
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+The model was recognized to be an ACTMC, so ACTMC method will be used!
+
+Initial states are all in one BSCC (so no reachability probabilities computed)
+Starting value iteration...
+Value iteration took 56 iterations and 0.0 seconds.
+
+Reducing ACTMC to equivalent DTMC took 0.259 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.0 seconds.
+
+Printing steady-state probabilities in plain text format below:
+0:=0.6378185520765831
+1:=0.16218144792341607
+2:=0.15945463801914578
+3:=0.04054536198085401
+
+Time for steady-state probability computation: 0.259 seconds.
