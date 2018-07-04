@@ -1,4 +1,4 @@
-fdctmc
+gsmp
 
 // cost in states
 const double UNAVAILABLE_COST=20.0;

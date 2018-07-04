@@ -16,15 +16,15 @@ sudo apt install gawk
 sudo apt install bc
 
 
-install jdk
+install jdk 
 
 
 
 
-pyhon
+python (for ploting data)
 
-apt install python
+sudo apt install python
 sudo apt-get remove python-pip
 wget https://bootstrap.pypa.io/get-pip.py
-python get-pip.py
-apt install python-tk
+sudo python get-pip.py
+sudo apt install python-tk

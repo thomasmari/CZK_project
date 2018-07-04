@@ -1,0 +1,2 @@
+Exporting list of reachable states in plain text format below:
+(status,avail,maintenance,i_r,i_m,i_rej)
