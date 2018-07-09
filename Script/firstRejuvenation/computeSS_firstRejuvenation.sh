@@ -34,7 +34,7 @@ if [ "$1" == "help" ]; then
 #check parameter
 if [ -z "$1" ]
   then
-    echo "epsilon not supplied"
+    echo "epsilon not supplied amongs $1 $2 $3 $4"
     exit 1
 elif [ -z "$2"  ]
   then
@@ -46,7 +46,7 @@ elif [ -z "$3" ] && [[ $2 != event ]]
     exit 1
 elif [ -z "$4" ] && [[ $2 != "event" ]]
   then
-    echo "PH fitting parameter k not supplied for other engine that event"
+    echo "PH fitting parameter k not supplied for other engine that event amongs $1 $2 $3 $4"
     exit 1
 fi
 
@@ -67,7 +67,7 @@ fi
 path="firstRejuvenation_${epsilon}_${kindOfEpsilon}"
 
 #changing directory
-cd '../Output'
+cd '../../Output'
 
 mkdir $path
 cd $path
