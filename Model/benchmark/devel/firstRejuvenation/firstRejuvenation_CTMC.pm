@@ -37,7 +37,7 @@ module firstRejuvenation
 
 	[tclock] (maintenance=0) & (avail=1) -> (maintenance'=1) & (avail'=0);
 
-	[rejuvenate] (maintenance=1) -> 0.5 : (maintenance'=0) & (avail'=1) + 0.5 : (maintenance'=0) & (avail'=1) & (status'=0);
+	[rejuvenate] (maintenance=1) -> 0.5 : (maintenance'=0) & (avail'=1) & (status'=0);
 
 
 endmodule
