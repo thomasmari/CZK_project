@@ -37,31 +37,23 @@ module firstRejuvenation
 
 	[tclock] (maintenance=0) & (avail=1) -> (maintenance'=1) & (avail'=0);
 
-	[rejuvenate] (maintenance=1) -> (maintenance'=0) & (avail'=1) & (status'=0);
+	[rejuvenate] (maintenance=1) -> 0.5 : (maintenance'=0) & (avail'=1) + 0.5 : (maintenance'=0) & (avail'=1) & (status'=0);
 
 
 endmodule
 
-module trigger_r
-i_r: [1..k+1];
+module trigger
+i: [1..k+1];
 
-[] i_r< k -> k/repairTime : (i_r'=i_r+1);
-[repair] (i_r= k)|((status=2)) -> k/repairTime : (i_r'=1);
+[] i< k & (status=2) -> k/repairTime : (i'=i+1);
+[repair] (i = k) & (status=2) -> k/repairTime : (i'=1);
 
-endmodule
+[] i< k & (maintenance=0) & (avail=1)  -> k/maintenanceTime : (i'=i+1);
+[tclock] (i= k) & (maintenance=0) & (avail=1)  -> k/maintenanceTime : (i'=1);
 
-module trigger_m
-i_m: [1..k+1];
-
-[] i_m< k -> k/maintenanceTime : (i_m'=i_m+1);
-[tclock] (i_m= k) | !((maintenance=0) & (avail=1))  -> k/maintenanceTime : (i_m'=1);
+[] i< k & (maintenance=1) -> k/rejuvenationTime : (i'=i+1);
+[rejuvenate] i= k & (maintenance=1) -> k/rejuvenationTime : (i'=1);
 
 endmodule
 
-module trigger_rej
-i_rej: [1..k+1];
 
-[] i_rej< k -> k/rejuvenationTime : (i_rej'=i_rej+1);
-[rejuvenate] i_rej= k | (maintenance=0) -> k/rejuvenationTime : (i_rej'=1);
-
-endmodule
