@@ -1,0 +1,56 @@
+PRISM
+=====
+
+Version: 4.4
+Date: Mon Jul 09 08:43:48 EDT 2018
+Hostname: storm-eval
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -epsilon 2e-07 -maxiters 100000000 -power -absolute -const k=5 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_5_1E-6
+
+Parsing model file "../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm"...
+
+Type:        CTMC
+Modules:     firstRejuvenation trigger 
+Variables:   status avail maintenance i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=5
+
+Computing reachable states...
+
+Reachability (BFS): 11 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+
+Time for model construction: 0.011 seconds.
+
+Type:        CTMC
+States:      25 (1 initial)
+Transitions: 35
+
+Rate matrix: 123 nodes (7 terminal), 35 minterms, vars: 7r/7c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:25
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=162] [3.2 Kb]
+Building hybrid MTBDD matrix... [levels=7, nodes=170] [8.0 KB]
+Adding explicit sparse matrices... [levels=7, num=1, compact] [0.3 KB]
+Allocating iteration vectors... [2 x 0.2 KB]
+TOTAL: [8.7 KB]
+
+Starting iterations...
+
+Power method: 17949 iterations in 0.01 seconds (average 0.000000, setup 0.00)
+
+Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_5_1E-6"...
+
+Time for steady-state probability computation: 0.016 seconds.
+
