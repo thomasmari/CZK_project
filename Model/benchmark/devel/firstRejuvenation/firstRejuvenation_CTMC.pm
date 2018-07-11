@@ -54,6 +54,8 @@ i: [1..k+1];
 [] i< k & (maintenance=1) -> k/rejuvenationTime : (i'=i+1);
 [rejuvenate] i= k & (maintenance=1) -> k/rejuvenationTime : (i'=1);
 
+[fail] true -> (i'=1);
+
 endmodule
 
 
