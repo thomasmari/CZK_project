@@ -98,6 +98,7 @@ A continuous-time Markov chain (CTMC) is a triple $C = (S,Q,s_{in})$, where
 	\item[$\bullet$] $Q : S \times S \rightarrow \mathbb{R}_{\geq 0}$ is a matrix of rates such that $\sum_{s' \in S} Q(s,s')  > 0$ for each $s \in S$
 	\item[$\bullet$] $s_{in} \in S$ is an initial state
 \end{itemize} 
+$Q(s,s')$ is the rate of the transition from $s$ to $s'$.
 We define the exit rate of state $s$ as $\lambda_s = \sum_{s' \in S} Q(s,s')$
 
 A run of a CTMC $\mathcal{C}$ is an infinite alternating sequence of states and times $\omega = s_0t_0s_1t_1...$ where 
@@ -189,7 +190,7 @@ Consider an infinite sequence of finite sequences of rates of length k $((\lambd
 
 To obtain analysis on ACTMC, we use PH fitting to create CTMC from ACTMC, and analyse those CTMC Then we deduce results on the ACTMC.  The reason is that Prism or Storm can use CTMC and not ACTMC. Figure \ref{fig:simple_actmc} and figure \ref{fig:simple_ctmc} are a toy example of the PH fitting of a simple ACTMC $\mathcal{A} = (\{A,B\},
 \begin{bmatrix}
-	1       & 3 \\
+	0.5       & 0 \\
 	2       & 1 
 \end{bmatrix}
 ,A,\{A\},
@@ -223,7 +224,11 @@ EXIT RATE > 0 §!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		\node[state]         (sn) [right of=s0]       {$B$};
 		\path[->, dashed]
 		(s0) edge 	node {$d$} (sn);
-
+		\path[->]
+		(s0) edge [loop left]	node {0.5} (s0)
+			
+		(sn) edge [bend left]	node {2} (s0)
+		edge [loop right]	node {1} (sn);			
 		\end{tikzpicture}
 		\caption{Model of a simple ACTMC $\mathcal{A}$, $d$ is a non-Markovian distribution.}
 		\label{fig:simple_actmc}
@@ -245,24 +250,32 @@ EXIT RATE > 0 §!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 		
 		
 		\path[->]  
-		(s0) edge	node {$\lambda_{k,1}$} (s1);
+		(s0) edge	node {$\lambda_{k,1}$} (s1)
+			edge [loop above]	node {0.5} (s0);
 		\path[->]
 	
 		[->]
-		(s1) edge	node {$\lambda_{k,2}$} (s2);
+		(s1) edge	node {$\lambda_{k,2}$} (s2)
+			edge [loop above]	node {0.5} (s1);
 		\path[->]
 	
 	
-		(s2) edge   node {$\lambda_{k,3}$} (s4);
+		(s2) edge   node {$\lambda_{k,3}$} (s4)
+			edge [loop above]	node {0.5} (s2);
 		\path[->]
 	
 	
-		(s4) edge   node {$\lambda_{k,k-1}$} (sw);
+		(s4) edge   node {$\lambda_{k,k-1}$} (sw)
+			edge [loop above]	node {0.5} (s4);
 		\path[->]
 	
 	
-		(sw) edge   node {$\lambda_{k,k}$} (sn);
-		\path[->];
+		(sw) edge   node {$\lambda_{k,k}$} (sn)
+			edge [loop above]	node {0.5} (sw);
+		\path[->]
+		
+		(sn) edge [bend left]	node {2} (s0)
+		edge [loop right]	node {1} (sn);
 		\end{tikzpicture}
 		\caption{Model of a CTMC obtain by PH fitting of the ACTMC figure \ref{fig:simple_actmc}.}
 		\label{fig:simple_ctmc}
