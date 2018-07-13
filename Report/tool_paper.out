@@ -1,8 +1,0 @@
-\BOOKMARK [1][-]{section.1}{Introduction}{}% 1
-\BOOKMARK [1][-]{section.2}{Experimental evaluation}{}% 2
-\BOOKMARK [2][-]{subsection.2.1}{Obtaining precise results for reference}{section.2}% 3
-\BOOKMARK [2][-]{subsection.2.2}{Default absolute termination epsilon = 10-6}{section.2}% 4
-\BOOKMARK [2][-]{subsection.2.3}{Lowering absolute termination epsilon to = 10-10}{section.2}% 5
-\BOOKMARK [2][-]{subsection.2.4}{Adjusting epsilon = 10-10 to k}{section.2}% 6
-\BOOKMARK [2][-]{subsection.2.5}{Required computation time to obtain precise results}{section.2}% 7
-\BOOKMARK [1][-]{section.3}{Conclusion}{}% 8
