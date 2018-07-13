@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 08:45:54 EDT 2018
+Date: Wed Jul 11 05:02:26 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1E-6 -maxiters 100000000 -power -absolute -const k=300 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_constant/hybrid/ph_300_1E-6
@@ -24,13 +24,13 @@ Computing reachable states...
 
 Reachability (BFS): 601 iterations in 0.01 seconds (average 0.000020, setup 0.00)
 
-Time for model construction: 0.053 seconds.
+Time for model construction: 0.04 seconds.
 
 Type:        CTMC
 States:      1500 (1 initial)
 Transitions: 2100
 
-Rate matrix: 332 nodes (7 terminal), 2100 minterms, vars: 13r/13c
+Rate matrix: 316 nodes (7 terminal), 2100 minterms, vars: 13r/13c
 
 SCCs: 1, BSCCs: 1, non-BSCC states: 0
 BSCC sizes: 1:1500
@@ -40,17 +40,17 @@ Initial states all in one BSCC (so no reachability probabilities computed)
 Computing probabilities...
 Engine: Hybrid
 
-Building power method iteration matrix MTBDD... [nodes=386] [7.5 Kb]
-Building hybrid MTBDD matrix... [levels=13, nodes=430] [20.2 KB]
-Adding explicit sparse matrices... [levels=13, num=1, compact] [15.6 KB]
+Building power method iteration matrix MTBDD... [nodes=370] [7.2 Kb]
+Building hybrid MTBDD matrix... [levels=13, nodes=419] [19.6 KB]
+Adding explicit sparse matrices... [levels=13, num=1, compact] [20.0 KB]
 Allocating iteration vectors... [2 x 11.7 KB]
-TOTAL: [59.2 KB]
+TOTAL: [63.1 KB]
 
 Starting iterations...
 
-Power method: 116676 iterations in 1.17 seconds (average 0.000010, setup 0.00)
+Power method: 116614 iterations in 1.17 seconds (average 0.000010, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_constant/hybrid/ph_300_1E-6"...
 
-Time for steady-state probability computation: 1.285 seconds.
+Time for steady-state probability computation: 1.257 seconds.
 

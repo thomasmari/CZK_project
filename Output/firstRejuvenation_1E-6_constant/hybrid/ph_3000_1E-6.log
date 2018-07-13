@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 10:57:22 EDT 2018
+Date: Wed Jul 11 07:17:23 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1E-6 -maxiters 100000000 -power -absolute -const k=3000 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_constant/hybrid/ph_3000_1E-6
@@ -22,15 +22,15 @@ Model constants: k=3000
 
 Computing reachable states...
 
-Reachability (BFS): 6001 iterations in 0.17 seconds (average 0.000028, setup 0.00)
+Reachability (BFS): 6001 iterations in 0.19 seconds (average 0.000031, setup 0.00)
 
-Time for model construction: 0.657 seconds.
+Time for model construction: 1.38 seconds.
 
 Type:        CTMC
 States:      15000 (1 initial)
 Transitions: 21000
 
-Rate matrix: 429 nodes (7 terminal), 21000 minterms, vars: 16r/16c
+Rate matrix: 407 nodes (7 terminal), 21000 minterms, vars: 16r/16c
 
 SCCs: 1, BSCCs: 1, non-BSCC states: 0
 BSCC sizes: 1:15000
@@ -40,18 +40,18 @@ Initial states all in one BSCC (so no reachability probabilities computed)
 Computing probabilities...
 Engine: Hybrid
 
-Building power method iteration matrix MTBDD... [nodes=498] [9.7 Kb]
-Building hybrid MTBDD matrix... [levels=16, nodes=572] [26.8 KB]
-Adding explicit sparse matrices... [levels=16, num=1, compact] [155.4 KB]
+Building power method iteration matrix MTBDD... [nodes=476] [9.3 Kb]
+Building hybrid MTBDD matrix... [levels=16, nodes=555] [26.0 KB]
+Adding explicit sparse matrices... [levels=16, num=1, compact] [199.3 KB]
 Allocating iteration vectors... [2 x 117.2 KB]
-TOTAL: [416.5 KB]
+TOTAL: [459.7 KB]
 
 Starting iterations...
-Iteration 49522: max diff=0.000002, 5.00 sec so far
+Iteration 49330: max diff=0.000002, 5.00 sec so far
 
-Power method: 97811 iterations in 9.82 seconds (average 0.000100, setup 0.00)
+Power method: 97809 iterations in 9.86 seconds (average 0.000101, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_constant/hybrid/ph_3000_1E-6"...
 
-Time for steady-state probability computation: 10.264 seconds.
+Time for steady-state probability computation: 10.356 seconds.
 

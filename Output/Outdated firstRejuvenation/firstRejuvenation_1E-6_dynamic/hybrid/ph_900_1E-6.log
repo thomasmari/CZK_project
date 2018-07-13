@@ -1,0 +1,214 @@
+PRISM
+=====
+
+Version: 4.4
+Date: Mon Jul 09 09:20:39 EDT 2018
+Hostname: storm-eval
+Memory limits: cudd=1g, java(heap)=910.5m
+Command line: prism -hybrid -epsilon 1.11111e-09 -maxiters 100000000 -power -absolute -const k=900 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_900_1E-6
+
+Parsing model file "../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm"...
+
+Type:        CTMC
+Modules:     firstRejuvenation trigger 
+Variables:   status avail maintenance i 
+
+---------------------------------------------------------------------
+
+Computing steady-state probabilities...
+
+Building model...
+Model constants: k=900
+
+Computing reachable states...
+
+Reachability (BFS): 1801 iterations in 0.04 seconds (average 0.000022, setup 0.00)
+
+Time for model construction: 0.112 seconds.
+
+Type:        CTMC
+States:      4500 (1 initial)
+Transitions: 6300
+
+Rate matrix: 369 nodes (7 terminal), 6300 minterms, vars: 14r/14c
+
+SCCs: 1, BSCCs: 1, non-BSCC states: 0
+BSCC sizes: 1:4500
+
+Initial states all in one BSCC (so no reachability probabilities computed)
+
+Computing probabilities...
+Engine: Hybrid
+
+Building power method iteration matrix MTBDD... [nodes=428] [8.4 Kb]
+Building hybrid MTBDD matrix... [levels=14, nodes=478] [22.4 KB]
+Adding explicit sparse matrices... [levels=14, num=1, compact] [46.7 KB]
+Allocating iteration vectors... [2 x 35.2 KB]
+TOTAL: [139.4 KB]
+
+Starting iterations...
+Iteration 168655: max diff=0.000001, 5.00 sec so far
+Iteration 337199: max diff=0.000000, 10.01 sec so far
+Iteration 506034: max diff=0.000000, 15.01 sec so far
+Iteration 673984: max diff=0.000000, 20.02 sec so far
+Iteration 841757: max diff=0.000000, 25.02 sec so far
+Iteration 1010644: max diff=0.000000, 30.02 sec so far
+Iteration 1175769: max diff=0.000000, 35.03 sec so far
+Iteration 1345493: max diff=0.000000, 40.03 sec so far
+Iteration 1514976: max diff=0.000000, 45.04 sec so far
+Iteration 1684340: max diff=0.000000, 50.04 sec so far
+Iteration 1852813: max diff=0.000000, 55.04 sec so far
+Iteration 2020738: max diff=0.000000, 60.05 sec so far
+Iteration 2190667: max diff=0.000000, 65.05 sec so far
+Iteration 2359424: max diff=0.000000, 70.06 sec so far
+Iteration 2529300: max diff=0.000000, 75.06 sec so far
+Iteration 2697945: max diff=0.000000, 80.06 sec so far
+Iteration 2866833: max diff=0.000000, 85.07 sec so far
+Iteration 3035963: max diff=0.000000, 90.07 sec so far
+Iteration 3205150: max diff=0.000000, 95.08 sec so far
+Iteration 3375204: max diff=0.000000, 100.08 sec so far
+Iteration 3544710: max diff=0.000000, 105.08 sec so far
+Iteration 3714827: max diff=0.000000, 110.09 sec so far
+Iteration 3883015: max diff=0.000000, 115.09 sec so far
+Iteration 4052497: max diff=0.000000, 120.10 sec so far
+Iteration 4220845: max diff=0.000000, 125.10 sec so far
+Iteration 4390865: max diff=0.000000, 130.10 sec so far
+Iteration 4560075: max diff=0.000000, 135.11 sec so far
+Iteration 4729071: max diff=0.000000, 140.11 sec so far
+Iteration 4898120: max diff=0.000000, 145.12 sec so far
+Iteration 5068154: max diff=0.000000, 150.12 sec so far
+Iteration 5237245: max diff=0.000000, 155.12 sec so far
+Iteration 5405787: max diff=0.000000, 160.13 sec so far
+Iteration 5575893: max diff=0.000000, 165.13 sec so far
+Iteration 5745830: max diff=0.000000, 170.14 sec so far
+Iteration 5913480: max diff=0.000000, 175.14 sec so far
+Iteration 6082879: max diff=0.000000, 180.14 sec so far
+Iteration 6252675: max diff=0.000000, 185.15 sec so far
+Iteration 6422781: max diff=0.000000, 190.15 sec so far
+Iteration 6592427: max diff=0.000000, 195.16 sec so far
+Iteration 6761488: max diff=0.000000, 200.16 sec so far
+Iteration 6930627: max diff=0.000000, 205.16 sec so far
+Iteration 7098644: max diff=0.000000, 210.17 sec so far
+Iteration 7266923: max diff=0.000000, 215.17 sec so far
+Iteration 7436152: max diff=0.000000, 220.18 sec so far
+Iteration 7605053: max diff=0.000000, 225.18 sec so far
+Iteration 7774389: max diff=0.000000, 230.18 sec so far
+Iteration 7943237: max diff=0.000000, 235.19 sec so far
+Iteration 8112905: max diff=0.000000, 240.19 sec so far
+Iteration 8282012: max diff=0.000000, 245.20 sec so far
+Iteration 8452365: max diff=0.000000, 250.20 sec so far
+Iteration 8621080: max diff=0.000000, 255.20 sec so far
+Iteration 8790374: max diff=0.000000, 260.21 sec so far
+Iteration 8958109: max diff=0.000000, 265.21 sec so far
+Iteration 9127608: max diff=0.000000, 270.22 sec so far
+Iteration 9296891: max diff=0.000000, 275.22 sec so far
+Iteration 9465281: max diff=0.000000, 280.22 sec so far
+Iteration 9633641: max diff=0.000000, 285.23 sec so far
+Iteration 9796334: max diff=0.000000, 290.23 sec so far
+Iteration 9966037: max diff=0.000000, 295.24 sec so far
+Iteration 10134839: max diff=0.000000, 300.24 sec so far
+Iteration 10302796: max diff=0.000000, 305.24 sec so far
+Iteration 10470755: max diff=0.000000, 310.25 sec so far
+Iteration 10639996: max diff=0.000000, 315.25 sec so far
+Iteration 10808430: max diff=0.000000, 320.26 sec so far
+Iteration 10977438: max diff=0.000000, 325.26 sec so far
+Iteration 11145958: max diff=0.000000, 330.26 sec so far
+Iteration 11314973: max diff=0.000000, 335.27 sec so far
+Iteration 11482634: max diff=0.000000, 340.27 sec so far
+Iteration 11650521: max diff=0.000000, 345.28 sec so far
+Iteration 11818989: max diff=0.000000, 350.28 sec so far
+Iteration 11986692: max diff=0.000000, 355.28 sec so far
+Iteration 12155591: max diff=0.000000, 360.29 sec so far
+Iteration 12324920: max diff=0.000000, 365.29 sec so far
+Iteration 12492641: max diff=0.000000, 370.30 sec so far
+Iteration 12660610: max diff=0.000000, 375.30 sec so far
+Iteration 12828909: max diff=0.000000, 380.30 sec so far
+Iteration 12996751: max diff=0.000000, 385.31 sec so far
+Iteration 13164027: max diff=0.000000, 390.31 sec so far
+Iteration 13331076: max diff=0.000000, 395.32 sec so far
+Iteration 13500250: max diff=0.000000, 400.32 sec so far
+Iteration 13668532: max diff=0.000000, 405.32 sec so far
+Iteration 13836358: max diff=0.000000, 410.33 sec so far
+Iteration 14005183: max diff=0.000000, 415.33 sec so far
+Iteration 14172764: max diff=0.000000, 420.34 sec so far
+Iteration 14341246: max diff=0.000000, 425.34 sec so far
+Iteration 14509481: max diff=0.000000, 430.34 sec so far
+Iteration 14677219: max diff=0.000000, 435.35 sec so far
+Iteration 14844702: max diff=0.000000, 440.35 sec so far
+Iteration 15013909: max diff=0.000000, 445.36 sec so far
+Iteration 15182734: max diff=0.000000, 450.36 sec so far
+Iteration 15351213: max diff=0.000000, 455.36 sec so far
+Iteration 15520157: max diff=0.000000, 460.37 sec so far
+Iteration 15688501: max diff=0.000000, 465.37 sec so far
+Iteration 15855954: max diff=0.000000, 470.38 sec so far
+Iteration 16024727: max diff=0.000000, 475.38 sec so far
+Iteration 16193093: max diff=0.000000, 480.38 sec so far
+Iteration 16362232: max diff=0.000000, 485.39 sec so far
+Iteration 16529233: max diff=0.000000, 490.39 sec so far
+Iteration 16696597: max diff=0.000000, 495.40 sec so far
+Iteration 16865233: max diff=0.000000, 500.40 sec so far
+Iteration 17033795: max diff=0.000000, 505.40 sec so far
+Iteration 17201745: max diff=0.000000, 510.41 sec so far
+Iteration 17370283: max diff=0.000000, 515.41 sec so far
+Iteration 17536644: max diff=0.000000, 520.42 sec so far
+Iteration 17704984: max diff=0.000000, 525.42 sec so far
+Iteration 17874199: max diff=0.000000, 530.42 sec so far
+Iteration 18041891: max diff=0.000000, 535.43 sec so far
+Iteration 18210773: max diff=0.000000, 540.43 sec so far
+Iteration 18380338: max diff=0.000000, 545.44 sec so far
+Iteration 18548515: max diff=0.000000, 550.44 sec so far
+Iteration 18717206: max diff=0.000000, 555.44 sec so far
+Iteration 18885047: max diff=0.000000, 560.45 sec so far
+Iteration 19055535: max diff=0.000000, 565.45 sec so far
+Iteration 19223873: max diff=0.000000, 570.46 sec so far
+Iteration 19391484: max diff=0.000000, 575.46 sec so far
+Iteration 19560194: max diff=0.000000, 580.46 sec so far
+Iteration 19729326: max diff=0.000000, 585.47 sec so far
+Iteration 19897690: max diff=0.000000, 590.47 sec so far
+Iteration 20065860: max diff=0.000000, 595.48 sec so far
+Iteration 20234762: max diff=0.000000, 600.48 sec so far
+Iteration 20402356: max diff=0.000000, 605.48 sec so far
+Iteration 20571361: max diff=0.000000, 610.49 sec so far
+Iteration 20739545: max diff=0.000000, 615.49 sec so far
+Iteration 20908614: max diff=0.000000, 620.50 sec so far
+Iteration 21077291: max diff=0.000000, 625.50 sec so far
+Iteration 21244585: max diff=0.000000, 630.50 sec so far
+Iteration 21413705: max diff=0.000000, 635.51 sec so far
+Iteration 21581733: max diff=0.000000, 640.51 sec so far
+Iteration 21749427: max diff=0.000000, 645.52 sec so far
+Iteration 21918360: max diff=0.000000, 650.52 sec so far
+Iteration 22086372: max diff=0.000000, 655.52 sec so far
+Iteration 22255420: max diff=0.000000, 660.53 sec so far
+Iteration 22422608: max diff=0.000000, 665.53 sec so far
+Iteration 22590233: max diff=0.000000, 670.54 sec so far
+Iteration 22758523: max diff=0.000000, 675.54 sec so far
+Iteration 22927782: max diff=0.000000, 680.54 sec so far
+Iteration 23095428: max diff=0.000000, 685.55 sec so far
+Iteration 23264244: max diff=0.000000, 690.55 sec so far
+Iteration 23433528: max diff=0.000000, 695.56 sec so far
+Iteration 23602009: max diff=0.000000, 700.56 sec so far
+Iteration 23770931: max diff=0.000000, 705.56 sec so far
+Iteration 23939009: max diff=0.000000, 710.57 sec so far
+Iteration 24108046: max diff=0.000000, 715.57 sec so far
+Iteration 24277065: max diff=0.000000, 720.58 sec so far
+Iteration 24445176: max diff=0.000000, 725.58 sec so far
+Iteration 24613801: max diff=0.000000, 730.58 sec so far
+Iteration 24783771: max diff=0.000000, 735.59 sec so far
+Iteration 24951082: max diff=0.000000, 740.59 sec so far
+Iteration 25120164: max diff=0.000000, 745.60 sec so far
+Iteration 25289059: max diff=0.000000, 750.60 sec so far
+Iteration 25456839: max diff=0.000000, 755.60 sec so far
+Iteration 25624745: max diff=0.000000, 760.61 sec so far
+Iteration 25793462: max diff=0.000000, 765.61 sec so far
+Iteration 25962776: max diff=0.000000, 770.62 sec so far
+Iteration 26131844: max diff=0.000000, 775.62 sec so far
+Iteration 26300375: max diff=0.000000, 780.62 sec so far
+Iteration 26469607: max diff=0.000000, 785.63 sec so far
+Iteration 26637604: max diff=0.000000, 790.63 sec so far
+
+Power method: 26728283 iterations in 793.33 seconds (average 0.000030, setup 0.00)
+
+Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_900_1E-6"...
+
+Time for steady-state probability computation: 804.796 seconds.
+

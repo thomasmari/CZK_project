@@ -1,6 +1,5 @@
 #Here you can set the sequence of k computed
 sequence=$(seq 1 1 9; seq 10 10 90; seq 100 100 900; seq 1000 1000 4000; seq 5000 5000 5000);
-epsilon = 1E-6
 
 for eps in 1E-6 1E-10 1E-15 1E-20
 	do

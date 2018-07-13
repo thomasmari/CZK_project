@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 08:44:59 EDT 2018
+Date: Wed Jul 11 05:01:29 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1e-08 -maxiters 100000000 -power -absolute -const k=100 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_100_1E-6
@@ -24,13 +24,13 @@ Computing reachable states...
 
 Reachability (BFS): 201 iterations in 0.00 seconds (average 0.000020, setup 0.00)
 
-Time for model construction: 0.017 seconds.
+Time for model construction: 0.018 seconds.
 
 Type:        CTMC
 States:      500 (1 initial)
 Transitions: 700
 
-Rate matrix: 258 nodes (7 terminal), 700 minterms, vars: 11r/11c
+Rate matrix: 246 nodes (7 terminal), 700 minterms, vars: 11r/11c
 
 SCCs: 1, BSCCs: 1, non-BSCC states: 0
 BSCC sizes: 1:500
@@ -40,18 +40,18 @@ Initial states all in one BSCC (so no reachability probabilities computed)
 Computing probabilities...
 Engine: Hybrid
 
-Building power method iteration matrix MTBDD... [nodes=302] [5.9 Kb]
-Building hybrid MTBDD matrix... [levels=11, nodes=328] [15.4 KB]
+Building power method iteration matrix MTBDD... [nodes=290] [5.7 Kb]
+Building hybrid MTBDD matrix... [levels=11, nodes=320] [15.0 KB]
 Adding explicit sparse matrices... [levels=11, num=1, compact] [5.3 KB]
 Allocating iteration vectors... [2 x 3.9 KB]
-TOTAL: [28.4 KB]
+TOTAL: [28.1 KB]
 
 Starting iterations...
-Iteration 1492417: max diff=0.000000, 5.00 sec so far
+Iteration 1402873: max diff=0.000000, 5.00 sec so far
 
-Power method: 2441394 iterations in 8.18 seconds (average 0.000003, setup 0.00)
+Power method: 2444875 iterations in 8.48 seconds (average 0.000003, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_100_1E-6"...
 
-Time for steady-state probability computation: 8.937 seconds.
+Time for steady-state probability computation: 9.472 seconds.
 

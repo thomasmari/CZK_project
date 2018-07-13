@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4.GSMP
-Date: Mon Jul 09 08:43:26 EDT 2018
+Date: Wed Jul 11 04:59:56 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -explicit -epsilon 1E-15 -maxiters 100000000 -power -absolute ../../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_ACTMC.pm -ss -exportss ../../../CZK_project/Output/firstRejuvenation_1E-15_constant/explicit/ev_k_1E-15
@@ -23,7 +23,7 @@ Computing reachable states... 5 states
 Reachable states exploration and model construction done in 0.006 secs.
 Sorting reachable states list...
 
-Time for model construction: 0.013 seconds.
+Time for model construction: 0.014 seconds.
 
 Type:        GSMP
 States:      5 (1 initial)
@@ -34,10 +34,10 @@ Initial states are all in one BSCC (so no reachability probabilities computed)
 Starting value iteration...
 Value iteration took 1050 iterations and 0.001 seconds.
 
-Reducing ACTMC to equivalent DTMC took 0.239 seconds.
-Computing steady-state probabilities for the equivalent DTMC took 0.003 seconds.
+Reducing ACTMC to equivalent DTMC took 0.275 seconds.
+Computing steady-state probabilities for the equivalent DTMC took 0.005 seconds.
 
 Printing steady-state probabilities in plain text format to file "../../../CZK_project/Output/firstRejuvenation_1E-15_constant/explicit/ev_k_1E-15"...
 
-Time for steady-state probability computation: 0.249 seconds.
+Time for steady-state probability computation: 0.287 seconds.
 

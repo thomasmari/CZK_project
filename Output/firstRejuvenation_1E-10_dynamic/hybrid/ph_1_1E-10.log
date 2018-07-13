@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 22:06:29 EDT 2018
+Date: Wed Jul 11 18:13:48 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1e-10 -maxiters 100000000 -power -absolute -const k=1 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-10_dynamic/hybrid/ph_1_1E-10
@@ -54,7 +54,7 @@ TOTAL: [3.7 KB]
 
 Starting iterations...
 
-Power method: 6358 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+Power method: 6358 iterations in 0.00 seconds (average 0.000001, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-10_dynamic/hybrid/ph_1_1E-10"...
 

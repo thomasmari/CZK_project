@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 22:07:35 EDT 2018
+Date: Wed Jul 11 18:14:55 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1E-10 -maxiters 100000000 -power -absolute -const k=60 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-10_constant/hybrid/ph_60_1E-10
@@ -24,13 +24,13 @@ Computing reachable states...
 
 Reachability (BFS): 121 iterations in 0.00 seconds (average 0.000000, setup 0.00)
 
-Time for model construction: 0.014 seconds.
+Time for model construction: 0.015 seconds.
 
 Type:        CTMC
 States:      300 (1 initial)
 Transitions: 420
 
-Rate matrix: 221 nodes (7 terminal), 420 minterms, vars: 10r/10c
+Rate matrix: 211 nodes (7 terminal), 420 minterms, vars: 10r/10c
 
 SCCs: 1, BSCCs: 1, non-BSCC states: 0
 BSCC sizes: 1:300
@@ -40,18 +40,18 @@ Initial states all in one BSCC (so no reachability probabilities computed)
 Computing probabilities...
 Engine: Hybrid
 
-Building power method iteration matrix MTBDD... [nodes=260] [5.1 Kb]
-Building hybrid MTBDD matrix... [levels=10, nodes=286] [13.4 KB]
+Building power method iteration matrix MTBDD... [nodes=250] [4.9 Kb]
+Building hybrid MTBDD matrix... [levels=10, nodes=278] [13.0 KB]
 Adding explicit sparse matrices... [levels=10, num=1, compact] [3.2 KB]
 Allocating iteration vectors... [2 x 2.3 KB]
-TOTAL: [21.3 KB]
+TOTAL: [20.9 KB]
 
 Starting iterations...
-Iteration 2488864: max diff=0.000000, 5.00 sec so far
+Iteration 2461190: max diff=0.000000, 5.00 sec so far
 
-Power method: 2687038 iterations in 5.43 seconds (average 0.000002, setup 0.00)
+Power method: 2690502 iterations in 5.48 seconds (average 0.000002, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-10_constant/hybrid/ph_60_1E-10"...
 
-Time for steady-state probability computation: 6.423 seconds.
+Time for steady-state probability computation: 6.587 seconds.
 

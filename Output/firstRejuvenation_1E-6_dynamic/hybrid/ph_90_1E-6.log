@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 08:44:49 EDT 2018
+Date: Wed Jul 11 05:01:19 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1.11111e-08 -maxiters 100000000 -power -absolute -const k=90 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_90_1E-6
@@ -22,15 +22,15 @@ Model constants: k=90
 
 Computing reachable states...
 
-Reachability (BFS): 181 iterations in 0.00 seconds (average 0.000022, setup 0.00)
+Reachability (BFS): 181 iterations in 0.00 seconds (average 0.000000, setup 0.00)
 
-Time for model construction: 0.016 seconds.
+Time for model construction: 0.018 seconds.
 
 Type:        CTMC
 States:      450 (1 initial)
 Transitions: 630
 
-Rate matrix: 272 nodes (7 terminal), 630 minterms, vars: 11r/11c
+Rate matrix: 260 nodes (7 terminal), 630 minterms, vars: 11r/11c
 
 SCCs: 1, BSCCs: 1, non-BSCC states: 0
 BSCC sizes: 1:450
@@ -40,18 +40,18 @@ Initial states all in one BSCC (so no reachability probabilities computed)
 Computing probabilities...
 Engine: Hybrid
 
-Building power method iteration matrix MTBDD... [nodes=316] [6.2 Kb]
-Building hybrid MTBDD matrix... [levels=11, nodes=354] [16.6 KB]
+Building power method iteration matrix MTBDD... [nodes=304] [5.9 Kb]
+Building hybrid MTBDD matrix... [levels=11, nodes=345] [16.2 KB]
 Adding explicit sparse matrices... [levels=11, num=1, compact] [4.7 KB]
 Allocating iteration vectors... [2 x 3.5 KB]
-TOTAL: [28.4 KB]
+TOTAL: [27.9 KB]
 
 Starting iterations...
-Iteration 1664280: max diff=0.000000, 5.00 sec so far
+Iteration 1654642: max diff=0.000000, 5.00 sec so far
 
-Power method: 2104620 iterations in 6.34 seconds (average 0.000003, setup 0.00)
+Power method: 2107571 iterations in 6.30 seconds (average 0.000003, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_90_1E-6"...
 
-Time for steady-state probability computation: 7.046 seconds.
+Time for steady-state probability computation: 7.068 seconds.
 

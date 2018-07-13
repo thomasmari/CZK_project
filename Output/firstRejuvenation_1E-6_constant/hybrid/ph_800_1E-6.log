@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 09:09:53 EDT 2018
+Date: Wed Jul 11 05:27:50 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1E-6 -maxiters 100000000 -power -absolute -const k=800 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_constant/hybrid/ph_800_1E-6
@@ -22,15 +22,15 @@ Model constants: k=800
 
 Computing reachable states...
 
-Reachability (BFS): 1601 iterations in 0.03 seconds (average 0.000020, setup 0.00)
+Reachability (BFS): 1601 iterations in 0.04 seconds (average 0.000022, setup 0.00)
 
-Time for model construction: 0.103 seconds.
+Time for model construction: 0.105 seconds.
 
 Type:        CTMC
 States:      4000 (1 initial)
 Transitions: 5600
 
-Rate matrix: 327 nodes (7 terminal), 5600 minterms, vars: 14r/14c
+Rate matrix: 309 nodes (7 terminal), 5600 minterms, vars: 14r/14c
 
 SCCs: 1, BSCCs: 1, non-BSCC states: 0
 BSCC sizes: 1:4000
@@ -40,17 +40,17 @@ Initial states all in one BSCC (so no reachability probabilities computed)
 Computing probabilities...
 Engine: Hybrid
 
-Building power method iteration matrix MTBDD... [nodes=386] [7.5 Kb]
-Building hybrid MTBDD matrix... [levels=14, nodes=412] [19.3 KB]
-Adding explicit sparse matrices... [levels=14, num=1, compact] [41.5 KB]
+Building power method iteration matrix MTBDD... [nodes=368] [7.2 Kb]
+Building hybrid MTBDD matrix... [levels=14, nodes=401] [18.8 KB]
+Adding explicit sparse matrices... [levels=14, num=1, compact] [53.2 KB]
 Allocating iteration vectors... [2 x 31.2 KB]
-TOTAL: [123.3 KB]
+TOTAL: [134.5 KB]
 
 Starting iterations...
 
-Power method: 106938 iterations in 2.53 seconds (average 0.000024, setup 0.00)
+Power method: 106890 iterations in 2.83 seconds (average 0.000026, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_constant/hybrid/ph_800_1E-6"...
 
-Time for steady-state probability computation: 2.956 seconds.
+Time for steady-state probability computation: 2.984 seconds.
 

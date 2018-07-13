@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 08:43:32 EDT 2018
+Date: Wed Jul 11 05:00:01 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 1e-06 -maxiters 100000000 -power -absolute -const k=1 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_1_1E-6
@@ -30,7 +30,7 @@ Computing reachable states...
 
 Reachability (BFS): 3 iterations in 0.00 seconds (average 0.000000, setup 0.00)
 
-Time for model construction: 0.01 seconds.
+Time for model construction: 0.014 seconds.
 
 Type:        CTMC
 States:      5 (1 initial)
@@ -54,7 +54,7 @@ TOTAL: [3.7 KB]
 
 Starting iterations...
 
-Power method: 2699 iterations in 0.00 seconds (average 0.000000, setup 0.00)
+Power method: 2699 iterations in 0.00 seconds (average 0.000001, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_1_1E-6"...
 

@@ -2,7 +2,7 @@ PRISM
 =====
 
 Version: 4.4
-Date: Mon Jul 09 08:45:56 EDT 2018
+Date: Wed Jul 11 05:02:28 EDT 2018
 Hostname: storm-eval
 Memory limits: cudd=1g, java(heap)=910.5m
 Command line: prism -hybrid -epsilon 3.33333e-09 -maxiters 100000000 -power -absolute -const k=300 ../../CZK_project/Model/benchmark/devel/firstRejuvenation/firstRejuvenation_CTMC.pm -ss -exportss ../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_300_1E-6
@@ -22,7 +22,7 @@ Model constants: k=300
 
 Computing reachable states...
 
-Reachability (BFS): 601 iterations in 0.01 seconds (average 0.000020, setup 0.00)
+Reachability (BFS): 601 iterations in 0.02 seconds (average 0.000027, setup 0.00)
 
 Time for model construction: 0.04 seconds.
 
@@ -30,7 +30,7 @@ Type:        CTMC
 States:      1500 (1 initial)
 Transitions: 2100
 
-Rate matrix: 332 nodes (7 terminal), 2100 minterms, vars: 13r/13c
+Rate matrix: 316 nodes (7 terminal), 2100 minterms, vars: 13r/13c
 
 SCCs: 1, BSCCs: 1, non-BSCC states: 0
 BSCC sizes: 1:1500
@@ -40,35 +40,36 @@ Initial states all in one BSCC (so no reachability probabilities computed)
 Computing probabilities...
 Engine: Hybrid
 
-Building power method iteration matrix MTBDD... [nodes=386] [7.5 Kb]
-Building hybrid MTBDD matrix... [levels=13, nodes=430] [20.2 KB]
-Adding explicit sparse matrices... [levels=13, num=1, compact] [15.6 KB]
+Building power method iteration matrix MTBDD... [nodes=370] [7.2 Kb]
+Building hybrid MTBDD matrix... [levels=13, nodes=419] [19.6 KB]
+Adding explicit sparse matrices... [levels=13, num=1, compact] [20.0 KB]
 Allocating iteration vectors... [2 x 11.7 KB]
-TOTAL: [59.2 KB]
+TOTAL: [63.1 KB]
 
 Starting iterations...
-Iteration 503392: max diff=0.000000, 5.00 sec so far
-Iteration 1006381: max diff=0.000000, 10.01 sec so far
-Iteration 1513171: max diff=0.000000, 15.01 sec so far
-Iteration 2018586: max diff=0.000000, 20.02 sec so far
-Iteration 2524509: max diff=0.000000, 25.02 sec so far
-Iteration 3036728: max diff=0.000000, 30.02 sec so far
-Iteration 3544270: max diff=0.000000, 35.03 sec so far
-Iteration 4047902: max diff=0.000000, 40.03 sec so far
-Iteration 4555170: max diff=0.000000, 45.04 sec so far
-Iteration 5060957: max diff=0.000000, 50.04 sec so far
-Iteration 5571668: max diff=0.000000, 55.04 sec so far
-Iteration 6077541: max diff=0.000000, 60.05 sec so far
-Iteration 6589391: max diff=0.000000, 65.05 sec so far
-Iteration 7097945: max diff=0.000000, 70.06 sec so far
-Iteration 7602711: max diff=0.000000, 75.06 sec so far
-Iteration 8106003: max diff=0.000000, 80.06 sec so far
-Iteration 8615182: max diff=0.000000, 85.07 sec so far
-Iteration 9126687: max diff=0.000000, 90.07 sec so far
+Iteration 490043: max diff=0.000000, 5.00 sec so far
+Iteration 989201: max diff=0.000000, 10.01 sec so far
+Iteration 1489476: max diff=0.000000, 15.01 sec so far
+Iteration 1990605: max diff=0.000000, 20.02 sec so far
+Iteration 2488554: max diff=0.000000, 25.02 sec so far
+Iteration 2981596: max diff=0.000000, 30.02 sec so far
+Iteration 3477833: max diff=0.000000, 35.03 sec so far
+Iteration 3977563: max diff=0.000000, 40.03 sec so far
+Iteration 4476753: max diff=0.000000, 45.04 sec so far
+Iteration 4960027: max diff=0.000000, 50.04 sec so far
+Iteration 5460145: max diff=0.000000, 55.04 sec so far
+Iteration 5951652: max diff=0.000000, 60.05 sec so far
+Iteration 6454991: max diff=0.000000, 65.05 sec so far
+Iteration 6946686: max diff=0.000000, 70.06 sec so far
+Iteration 7439400: max diff=0.000000, 75.06 sec so far
+Iteration 7939852: max diff=0.000000, 80.06 sec so far
+Iteration 8440487: max diff=0.000000, 85.07 sec so far
+Iteration 8942683: max diff=0.000000, 90.07 sec so far
+Iteration 9437190: max diff=0.000000, 95.08 sec so far
 
-Power method: 9464567 iterations in 93.41 seconds (average 0.000010, setup 0.00)
+Power method: 9478656 iterations in 95.48 seconds (average 0.000010, setup 0.00)
 
 Printing steady-state probabilities in plain text format to file "../../CZK_project/Output/firstRejuvenation_1E-6_dynamic/hybrid/ph_300_1E-6"...
 
-Time for steady-state probability computation: 97.316 seconds.
+Time for steady-state probability computation: 99.477 seconds.
 
