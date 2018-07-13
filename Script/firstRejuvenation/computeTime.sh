@@ -94,7 +94,7 @@ echo done
 echo epsilon and time ...
 
 if [[ $1 =~ 'event' ]]; then
-	file=$path$subpath$data'_10_k_'$2'.log'
+	file=$path$subpath$data'_k_'$2'.log'
 	echo $file
 	#epsilon
 	grep 'epsilon' $file > temp_eps0
