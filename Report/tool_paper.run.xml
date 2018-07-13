@@ -41,18 +41,18 @@
   >
 ]>
 <requests version="1.0">
-  <internal package="biblatex" priority="9" active="1">
+  <internal package="biblatex" priority="9" active="0">
     <generic>latex</generic>
     <provides type="dynamic">
-      <file>paper.bcf</file>
+      <file>tool_paper.bcf</file>
     </provides>
     <requires type="dynamic">
-      <file>paper.bbl</file>
+      <file>tool_paper.bbl</file>
     </requires>
     <requires type="static">
       <file>blx-dm.def</file>
       <file>blx-compat.def</file>
-      <file>biblatex.def</file>
+      <file>biblatex_.def</file>
       <file>numeric.bbx</file>
       <file>standard.bbx</file>
       <file>numeric.cbx</file>
@@ -64,22 +64,22 @@
     <generic>biber</generic>
     <cmdline>
       <binary>biber</binary>
-      <infile>paper</infile>
+      <infile>tool_paper</infile>
     </cmdline>
     <input>
-      <file>paper.bcf</file>
+      <file>tool_paper.bcf</file>
     </input>
     <output>
-      <file>paper.bbl</file>
+      <file>tool_paper.bbl</file>
     </output>
     <provides type="dynamic">
-      <file>paper.bbl</file>
+      <file>tool_paper.bbl</file>
     </provides>
     <requires type="dynamic">
-      <file>paper.bcf</file>
+      <file>tool_paper.bcf</file>
     </requires>
     <requires type="editable">
-      <file>paper.bib</file>
+      <file>tool_paper.bib</file>
     </requires>
   </external>
 </requests>
