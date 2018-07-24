@@ -1,6 +1,6 @@
 We will go through the theoretical bases needed to understand the contribution. For a complete understanding you can refer to the chapter two of this thesis \cite{Korenciak2018thesis}.
 \subsection{Time distribution}
-The class of models we use is probabilistic continuous time model, which means that the time passed in a state will depend on a time distribution. A time distribution can be depicted by its cumulative distribution function (CDF) $F : \mathbb{R} \rightarrow[0,1]$, $F(t)$ is the probability that the event will happend before the time $t$. The exponential distribution of rate $\lambda$ has a CDF $F(t) = 1 - \exp(-\lambda t)$, it is important to keep in mind that a rate refers to the exponential distribution. The Dirac distribution of timeout $\tau$ has a CDF $F(t) = 
+The class of models we use is probabilistic continuous time model, which means that the time passed in a state will depend on a time distribution. A time distribution can be depicted by its cumulative distribution function (CDF) $F : \mathbb{R} \rightarrow[0,1]$, $F(t)$ is the probability that the event will happen before the time $t$. The exponential distribution of rate $\lambda$ has a CDF $F(t) = 1 - \exp(-\lambda t)$, it is important to keep in mind that a rate refers to the exponential distribution. The Dirac distribution of timeout $\tau$ has a CDF $F(t) = 
 \left\{
 	\begin{array}{l}
 		0 \text{ if } t < \tau\\
@@ -37,7 +37,7 @@ Without considering the time spent on each state, CTMC works the same way than d
 \subsection{ACTMC}
 
 %Continuous-Time Markov Chain with Alarms (ACTMC)s. I won't give the formal semantics which might not fit in this paper. 
-We can see ACTMC as CTMC with some events called alarms that are enabled in disjoints sets of states and those events has their own timer which is active only when inside the enabled set and happend according to some continuous time distribution. Those alarms works concurrently with the exponential transition seen in the CTMC.
+We can see ACTMC as CTMC with some events called alarms that are enabled in disjoints sets of states and those events has their own timer which is active only when inside the enabled set and happend according to some continuous time distribution. Those alarms work concurrently with the exponential transition seen in the CTMC.
 
 An ACTMC $\mathcal{A}$ is a tuple $(S,Q,s_{in},A,\langle S_a \rangle,\langle P_a \rangle,\langle F_a \rangle)$
 where :
@@ -77,7 +77,7 @@ If $s_{i+1} \in S_{off}$, then  $\eta_{i+1} = \infty$.
 If $s_{i+1} \in S_{a}$ and $s_{i} \in S_{a}$, then  $\eta_{i+1} =\eta_i - t$.
 If $s_{i+1} \in S_{a}$ and $s_{i} \notin S_{a}$, then
 $\eta_{i+1}$ is randomly chosen according to $F_a$. 
-If the state remain in the set enabled by the alarm, the timer is updated. Otherwise it is reset according to the new enabled set.
+If the state remain in the set enabled by the alarm, the timer is updated. Otherwise, it is reset according to the new enabled set.
 
 \subsection{Steady State Probability}
 In a CTMC, it is important to understand the long term behavior of the system. If the CTMC model some production, we want to know the ratio of time it will spend in critical state or the expected efficiency of the system. It is possible to parametrized a CTMC with a reward system. For each state, we affect a reward that is a real number. During a run, we can computed the payoff of the run by adding the reward of each state multiplied by the time spend in the state. To compute a mean payoff we can use the Steady state Probability (SSP) defined as the expected ratio  of time spent on each state.
