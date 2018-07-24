@@ -1,0 +1,179 @@
+We will go through the theoretical bases needed to understand the contribution. For a complete understanding you can refer to the chapter two of this thesis \cite{Korenciak2018thesis}.
+\subsection{Time distribution}
+The class of models we use is probabilistic continuous time model, which means that the time passed in a state will depend on a time distribution. A time distribution can be depicted by its cumulative distribution function (CDF) $F : \mathbb{R} \rightarrow[0,1]$, $F(t)$ is the probability that the event will happend before the time $t$. The exponential distribution of rate $\lambda$ has a CDF $F(t) = 1 - \exp(-\lambda t)$, it is important to keep in mind that a rate refers to the exponential distribution. The Dirac distribution of timeout $\tau$ has a CDF $F(t) = 
+\left\{
+	\begin{array}{l}
+		0 \text{ if } t < \tau\\
+		1\text{ else}
+	\end{array}
+\right.$. The keyword deterministic is used when referring to so event following a Dirac distribution.
+The Erlang distribution can be seen as the distribution of a sequence of $k$ exponential distribution of parameter $\lambda$. Hence, the Erlang distribution has two parameter $k$ and $\lambda$. 
+In this paper, time distribution which are not exponential will be called non-Markovian distribution. Hence, a non-Markovian model will refer to a model with non-Markovian distribution.
+\subsection{CTMC}
+\label{CTMC_def}
+A continuous-time Markov chain (CTMC) is a triple $C = (S,Q,s_{in})$, where 
+\begin{itemize}
+	\item[$\bullet$] S is a finite set of states
+	\item[$\bullet$] $Q : S \times S \rightarrow \mathbb{R}_{\geq 0}$ is a matrix of rates such that $\sum_{s' \in S} Q(s,s')  > 0$ for each $s \in S$
+	\item[$\bullet$] $s_{in} \in S$ is an initial state
+\end{itemize} 
+$Q(s,s')$ is the rate of the transition from $s$ to $s'$.
+We define the exit rate of state $s$ as $\lambda_s = \sum_{s' \in S} Q(s,s')$
+
+A run of a CTMC $\mathcal{C}$ is an infinite alternating sequence of states and times $\omega = s_0t_0s_1t_1...$ where 
+\begin{itemize}
+	\item[$\bullet$] $s_0 = s_{in}$
+	\item[$\bullet$] $s_i$ is the i-th state
+	\item[$\bullet$] $t_i$ is the time spent in $s_i$
+\end{itemize}
+
+For each $i \in \mathbb{N}$ \begin{itemize}
+	\item[$\bullet$] $t_i$ is choosen randomly according to the exponential distribution with rate $\lambda_{s_i}$
+	\item[$\bullet$] $s_{i+1}$ is choosen according to the discrete distribution $\dfrac{Q(s_i,.)}{\lambda_{s_i}}$
+\end{itemize}
+
+Without considering the time spent on each state, CTMC works the same way than discrete time Markov Chain. It is interesting to understand why it is difficult to allow non-Markovian distribution. In this case, when available transitions are not exponential, we cannot pick the next state as easily. We will see an extension of CTMC, where we allow at most one non-Markovian at the same time. 
+
+\subsection{ACTMC}
+
+%Continuous-Time Markov Chain with Alarms (ACTMC)s. I won't give the formal semantics which might not fit in this paper. 
+We can see ACTMC as CTMC with some events called alarms that are enabled in disjoints sets of states and those events has their own timer which is active only when inside the enabled set and happend according to some continuous time distribution. Those alarms works concurrently with the exponential transition seen in the CTMC.
+
+An ACTMC $\mathcal{A}$ is a tuple $(S,Q,s_{in},A,\langle S_a \rangle,\langle P_a \rangle,\langle F_a \rangle)$
+where :
+\begin{itemize}
+	\item[$\bullet$]$(S,Q,s_{in})$ is a CTMC
+	\item[$\bullet$] $A$ is a set of alarms
+	\item[$\bullet$] $\langle S_a \rangle = (S_a)_{a \in A}$, the set of states where $a$ is enabled
+		\begin{itemize}
+			\item[$\bullet$] if $a \neq a'$ then $S_a \bigcap S_{a'} = \emptyset$ 
+		\end{itemize}
+	\item[$\bullet$]$\langle P_a \rangle = (P_a)_{a \in A}$ where $P_a$ is a probability matrix
+	\item[$\bullet$]$\langle F_a \rangle = (F_a)_{a \in A}$ where $F_a$ is a cumulative distribution function (CDF) 
+\end{itemize}
+
+
+The operational behavior of an ACTMC is the following. A run of a ACTMC $\mathcal{A}$ is an infinite alternating sequence of states and times $(s_0,\eta_0)t_0(s_1,\eta_1)t_1...$ where 
+$s_i$ is the i-th state, 
+$t_i$ is the delay in $s_i$, the time spent in $s_i$ and 
+$\eta_i$ is the value of the timer, the remaining time for the alarm to ring.We define $S_{off} = S\setminus\bigcup_{a \in A} S_a$ the set of states where no alarms are enabled
+
+The sequence is defined by induction on $i$. For the initialization $s_0 = s_{in}$. $\text{If } s_0 \in S_{off} \text{ then } \eta_0 =\infty \text{. If } s_0 \in S_{a}\text{, then } \eta_0 \text{ is randomly choosen according to }F_a$. For each $i \in \mathbb{N}, t_i$ is choosen randomly according to the exponential distribution $\lambda_{s_i}$. This value might be overwritten during the induction.
+
+Considering the induction, two cases are possible, either the alarm ring ($\eta_i \leq t_i$) or $t_i$ is too short and the alarm doesn't ring.
+
+%CASE 1
+If $\eta_i \leq t_i$, the alarm ring. 
+$t_i := \eta_i$ the value of delay is overwritten and match the time spent in $s_i$. 
+$s_{i+1}$ is chosen according to the discrete distribution $P_a(s_i,.)$. 
+If $s_{i+1} \in S_{off}$, then $\eta_{i+1} =\infty$. 
+If $s_{i+1} \in S_{a}$, then $\eta_{i+1}$ is randomly chosen according to $F_a$.
+
+%CASE 2
+If $\eta_i > t_i$, the alarm does not ring. 
+$t_i$ the value of delay remain the same and match the time spent in $s_i$.
+$s_{i+1}$ is chosen according to the discrete distribution $\dfrac{Q(s_i,.)}{\lambda_{s_i}}$.
+If $s_{i+1} \in S_{off}$, then  $\eta_{i+1} = \infty$.
+If $s_{i+1} \in S_{a}$ and $s_{i} \in S_{a}$, then  $\eta_{i+1} =\eta_i - t$.
+If $s_{i+1} \in S_{a}$ and $s_{i} \notin S_{a}$, then
+$\eta_{i+1}$ is randomly chosen according to $F_a$. 
+If the state remain in the set enabled by the alarm, the timer is updated. Otherwise it is reset according to the new enabled set.
+
+\subsection{Steady State Probability}
+In a CTMC, it is important to understand the long term behavior of the system. If the CTMC model some production, we want to know the ratio of time it will spend in critical state or the expected efficiency of the system. It is possible to parametrized a CTMC with a reward system. For each state, we affect a reward that is a real number. During a run, we can computed the payoff of the run by adding the reward of each state multiplied by the time spend in the state. To compute a mean payoff we can use the Steady state Probability (SSP) defined as the expected ratio  of time spent on each state.
+%let $p(t)$ be the expected distribution at the time $t$. $p_i(t)$ is the i-th component of the distribution, i.e. the probability of the i-th state at the time $t$.$p = (p_i)_{i=1}^{|S|} = (\lim_{t \rightarrow \infty} p_i(t))_{i = 1}^{|S|}$ 
+
+We will compare the different tools, models and methods considering only the the SSP computation.
+
+\subsection{Phase Type fitting}
+Phase Type fitting (PH fitting) is approaching a non-Markovian distribution F with a CTMC, with a special state T, such that the time to reach T approximates F. PH fitting is used for approaching an ACTMC with a CTMC.
+
+To obtain analysis on ACTMC, we use PH fitting to create CTMC from ACTMC, and analyse those CTMC, then we deduce results on the ACTMC.  The motivation is that PRISM or Storm can use CTMC and not ACTMC. Figure \ref{fig:simple_actmc} and figure \ref{fig:simple_ctmc} are a toy example of the PH fitting of a simple ACTMC $\mathcal{A} = (\{A,B\},
+\begin{bmatrix}
+	0.5       & 0 \\
+	2       & 1 
+\end{bmatrix}
+,A,\{A\},
+\begin{bmatrix}
+1       & 0
+\end{bmatrix}
+,\{d\})$ with PH parameter $k$. The created CTMC is $\mathcal{C} = (\{A,B,1,2,...,k-1,B\},
+\begin{bmatrix}
+0       & \lambda_{1,k} 	& 0		& 0		& ...		& 0\\
+0       & 0 	& \lambda_{2,k}		& 0		& ...		& 0\\
+0       & 0 	& 0		& \lambda_{3,k}		& ...		& 0\\
+0       & 0 	& 0		& 0		& ...		& 0\\
+...       & ... 	& ...		& ...		& ...		& \lambda_{k,k}\\
+0       & 0 	& 0		& 0		& 0		& 0
+\end{bmatrix}
+,A)$
+
+
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.80cm,
+		semithick]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		
+		\node[state] (s0)                    {$S$};
+		\node[state]         (sn) [right of=s0]       {$T$};
+		\path[->, dashed]
+		(s0) edge 	node {$F$} (sn);
+		\path[->]
+		(s0) edge [loop left]	node {0.5} (s0)
+			
+		(sn) edge [bend left]	node {2} (s0)
+		edge [loop right]	node {1} (sn);			
+		\end{tikzpicture}
+		\caption{Model of a simple ACTMC $\mathcal{A}$, $F$ is a non-Markovian distribution.}
+		\label{fig:simple_actmc}
+	\end{figure}
+	
+	\begin{figure}
+		\centering
+		\begin{tikzpicture}[->,>=stealth',shorten >=1pt,auto,node distance=1.80cm,
+		semithick]
+		\tikzstyle{every state}=[fill=white,draw=black,text=black]
+		
+		\node[state] (s0)                    {$S$};
+		\node[state]         (s1) [right of=s0] {$1$};
+		\node[state]         (s2) [right of=s1] {$2$};
+		\node[state,draw=none]         (s4) [right of=s2]       {$...$};
+		\node[state]         (sw) [right of=s4,fill=white,text=black]       {$k-1$};
+		\node[state]         (sn) [right of=sw]       {$T$};
+		
+		
+		
+		\path[->]  
+		(s0) edge	node {$\lambda_{k,1}$} (s1)
+			edge [loop above]	node {0.5} (s0);
+		\path[->]
+	
+		[->]
+		(s1) edge	node {$\lambda_{k,2}$} (s2)
+			edge [loop above]	node {0.5} (s1);
+		\path[->]
+	
+	
+		(s2) edge   node {$\lambda_{k,3}$} (s4)
+			edge [loop above]	node {0.5} (s2);
+		\path[->]
+	
+	
+		(s4) edge   node {$\lambda_{k,k-1}$} (sw)
+			edge [loop above]	node {0.5} (s4);
+		\path[->]
+	
+	
+		(sw) edge   node {$\lambda_{k,k}$} (sn)
+			edge [loop above]	node {0.5} (sw);
+		\path[->]
+		
+		(sn) edge [bend left]	node {2} (s0)
+		edge [loop right]	node {1} (sn);
+		\end{tikzpicture}
+		\caption{Model of a CTMC obtain by PH fitting of the ACTMC figure \ref{fig:simple_actmc}.}
+		\label{fig:simple_ctmc}
+	\end{figure}
+In the case F is a Dirac of parameter $t$, we can set $\lambda_{i,k} = k/t$ for all $i$.
+In order to deduce the SSP of Figure \ref{fig:simple_actmc}, we will add the SSP of Figure \ref{fig:simple_ctmc}. The sum of the states $\{A,1,2,...,k-1\}$ will be the probability of the state $S$ in the ACTMC. The probability of the state $T$ in the ACTMC will be the probability of the state $T$ in the CTMC. In Fact, Erlang($k$,$k/t$) is converging to Dirac($t$). This result is the key to Phase-Type deterministic timeouts.

@@ -66,15 +66,13 @@ sorting=none,
 
 \begin{document}
 %
-\title{Continuous-Time Markov Chain with Alarms analysis and comparison of tools \thanks{Supported by organization x.}}
+\title{Continuous-Time Markov Chain with Alarms analysis and comparison of tools \thanks{Thanks t}}
 %
 %\titlerunning{Abbreviated paper title}
 % If the paper title is too long for the running head, you can set
 % an abbreviated paper title here
 %
-\author{Thomas Mari\inst{1}\orcidID{0000-1111-2222-3333} \and
-Second Author\inst{2,3}\orcidID{1111-2222-3333-4444} \and
-Third Author\inst{3}\orcidID{2222--3333-4444-5555}}
+\author{Thomas Mari\inst{1,2}}%\orcidID{0000-1111-2222-3333}}
 %
 \authorrunning{F. Author et al.}
 % First names are abbreviated in the running head.
@@ -82,23 +80,20 @@ Third Author\inst{3}\orcidID{2222--3333-4444-5555}}
 %
 \institute{ENS-Rennes, Campus de Ker lann, Avenue Robert Schuman, 35170 Bruz, France \and
 Masaryk University, Botanická 68A, 602 00 Brno-Královo Pole, Czech republic
-\email{lncs@springer.com}\\
-\url{http://www.springer.com/gp/computer-science/lncs} \and
-ABC Institute, Rupert-Karls-University Heidelberg, Heidelberg, Germany\\
-\email{\{abc,lncs\}@uni-heidelberg.de}}
+\email{thomas.mari@ens-rennes.fr}\\
+\url{http://perso.eleves.ens-rennes.fr/people/thomas.mari/}
+}
 %
 \maketitle              % typeset the header of the contribution
 %
 \begin{abstract}
-Phase-type fitting is the advised way of modeling non-Markovian distributions within PRISM model checker.
-When analyzing models with phase-type distributions, it is problematic to obtain results of sufficient precision within a reasonable time.
-We ran experimental computations and deduced a reliable way of obtaining precise analysis results for phase-type fitted PRISM CTMCs.
-Lastly, we hint at an entirely different (and arguably better) approach to handling non-Markovian distributions.
+For the analysis of ACTMC, Phase-type fitting is the advised way of modeling non-Markovian distributions within PRISM model checker. We ran experimental computations and deduced a reliable way of obtaining precise analysis results for phase-type fitted PRISM CTMCs.
+We aim to compare Phase-type fitting with other approaches that handle directly the non-Marlovian distributions in term of efficiency and precision.
 
 %The abstract should briefly summarize the contents of the paper in
 %150--250 words.
 
-\keywords{PRISM model checker \and CTMC \and deterministic timeout \and phase-type distribution \and modeling \and analysis.}
+\keywords{PRISM model checker \and CTMC \and deterministic timeout \and phase-type distribution \and ACTMC \and modeling \and analysis.}
 \end{abstract}
 %
 %
@@ -107,11 +102,11 @@ Lastly, we hint at an entirely different (and arguably better) approach to handl
 
 	PRISM \cite{KNP11} and Storm \cite{DBLP:journals/corr/DehnertJK017} are popular tools for modeling and analysis of stochastic systems in continuous time. They use efficient algorithms for analysis of continuous time Markov chains (CTMC). This approach suffers from a severe restriction of expressiveness, because the time between transitions must be exponentially distributed. This restriction can be remedied by the use of phase-type distributions, which can approximate any general distribution with arbitrary accuracy by only using exponential distributions \cite{Buchholz:2014:IMP:2683922}. However, the use of phase-type distributions drastically increases the number of states within the CTMC.
 	
-	In this paper, we experimentally evaluate the precision of the result and required computation time of various approaches to analysis of continuous time stochastic models with deterministic transitions (timeouts). PH fitting results with PRISM are compared with the results of the models in gsmp PRISM, our extension of PRISM, capable of efficiently analyzing CTMC with non-Markovian alarms (ACTMC).
+	In this paper, we experimentally evaluate the precision of the result and required computation time of various approaches to analysis of continuous time stochastic models with deterministic transitions (timeouts). PH fitting results with PRISM are compared with the results of the models in GSMP PRISM, our extension of PRISM, capable of efficiently analyzing CTMC with non-Markovian alarms (ACTMC).
 	
 %	BIGGER INTRO
 	
-	We will go through the theoretical bases needed to understand the contribution. CITE LUBOSH'THESIS 
+
 
 \section{Related Work}
 \input{related_work.tex}
@@ -219,18 +214,20 @@ Lastly, we hint at an entirely different (and arguably better) approach to handl
 	
 	%%	 In order to compare the precision of the results obtained by the experiments, a trustworthy high-precision reference is needed. To achieve this, we used our own PRISM ACTMC implementation, which is capable of analyzing the given model directly without phase-type fitting. Using our implementation, we have computed the steady-state probabilities for very precise termination epsilon $\epsilon = 10^{-20}$ and compared it to the steady-state probabilities obtained by PRISM CTMC with phase-type fitting for $\epsilon = 10^{-16}$ and $k = 1000000$. As shown in Figure \ref{fig:diff_storm_dynamic}, the differences between the computations are smaller than $10^6$. Under the hypothesis that the true result is closer to the result obtained from PRISM ACTMC than to the result obtained from Storm, we can conclude that the PRISM ACTMC can serve as reference with precision at least $10^{-6}$.%%
 	
-	In order to compare the precision of the results obtained by the experiments, a trustworthy high-precision reference is needed. To achieve this ground truth, we have modeled the given D/M/1/10 queue in Oris \cite{Bucci2010}. The steady-state distribution obtained by Oris equals the steady-state distribution obtained by our PRISM ACTMC with termination epsilon $10^{-20}$ implementation up to at least 14 digits. Hence, our tool can be considered a trustworthy reference with precision of $10^{-14}$.
+	In order to compare the precision of the results obtained by the experiments, a trustworthy high-precision reference is needed. To achieve this ground truth, we have modeled the given D/M/1/10 queue in Oris \cite{Bucci2010}. The steady-state distribution obtained by Oris equals the steady-state distribution obtained by our GSMP PRISM with termination epsilon $10^{-20}$ implementation up to at least 14 digits. Hence, our tool can be considered a trustworthy reference with precision of $10^{-14}$.
+	
+	In the following, we will compare the distance between the SSP of the different approaches. This distance is the largest absolute difference between the distribution and the one computed with GSMP PRISM with termination epsilon $10^{-20}$.
 
-	I THINK AT THIS POINT OF THE ARTICLE, IT IS NOT OBVIOUS THAT OUR TOOL REFER TO PRISM GSMP 
-	%\pagebreak
 	\subsection{Default parameters}
 	\label{default_absolute}
 	
-	First, we used the PRISM with its default parameter setting. The results for increasing $k$ are shown in Figure \ref{fig:distance_constant_standard_constant_kappa}. For this $\epsilon$, the obtained results are arguably insufficient. Increasing $k$ does little to improve the precision, and only up to about $k \leq 50$, at which point increasing $k$ further starts making the precision worse. The reason is that PRISM has a parameter "Termination epsilon" that is set to $10^{-6}$ by default. This parameter specifies the precision of certain computation steps of PRISM. Increasing $k$ rises the number of states, hence the number of computation steps. This yields to increasing the overall error. 
+	First, we used the PRISM with its default parameter setting. The results for increasing $k$ are shown in Figure \ref{fig:distance_constant_standard_constant_kappa}. The obtained results are arguably insufficient. Increasing $k$ does little to improve the precision, and only up to about $k \leq 50$, at which point increasing $k$ further starts making the precision worse. The reason is that PRISM has a parameter "Termination epsilon" that is set to $10^{-6}$ by default. This parameter specifies the precision of certain computation steps of PRISM. Increasing $k$ rises the number of states, hence the number of computation steps. This yields to increasing the overall error. 
+	
+	The last curve "PRISM ACTMC" is our version of PRISM. The absolute termination epsilon used is the same, $10^{-6}$. We observe that the error is closed to epsilon. Which is what we expect from a precision setting.
 	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[trim=0.3cm 0cm 0cm 1.35cm,width=12cm, clip]{../picture/New_model/1E-6/distance_constant_1E-6.png}
+			\includegraphics[trim=0.3cm 0cm 0cm 1.35cm,width=10cm, clip]{../picture/New_model/1E-6/distance_constant_1E-6.png}
 		\end{center}
 		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for default absolute termination epsilon $\epsilon = 10^{-6}$. ACTMC results for $\epsilon = 10^{-6}$ are also compared to the reference.}
 		\label{fig:distance_constant_standard_constant_kappa}
@@ -241,11 +238,13 @@ Lastly, we hint at an entirely different (and arguably better) approach to handl
 	\label{lowering}
 	
 	For much lower $\epsilon = 10^{-10}$, the precision of the result improves. However, for higher $k$ the precision continues to deteriorate like in Section \ref{default_absolute}. The results are shown in Figure \ref{fig:distance_constant_1E-10_constant_kappa}.
+	Lowering the absolute termination increase the range of the PH parameter $k$ where the results are better. But for higher $k$, the precision keeps degrading. We have to adjust the precision when changing $k$. 
 	
+	We observe once more that the error for the GSMP PRISM computation is in the range of the absolute termination epsilon.
 	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{../picture/New_model/1E-10/distance_constant_1E-10.png}
+			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=10cm, clip]{../picture/New_model/1E-10/distance_constant_1E-10.png}
 		\end{center}
 		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference.}
 		\label{fig:distance_constant_1E-10_constant_kappa}
@@ -262,7 +261,7 @@ Lastly, we hint at an entirely different (and arguably better) approach to handl
 	
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{../picture/New_model/1E-10/distance_dynamic_1E-10.png}
+			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=10cm, clip]{../picture/New_model/1E-10/distance_dynamic_1E-10.png}
 		\end{center}
 		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered and adjusted absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference.}
 		\label{fig:distance_dynamic_1E-10_constant_kappa}
@@ -275,20 +274,21 @@ Lastly, we hint at an entirely different (and arguably better) approach to handl
 	
 	\begin{figure}
 		\begin{center}
-			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{../picture/New_model/1E-6/performance_dynamic.png}
+			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=10cm, clip]{../picture/New_model/1E-6/performance_dynamic.png}
 		\end{center}
 		\caption{Time of computation in seconds of the steady-state probabilities against various values of $k$ for lowered and adjusted absolute termination epsilon $\epsilon = 10^{-10}$, i.e. corresponding to the data shown in Figure \ref{fig:distance_dynamic_1E-10_constant_kappa}. The computation of our PRISM ACTMC is constant in regards to $k$ because it does not use phase-type fitting. }
 		\label{fig:performance_dynamic}
 	\end{figure}
 	
 	\subsection{Another Model : firstRejuvenation}
+	The firstRejuvenation model \cite{German:2000:PAC:518204} is originally a Stochastic Petri Net (SPN). I took it from a benchmark \cite{benchmark} made for evaluating fd-PRISM which is another version of Prism. The SPN graph is available in annexe, Figure \ref{fig:SPN_firstRejuvenation}. This model represent some production system that can be degraded with time (exponentially distributed). When the system is degraded, it can fail and has to be repaired. In the same time the system reset at every tic of a clock which put the system in his original state. 
 	
 	We can observe similar results in terms of lack of precision on another model Figure \ref{fig:fr_1E-10_constant}. The precision must also depend on the PH fitting parameter $k$ in this model. Here we went through difficulties related to the methods used by the engine in Prism. The Power method for computing SSP uses different iterations which are matrix multiplication. The number of iteration will strongly depend on the model and its parameter like timeouts and rates. In the First Rejuvenation model The convergence for the power method is really slow and the number of iteration required is important. In the queue, 100 000 000 iterations was enough to compute the SSP, but here the number of iteration prevent us to compute the SSP for k greater than 1000 with reasonable precision.
 	
 	The results of computation are given in the Figure \ref{fig:fr_1E-10_constant}. The orange curve is the error versus the number of phase $k$. The precision setting of the computation is $10^{-10}$ but the error is much bigger (at least $10^{-3}$). This error can be related to the theoretical approximation error of the PH fitting, but also the error of computation of the engine.
 	\begin{figure}[H]
 		\begin{center}
-			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=15cm, clip]{../picture/firstRejuvenation/distance_1E-10_constant.png}
+			\includegraphics[trim=0.2cm 0cm 0cm 1.35cm,width=10cm, clip]{../picture/firstRejuvenation/distance_1E-10_constant.png}
 		\end{center}
 		\caption{Maximum distance (infinity norm) of the steady-state probabilities from the reference high-precision ACTMC ($10^{-20}$) against various values of $k$ for lowered and adjusted absolute termination epsilon $\epsilon = 10^{-10}$. ACTMC results for $\epsilon = 10^{-10}$ are also compared to the reference.}
 		\label{fig:fr_1E-10_constant}
@@ -305,6 +305,11 @@ Lastly, we hint at an entirely different (and arguably better) approach to handl
 	Using the default setting of precision when doing PH fitting is not reliable at all. The relation between the experimental precision and the parameter of the model is not trivial. We have presented a sufficient condition to increased the precision while increasing the number of phases. 
 	
 	For better performance, we suggest usage of more specialized tools that can deal with non-Markovian distributions directly, without phase-type fitting. Our PRISM ACTMC extension \footnote{Our PRISM ACTMC extension is not fully completed yet and lacks optimization. It will be officially released later, but early development version is available at \href{https://github.com/VojtechRehak/prism-gsmp}{https://github.com/VojtechRehak/prism-gsmp}.} has delivered results with sufficient precision a lot faster.
+	
+	This experimental statement strengthens the conjecture that further heuristics can increase the efficiency of an analysis with a non-Markovian distributions\cite{DBLP:journals/corr/KorenciakKR14}. To some extent GSMP-PRISM is challenging the PH fitting approach. Hence it could be interesting to compare the efficiency of GSMP-PRISM with the analysis of SPN with the tool Oris.
+	
+\subsubsection*{Acknowledgements}
+I would like to thank Vojtech Reh{\'{a}}k, which has been  my supervisor during this internship. Also, I thank M\'{a}rio Uhr\'{i}k for his assistance during this internship and our joint contributions and discussions. 
 
 \iffalse
 \subsection{A Subsection Sample}
@@ -410,5 +415,14 @@ Oct 2017
 
 \end{thebibliography}
 \fi
+\section*{Annexe}
 \printbibliography
+
+	\begin{figure}[H]
+		\begin{center}
+			\includegraphics[,width=10cm, clip]{../../Model/benchmark/release/firstRejuvenation/firstRejuvenationPIC.png}
+		\end{center}
+		\caption{SPN model of firstRejuvenation. Grey transitions are deterministic (Dirac) transitions. White filled transitions are exponential transitions.}
+		\label{fig:SPN_firstRejuvenation}
+	\end{figure}
 \end{document}
